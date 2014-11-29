@@ -15,8 +15,8 @@ console.log(cssVendor.prefix.css) // e.g. -webkit-transform
 Test if property is supported, returns false if not. Returns string if supported. May add a vendor prefix if needed.
 
 ```javascript
-
 console.log(cssVendor.supportedProperty('animation')) // e.g. -webkit-animation
+```
 
 ## Run tests
 
