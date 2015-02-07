@@ -18,6 +18,16 @@ Test if property is supported, returns false if not. Returns string if supported
 console.log(cssVendor.supportedProperty('animation')) // e.g. -webkit-animation
 ```
 
+### Value support feature test
+
+`cssVendor.supportedValue(prop, value)`
+
+Test if value is supported, returns false if not. Returns string if supported. May add a vendor prefix if needed.
+
+```javascript
+console.log(cssVendor.supportedValue('display', 'flex')) // e.g. -webkit-flex
+```
+
 ## Run tests
 
 ### Locally

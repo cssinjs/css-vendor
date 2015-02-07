@@ -17,3 +17,13 @@ exports.prefix = require('./lib/prefix')
  * @api public
  */
 exports.supportedProperty = require('./lib/supported-property')
+
+/**
+ * Returns prefixed value if needed. Returns `false` if value is not supported.
+ *
+ * @param {String} property
+ * @param {String} value
+ * @return {String|Boolean}
+ * @api public
+ */
+ exports.supportedValue = require('./lib/supported-value')

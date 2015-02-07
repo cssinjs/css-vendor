@@ -19,8 +19,43 @@ exports.prefix = require('./lib/prefix')
  */
 exports.supportedProperty = require('./lib/supported-property')
 
-},{"./lib/prefix":2,"./lib/supported-property":3}],2:[function(require,module,exports){
+/**
+ * Returns prefixed value if needed. Returns `false` if value is not supported.
+ *
+ * @param {String} property
+ * @param {String} value
+ * @return {String|Boolean}
+ * @api public
+ */
+ exports.supportedValue = require('./lib/supported-value')
+
+},{"./lib/prefix":3,"./lib/supported-property":4,"./lib/supported-value":5}],2:[function(require,module,exports){
 'use strict'
+
+var regExp = /[-\s]+(.)?/g
+
+/**
+ * Convert dash separated strings to camel cased.
+ *
+ * @param {String} str
+ * @return {String}
+ */
+module.exports = function(str) {
+    return str.replace(regExp, toUpper)
+}
+
+function toUpper(match, c) {
+    return c ? c.toUpperCase() : ''
+}
+
+
+},{}],3:[function(require,module,exports){
+'use strict'
+
+/**
+ * Export javascript style and css style vendor prefixes.
+ * Based on "transform" support test.
+ */
 
 var jsCssMap = {
     Webkit: '-webkit-',
@@ -41,41 +76,30 @@ for (var js in jsCssMap) {
     }
 }
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict'
 
 var prefix = require('./prefix')
+var camelize = require('./camelize')
+
+var el = document.createElement('p')
 
 /**
  * We test every property on vendor prefix requirement.
  * Once tested, result is cached. It gives us up to 70% perf boost.
  * http://jsperf.com/element-style-object-access-vs-plain-object
+ *
+ * Prefill cache with known css properties to reduce amount of
+ * properties we need to feature test at runtime.
+ * http://davidwalsh.name/vendor-prefix
  */
-var cache = {}
-
-var p = document.createElement('p')
-
-// Prefill cache with known css properties to reduce amount of
-// properties we need to feature test.
-// http://davidwalsh.name/vendor-prefix
-;(function() {
+var cache = (function() {
     var computed = window.getComputedStyle(document.documentElement, '')
+    var cache = {}
     for (var key in computed) {
         cache[computed[key]] = false
     }
-}())
-
-// Convert dash separated strings to camel cased.
-var camelize = (function () {
-    var regExp = /[-\s]+(.)?/g
-
-    function toUpper(match, c) {
-        return c ? c.toUpperCase() : ''
-    }
-
-    return function(str) {
-        return str.replace(regExp, toUpper)
-    }
+    return cache
 }())
 
 /**
@@ -89,16 +113,63 @@ var camelize = (function () {
 module.exports = function (prop) {
     // We have not tested this prop yet, lets do the test.
     if (cache[prop] == null) {
-        var camelized = prefix.js + camelize('-' + prop)
-        var dasherized = prefix.css + prop
-        // Test if property is supported.
         // Camelization is required because we can't test using
         // css syntax e.g. in ff.
-        cache[prop] = camelized in p.style ? dasherized : false
+        var camelized = prefix.js + camelize('-' + prop)
+        // Test if property is supported.
+        cache[prop] = camelized in el.style ? prefix.css + prop : false
     }
 
     return cache[prop]
 }
 
-},{"./prefix":2}]},{},[1])(1)
+},{"./camelize":2,"./prefix":3}],5:[function(require,module,exports){
+'use strict'
+
+var prefix = require('./prefix')
+
+var cache = {}
+
+var el = document.createElement('p')
+
+/**
+ * Returns prefixed value if needed. Returns `false` if value is not supported.
+ *
+ * @param {String} property
+ * @param {String} value
+ * @return {String|Boolean}
+ * @api public
+ */
+module.exports = function (property, value) {
+console.log(cache)
+    if (typeof value != 'string') return value
+
+    var cacheKey = property + value
+
+    if (cache[cacheKey] != null) return cache[cacheKey]
+
+    // Test value as it is.
+    el.style[property] = value
+
+    // Value is supported as it is.
+    if (el.style[property] == value) {
+        cache[cacheKey] = value
+        return value
+    }
+
+    // Test value with vendor prefix.
+    value = prefix.css + value
+    cacheKey = property + value
+    el.style[property] = value
+
+    // Value is supported with vendor.
+    if (el.style[property] == value) {
+        cache[cacheKey] = value
+        return value
+    }
+
+    return false
+}
+
+},{"./prefix":3}]},{},[1])(1)
 });

@@ -24,3 +24,23 @@ test('known property', function () {
 test('unknown property', function () {
     equal(cssVendor.supportedProperty('xxx'), false)
 })
+
+QUnit.module('value support')
+
+test('known value', function () {
+    var value = cssVendor.supportedValue('display', 'none')
+    equal(value, 'none')
+})
+
+test('known value prefixed', function () {
+    var value = cssVendor.supportedValue('display', 'flex')
+    if (value == 'flex') {
+        ok(true, 'unprefixed is supported')
+    } else {
+        equal(value, cssVendor.prefix.css + 'flex', 'prefixed supported')
+    }
+})
+
+test('unknown value', function () {
+    equal(cssVendor.supportedValue('display', 'xxx'), false)
+})
