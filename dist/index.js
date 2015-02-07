@@ -141,7 +141,6 @@ var el = document.createElement('p')
  * @api public
  */
 module.exports = function (property, value) {
-console.log(cache)
     if (typeof value != 'string') return value
 
     var cacheKey = property + value
@@ -162,7 +161,7 @@ console.log(cache)
     cacheKey = property + value
     el.style[property] = value
 
-    // Value is supported with vendor.
+    // Value is supported with vendor prefix.
     if (el.style[property] == value) {
         cache[cacheKey] = value
         return value
