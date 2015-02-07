@@ -16,9 +16,12 @@ test('js vendor prefix is defined', function () {
 QUnit.module('property support')
 
 test('known property', function () {
+    equal(cssVendor.supportedProperty('display'), 'display')
+})
+
+test('known property prefixed', function () {
     var prop = cssVendor.supportedProperty('animation')
-    var prefixedProp = cssVendor.prefix.css + 'animation'
-    equal(prop, prefixedProp)
+    equal(prop, cssVendor.prefix.css + 'animation')
 })
 
 test('unknown property', function () {

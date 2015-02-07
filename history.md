@@ -1,3 +1,7 @@
+## 0.2.2 / 2014-02-08
+
+- slightly change the api - now always return the corrected value, even if prefix is not needed
+
 ## 0.2.0 / 2014-02-07
 
 - add supported value feature test
