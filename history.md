@@ -1,3 +1,7 @@
+## 0.2.3 / 2014-02-08
+
+- don't make feature tests for values like '10px'
+
 ## 0.2.2 / 2014-02-08
 
 - slightly change the api - now always return the corrected value, even if prefix is not needed

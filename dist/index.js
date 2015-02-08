@@ -149,7 +149,7 @@ var el = document.createElement('p')
  * @api public
  */
 module.exports = function (property, value) {
-    if (typeof value != 'string') return value
+    if (typeof value != 'string' || !isNaN(parseInt(value, 10))) return value
 
     var cacheKey = property + value
 
