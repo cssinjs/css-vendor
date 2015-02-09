@@ -20,6 +20,16 @@ exports.prefix = require('./lib/prefix')
 exports.supportedProperty = require('./lib/supported-property')
 
 /**
+ * Test if a selector is supported. Returns normal selector untouched,
+ * at-rule selector with vendor prefix if required, or false if at-rule is not supported.
+ *
+ * @param {String} selector
+ * @return {String|Boolean}
+ * @api public
+ */
+exports.supportedSelector = require('./lib/supported-selector')
+
+/**
  * Returns prefixed value if needed. Returns `false` if value is not supported.
  *
  * @param {String} property
@@ -27,9 +37,9 @@ exports.supportedProperty = require('./lib/supported-property')
  * @return {String|Boolean}
  * @api public
  */
- exports.supportedValue = require('./lib/supported-value')
+exports.supportedValue = require('./lib/supported-value')
 
-},{"./lib/prefix":3,"./lib/supported-property":4,"./lib/supported-value":5}],2:[function(require,module,exports){
+},{"./lib/prefix":3,"./lib/supported-property":4,"./lib/supported-selector":5,"./lib/supported-value":6}],2:[function(require,module,exports){
 'use strict'
 
 var regExp = /[-\s]+(.)?/g
@@ -132,6 +142,81 @@ module.exports = function (prop) {
 }
 
 },{"./camelize":2,"./prefix":3}],5:[function(require,module,exports){
+'use strict'
+
+// Create a shortcut for the CSSRule interface
+var CSSRule = window.CSSRule
+
+// Define prefixes as they are used in this context
+var prefixes = ['MOZ_', 'WEBKIT_', 'O_', 'MS_', '']
+
+var cache = {}
+
+/**
+ * Test if a selector is supported, returns supported selector with vendor
+ * prefix if required.
+ *
+ * Returns selector if at-rule is not present.
+ * Returns at-rule if present and feature-detected. Rule is vendor prefixed if required.
+ * Returns `false` if at-rule is present and not supported.
+ *
+ * @param {String} selector
+ * @return {String|Boolean}
+ * @api public
+ */
+module.exports = function (selector) {
+    if (selector[0] !== '@') {
+        // No at-rule present to feature detect.
+        return selector
+    }
+
+    var selectorTokens = selector.split(' ')
+    var atRule = selectorTokens[0].substr(1)
+    var remainderTokens = selectorTokens.slice(1)
+    var supportedAtRule = cache[atRule] || getSupportedAtRule(atRule)
+
+    return supportedAtRule && [supportedAtRule]
+        .concat(remainderTokens)
+        .join(' ')
+}
+
+/**
+ * Test if an at-rule is supported, returns supported rule with vendor
+ * prefix if required, or false if at-rule is not supported.
+ *
+ * @param {String} selector
+ * @return {String|Boolean}
+ * @api public
+ * Feature test adapted from https://github.com/ryanmorr/is-rule-supported
+ */
+function getSupportedAtRule(atRule) {
+    // Convert the rule name to a form compatible with the CSSRule type constants
+    var rule = atRule.toUpperCase().split('-').join('_') + '_RULE'
+    var length = prefixes.length;
+    var support = false
+    var supportedPrefix
+    var result
+
+    // Loop the prefixes while support is yet to be determined
+    while (!support && length--) {
+        // Support will be tested with no prefix first before
+        // prepending each vendor prefix to the constant name and testing it
+        supportedPrefix = prefixes[length]
+        support = (supportedPrefix + rule) in CSSRule;
+    }
+
+    if (support === false) {
+        cache[atRule] = false
+        return false
+    } else if (supportedPrefix !== '') {
+        supportedPrefix = '-' + supportedPrefix.replace('_', '-').toLowerCase()
+    }
+
+    cache[atRule] = '@' + supportedPrefix + atRule
+    return cache[atRule]
+}
+
+},{}],6:[function(require,module,exports){
 'use strict'
 
 var prefix = require('./prefix')
