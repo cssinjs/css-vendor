@@ -20,12 +20,32 @@ test('known property', function () {
 })
 
 test('known property prefixed', function () {
-    var prop = cssVendor.supportedProperty('animation')
-    equal(prop, cssVendor.prefix.css + 'animation')
+    var prop = cssVendor.supportedProperty('animation-name')
+    equal(prop, cssVendor.prefix.css + 'animation-name')
 })
 
 test('unknown property', function () {
     equal(cssVendor.supportedProperty('xxx'), false)
+})
+
+QUnit.module('selector support')
+
+test('normal selector', function () {
+    equal(cssVendor.supportedSelector('.a .b'), '.a .b')
+})
+
+test('known at-rule selector', function () {
+    var importStyle = '@import url(test.css)'
+    equal(cssVendor.supportedSelector(importStyle), importStyle)
+})
+
+test('known prefixed at-rule selector', function () {
+    // There is no longer a known prefixed rule for all browsers,
+    // but checking in window.CSSRule is still a working heuristic for @keyframes
+    var selector = cssVendor.supportedSelector('@keyframes animation-name')
+    var prefix = ('KEYFRAMES_RULE' in window.CSSRule) ? '' : cssVendor.prefix.css
+
+    equal(selector, '@' + prefix + 'keyframes animation-name')
 })
 
 QUnit.module('value support')

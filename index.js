@@ -19,6 +19,16 @@ exports.prefix = require('./lib/prefix')
 exports.supportedProperty = require('./lib/supported-property')
 
 /**
+ * Test if a selector is supported. Returns normal selector untouched,
+ * at-rule selector with vendor prefix if required, or false if at-rule is not supported.
+ *
+ * @param {String} selector
+ * @return {String|Boolean}
+ * @api public
+ */
+exports.supportedSelector = require('./lib/supported-selector')
+
+/**
  * Returns prefixed value if needed. Returns `false` if value is not supported.
  *
  * @param {String} property
@@ -26,4 +36,4 @@ exports.supportedProperty = require('./lib/supported-property')
  * @return {String|Boolean}
  * @api public
  */
- exports.supportedValue = require('./lib/supported-value')
+exports.supportedValue = require('./lib/supported-value')
