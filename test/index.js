@@ -45,7 +45,7 @@ test('known prefixed at-rule selector', function () {
     var selector = cssVendor.supportedSelector('@keyframes animation-name')
     var prefix = ('KEYFRAMES_RULE' in window.CSSRule) ? '' : cssVendor.prefix.css
 
-    ok(selector, '@' + prefix + 'keyframes animation-name')
+    equal(selector, '@' + prefix + 'keyframes animation-name')
 })
 
 QUnit.module('value support')
