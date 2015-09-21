@@ -1,3 +1,7 @@
+## 0.2.4 / 2014-21-09
+
+- make it requirable serverside
+
 ## 0.2.3 / 2014-02-08
 
 - don't make feature tests for values like '10px'
