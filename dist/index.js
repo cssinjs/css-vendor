@@ -52,15 +52,15 @@ function toUpper(match, c) {
 },{}],3:[function(require,module,exports){
 'use strict'
 
+/**
+ * Export javascript style and css style vendor prefixes.
+ * Based on "transform" support test.
+ */
+
 exports.js = exports.css = ''
 
 // We should not do anything if required serverside.
 if (typeof document != 'undefined') {
-    /**
-     * Export javascript style and css style vendor prefixes.
-     * Based on "transform" support test.
-     */
-
     var jsCssMap = {
         Webkit: '-webkit-',
         Moz: '-moz-',
@@ -86,27 +86,32 @@ if (typeof document != 'undefined') {
 var prefix = require('./prefix')
 var camelize = require('./camelize')
 
-var el = document.createElement('p')
+var el
+var cache = {}
 
-/**
- * We test every property on vendor prefix requirement.
- * Once tested, result is cached. It gives us up to 70% perf boost.
- * http://jsperf.com/element-style-object-access-vs-plain-object
- *
- * Prefill cache with known css properties to reduce amount of
- * properties we need to feature test at runtime.
- * http://davidwalsh.name/vendor-prefix
- */
-var cache = (function() {
-    var computed = window.getComputedStyle(document.documentElement, '')
-    var cache = {}
+if (typeof document != 'undefined') {
+    el = document.createElement('p')
 
-    for (var key in computed) {
-        cache[computed[key]] = computed[key]
-    }
+    /**
+     * We test every property on vendor prefix requirement.
+     * Once tested, result is cached. It gives us up to 70% perf boost.
+     * http://jsperf.com/element-style-object-access-vs-plain-object
+     *
+     * Prefill cache with known css properties to reduce amount of
+     * properties we need to feature test at runtime.
+     * http://davidwalsh.name/vendor-prefix
+     */
+    cache = (function() {
+        var computed = window.getComputedStyle(document.documentElement, '')
+        var cache = {}
 
-    return cache
-}())
+        for (var key in computed) {
+            cache[computed[key]] = computed[key]
+        }
+
+        return cache
+    }())
+}
 
 /**
  * Test if a property is supported, returns supported property with vendor
@@ -142,7 +147,9 @@ var prefix = require('./prefix')
 
 var cache = {}
 
-var el = document.createElement('p')
+var el
+
+if (typeof document != 'undefined') el = document.createElement('p')
 
 /**
  * Returns prefixed value if needed. Returns `false` if value is not supported.

@@ -1,3 +1,7 @@
+## 0.2.5 / 2014-22-09
+
+- make it requirable serverside
+
 ## 0.2.4 / 2014-21-09
 
 - make it requirable serverside
