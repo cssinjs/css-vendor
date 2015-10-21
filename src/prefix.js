@@ -3,29 +3,26 @@
  * Based on "transform" support test.
  */
 
-'use strict';
-
-exports.__esModule = true;
-var js = '';
-var css = '';
+let js = ''
+let css = ''
 
 // We should not do anything if required serverside.
 if (typeof document != 'undefined') {
-  var jsCssMap = {
+  let jsCssMap = {
     Webkit: '-webkit-',
     Moz: '-moz-',
     // IE did it wrong again ...
     ms: '-ms-',
     O: '-o-'
-  };
-  var style = document.createElement('p').style;
-  var testProp = 'Transform';
+  }
+  let style = document.createElement('p').style
+  let testProp = 'Transform'
 
-  for (var key in jsCssMap) {
-    if (key + testProp in style) {
-      js = key;
-      css = jsCssMap[key];
-      break;
+  for (let key in jsCssMap) {
+    if ((key + testProp) in style) {
+      js = key
+      css = jsCssMap[key]
+      break
     }
   }
 }
@@ -36,5 +33,4 @@ if (typeof document != 'undefined') {
  * @type {{js: String, css: String}}
  * @api public
  */
-exports['default'] = { js: js, css: css };
-module.exports = exports['default'];
+export default {js, css}

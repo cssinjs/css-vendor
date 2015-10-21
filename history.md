@@ -1,3 +1,9 @@
+## 0.3.0 / 2015-10-21
+
+- migrate to ES6 with babel
+- remove bower.json
+- simplify packaging
+
 ## 0.2.5 / 2014-22-09
 
 - make it requirable serverside

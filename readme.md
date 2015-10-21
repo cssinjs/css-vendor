@@ -30,14 +30,10 @@ console.log(cssVendor.supportedValue('display', 'flex')) // e.g. -webkit-flex
 
 ## Run tests
 
-### Locally
 ```bash
 npm i
-open test/local.html
+npm test
 ```
-### From github
-
-[Tests](https://jsstyles.github.com/css-vendor/test)
 
 ## License
 
