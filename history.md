@@ -1,3 +1,7 @@
+## 0.3.1 / 2015-10-21
+
+- release package with lib dir
+
 ## 0.3.0 / 2015-10-21
 
 - migrate to ES6 with babel
