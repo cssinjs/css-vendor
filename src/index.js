@@ -6,6 +6,19 @@
  * @license MIT
  */
 
-export prefix from './prefix'
-export supportedProperty from './supported-property'
-export supportedValue from './supported-value'
+import prefix from './prefix'
+import supportedProperty from './supported-property'
+import supportedValue from './supported-value'
+
+
+
+export default {
+  prefix,
+  supportedProperty,
+  supportedValue,
+}
+export {
+  prefix,
+  supportedProperty,
+  supportedValue,
+}
