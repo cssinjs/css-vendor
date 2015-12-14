@@ -10,15 +10,13 @@ import prefix from './prefix'
 import supportedProperty from './supported-property'
 import supportedValue from './supported-value'
 
-
-
 export default {
   prefix,
   supportedProperty,
-  supportedValue,
+  supportedValue
 }
 export {
   prefix,
   supportedProperty,
-  supportedValue,
+  supportedValue
 }
