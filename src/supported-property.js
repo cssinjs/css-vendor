@@ -2,7 +2,7 @@ import prefix from './prefix'
 import camelize from './camelize'
 
 let el
-let cache = {}
+const cache = {}
 
 if (typeof document != 'undefined') {
   el = document.createElement('p')
@@ -16,8 +16,8 @@ if (typeof document != 'undefined') {
    * properties we need to feature test at runtime.
    * http://davidwalsh.name/vendor-prefix
    */
-  let computed = window.getComputedStyle(document.documentElement, '')
-  for (let key in computed) {
+  const computed = window.getComputedStyle(document.documentElement, '')
+  for (const key in computed) {
     cache[computed[key]] = computed[key]
   }
 }

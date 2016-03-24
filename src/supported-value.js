@@ -1,6 +1,6 @@
 import prefix from './prefix'
 
-let cache = {}
+const cache = {}
 let el
 
 if (typeof document != 'undefined') el = document.createElement('p')
@@ -16,7 +16,7 @@ if (typeof document != 'undefined') el = document.createElement('p')
 export default function supportedValue(property, value) {
   if (typeof value != 'string' || !isNaN(parseInt(value, 10))) return value
 
-  let cacheKey = property + value
+  const cacheKey = property + value
 
   if (cache[cacheKey] != null) return cache[cacheKey]
 

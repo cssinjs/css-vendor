@@ -1,3 +1,7 @@
+## 0.3.2 / 2015-03-24
+
+- update babel, lint
+
 ## 0.3.1 / 2015-10-21
 
 - release package with lib dir

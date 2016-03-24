@@ -8,17 +8,17 @@ let css = ''
 
 // We should not do anything if required serverside.
 if (typeof document != 'undefined') {
-  let jsCssMap = {
+  const jsCssMap = {
     Webkit: '-webkit-',
     Moz: '-moz-',
     // IE did it wrong again ...
     ms: '-ms-',
     O: '-o-'
   }
-  let style = document.createElement('p').style
-  let testProp = 'Transform'
+  const style = document.createElement('p').style
+  const testProp = 'Transform'
 
-  for (let key in jsCssMap) {
+  for (const key in jsCssMap) {
     if ((key + testProp) in style) {
       js = key
       css = jsCssMap[key]
