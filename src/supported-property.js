@@ -4,6 +4,7 @@ import camelize from './camelize'
 let el
 const cache = {}
 
+// For server-side rendering.
 if (typeof document != 'undefined') {
   el = document.createElement('p')
 
@@ -31,6 +32,9 @@ if (typeof document != 'undefined') {
  * @api public
  */
 export default function supportedProperty(prop) {
+  // For server-side rendering.
+  if (!el) return prop
+
   // We have not tested this prop yet, lets do the test.
   if (cache[prop] != null) return cache[prop]
 
@@ -39,8 +43,8 @@ export default function supportedProperty(prop) {
   // Test if property is supported as it is.
   if (camelize(prop) in el.style) {
     cache[prop] = prop
-  // Test if property is supported with vendor prefix.
   }
+  // Test if property is supported with vendor prefix.
   else if ((prefix.js + camelize('-' + prop)) in el.style) {
     cache[prop] = prefix.css + prop
   }

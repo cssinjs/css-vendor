@@ -3,6 +3,7 @@ import prefix from './prefix'
 const cache = {}
 let el
 
+// For server-side rendering.
 if (typeof document != 'undefined') el = document.createElement('p')
 
 /**
@@ -14,7 +15,12 @@ if (typeof document != 'undefined') el = document.createElement('p')
  * @api public
  */
 export default function supportedValue(property, value) {
-  if (typeof value != 'string' || !isNaN(parseInt(value, 10))) return value
+  // For server-side rendering.
+  if (!el) return value
+
+  // It is a string or a number as a string like '1'.
+  // We want only prefixable values here.
+  if (typeof value !== 'string' || !isNaN(parseInt(value, 10))) return value
 
   const cacheKey = property + value
 

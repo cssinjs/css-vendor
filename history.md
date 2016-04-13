@@ -1,3 +1,7 @@
+## 0.3.3 / 2015-04-13
+
+- do nothing server-side
+
 ## 0.3.2 / 2015-03-24
 
 - update babel, lint
