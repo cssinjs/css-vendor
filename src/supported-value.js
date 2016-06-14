@@ -26,8 +26,15 @@ export default function supportedValue(property, value) {
 
   if (cache[cacheKey] != null) return cache[cacheKey]
 
-  // Test value as it is.
-  el.style[property] = value
+  // IE can even throw an error in some cases, for e.g. style.content = 'bar'
+  try {
+    // Test value as it is.
+    el.style[property] = value
+  }
+  catch (err) {
+    cache[cacheKey] = false
+    return false
+  }
 
   // Value is supported as it is.
   if (el.style[property] === value) {

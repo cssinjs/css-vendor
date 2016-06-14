@@ -1,3 +1,7 @@
+## 0.3.5 / 2016-06-15
+
+- catch IE exceptions when feature testing a value
+
 ## 0.3.3 / 2015-04-13
 
 - do nothing server-side
