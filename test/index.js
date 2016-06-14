@@ -47,3 +47,7 @@ test('known value prefixed', function () {
 test('unknown value', function () {
     equal(cssVendor.supportedValue('display', 'xxx'), false)
 })
+
+test('bad "content" value', function () {
+    equal(cssVendor.supportedValue('content', 'bar'), false)
+})
