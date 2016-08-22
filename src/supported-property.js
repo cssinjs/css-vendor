@@ -1,11 +1,11 @@
+import isBrowser from 'is-browser'
 import prefix from './prefix'
 import camelize from './camelize'
 
 let el
 const cache = {}
 
-// For server-side rendering.
-if (typeof document != 'undefined') {
+if (isBrowser) {
   el = document.createElement('p')
 
   /**
@@ -45,7 +45,7 @@ export default function supportedProperty(prop) {
     cache[prop] = prop
   }
   // Test if property is supported with vendor prefix.
-  else if ((prefix.js + camelize('-' + prop)) in el.style) {
+  else if ((prefix.js + camelize(`-${prop}`)) in el.style) {
     cache[prop] = prefix.css + prop
   }
   else {

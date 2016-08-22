@@ -1,4 +1,9 @@
-## 0.3.5 / 2016-06-15
+## 0.3.5 / 2016-08-23
+
+- better browser env detection
+- update deps
+
+## 0.3.4 / 2016-06-15
 
 - catch IE exceptions when feature testing a value
 

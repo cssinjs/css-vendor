@@ -3,11 +3,13 @@
  * Based on "transform" support test.
  */
 
+import isBrowser from 'is-browser'
+
 let js = ''
 let css = ''
 
 // We should not do anything if required serverside.
-if (typeof document != 'undefined') {
+if (isBrowser) {
   const jsCssMap = {
     Webkit: '-webkit-',
     Moz: '-moz-',

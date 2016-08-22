@@ -1,10 +1,10 @@
+import isBrowser from 'is-browser'
 import prefix from './prefix'
 
 const cache = {}
 let el
 
-// For server-side rendering.
-if (typeof document != 'undefined') el = document.createElement('p')
+if (isBrowser) el = document.createElement('p')
 
 /**
  * Returns prefixed value if needed. Returns `false` if value is not supported.
