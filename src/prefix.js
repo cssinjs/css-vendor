@@ -10,26 +10,22 @@ let css = ''
 
 // We should not do anything if required serverside.
 if (isBrowser) {
+  // Order matters. We need to check Webkit the last one because
+  // other vendors use to add Webkit prefixes to some properties
   const jsCssMap = {
-    Webkit: '-webkit-',
     Moz: '-moz-',
     // IE did it wrong again ...
     ms: '-ms-',
-    O: '-o-'
+    O: '-o-',
+    Webkit: '-webkit-'
   }
-
-  // Order matters. We need to check Webkit the last one because
-  // other vendors use to add Webkit prefixes to some properties
-  const prefixes = ['Moz', 'ms', 'O', 'Webkit']
-
   const style = document.createElement('p').style
   const testProp = 'Transform'
 
-  for (let i = 0; i < prefixes.length; i++) {
-    const prefix = prefixes[i];
-    if ((prefix + testProp) in style) {
-      js = prefix
-      css = jsCssMap[prefix]
+  for (const key in jsCssMap) {
+    if ((key + testProp) in style) {
+      js = key
+      css = jsCssMap[key]
       break
     }
   }
