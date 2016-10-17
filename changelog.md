@@ -1,3 +1,8 @@
+## 0.3.6 / 2016-10-17
+
+- cheeck webkit prefix as last, because other browsers use it as well
+- update deps
+
 ## 0.3.5 / 2016-08-23
 
 - better browser env detection
