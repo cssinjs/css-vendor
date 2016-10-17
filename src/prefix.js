@@ -17,15 +17,15 @@ if (isBrowser) {
     ms: '-ms-',
     O: '-o-'
   }
+  const prefixes = ['Moz', 'Webkit', 'ms', 'O']
+
   const style = document.createElement('p').style
   const testProp = 'Transform'
 
-  for (const key in jsCssMap) {
-    if ((key + testProp) in style) {
-      js = key
-      css = jsCssMap[key]
-      break
-    }
+  const vendor = prefixes.find(prefix => (prefix + testProp) in style)
+  if (vendor) {
+    js = vendor
+    css = jsCssMap[vendor]
   }
 }
 
