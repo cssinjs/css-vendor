@@ -1,3 +1,8 @@
+## 0.3.7 / 2016-10-31
+
+- use cross-env
+- use is-in-browser
+
 ## 0.3.6 / 2016-10-17
 
 - cheeck webkit prefix as last, because other browsers use it as well

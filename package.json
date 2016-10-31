@@ -1,7 +1,7 @@
 {
   "name": "css-vendor",
   "description": "CSS vendor prefix detection and property feature testing.",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "author": {
     "name": "Oleg Slobodskoi",
     "email": "oleg008@gmail.com"
@@ -15,15 +15,18 @@
     "vendor",
     "feature",
     "test",
-    "prefix"
+    "prefix",
+    "cssinjs",
+    "jss",
+    "css-in-js"
   ],
   "engines": {},
   "scripts": {
     "all": "npm run lint && npm run build",
     "build": "npm run clean && npm run build:lib && npm run build:max && npm run build:min",
     "build:lib": "babel src --out-dir lib",
-    "build:max": "NODE_ENV=development webpack src/index.js dist/css-vendor.js",
-    "build:min": "NODE_ENV=production webpack src/index.js dist/css-vendor.min.js",
+    "build:max": "cross-env NODE_ENV=development webpack src/index.js dist/css-vendor.js",
+    "build:min": "cross-env NODE_ENV=production webpack src/index.js dist/css-vendor.min.js",
     "clean": "rimraf ./lib/*",
     "lint": "eslint ./src",
     "lint:staged": "lint-staged",
@@ -39,6 +42,7 @@
     "babel-loader": "^6.2.2",
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
+    "cross-env": "^3.1.3",
     "eslint": "^3.8.0",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-config-jss": "^2.4.0",
@@ -53,7 +57,7 @@
     "webpack": "^2.0.7-beta"
   },
   "dependencies": {
-    "is-browser": "^2.0.1"
+    "is-in-browser": "^1.0.2"
   },
   "lint-staged": {
     "./src/*.js": [

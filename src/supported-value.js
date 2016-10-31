@@ -1,10 +1,10 @@
-import isBrowser from 'is-browser'
+import isInBrowser from 'is-in-browser'
 import prefix from './prefix'
 
 const cache = {}
 let el
 
-if (isBrowser) el = document.createElement('p')
+if (isInBrowser) el = document.createElement('p')
 
 /**
  * Returns prefixed value if needed. Returns `false` if value is not supported.

@@ -3,13 +3,13 @@
  * Based on "transform" support test.
  */
 
-import isBrowser from 'is-browser'
+import isInBrowser from 'is-in-browser'
 
 let js = ''
 let css = ''
 
 // We should not do anything if required serverside.
-if (isBrowser) {
+if (isInBrowser) {
   // Order matters. We need to check Webkit the last one because
   // other vendors use to add Webkit prefixes to some properties
   const jsCssMap = {

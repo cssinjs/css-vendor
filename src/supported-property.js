@@ -1,11 +1,11 @@
-import isBrowser from 'is-browser'
+import isInBrowser from 'is-in-browser'
 import prefix from './prefix'
 import camelize from './camelize'
 
 let el
 const cache = {}
 
-if (isBrowser) {
+if (isInBrowser) {
   el = document.createElement('p')
 
   /**
