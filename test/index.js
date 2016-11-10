@@ -54,3 +54,13 @@ test('unknown value', function (assert) {
 test('bad "content" value', function (assert) {
   assert.equal(cssVendor.supportedValue('content', 'bar'), false)
 })
+
+test('known transition value prefixed', function (assert) {
+  var value = cssVendor.supportedValue('transition', 'all 100ms ease, transform 200ms linear')
+  assert.equal(value, 'all 100ms ease, ' + cssVendor.prefix.css + 'transform 200ms linear')
+})
+
+test('known transition-property value prefixed', function (assert) {
+  var value = cssVendor.supportedValue('transition-property', 'all, transform')
+  assert.equal(value, 'all, ' + cssVendor.prefix.css + 'transform')
+})
