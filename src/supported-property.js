@@ -19,7 +19,7 @@ if (isInBrowser) {
    */
   const computed = window.getComputedStyle(document.documentElement, '')
   for (const key in computed) {
-    cache[computed[key]] = computed[key]
+    if (!isNaN(key)) cache[computed[key]] = computed[key]
   }
 }
 
