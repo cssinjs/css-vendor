@@ -1,10 +1,25 @@
 import isInBrowser from 'is-in-browser'
 import prefix from './prefix'
+import supportedProperty from './supported-property'
 
 const cache = {}
+const transitionProperties = [
+  'transition',
+  'transition-property',
+  '-webkit-transition',
+  '-webkit-transition-property',
+]
+// Matches all properties in transition and transition-property.
+const transPropsRegExp = /(^\s*\w+)|, (\s*\w+)/g
 let el
 
 if (isInBrowser) el = document.createElement('p')
+
+function prefixTransitionCallback(match, p1, p2) {
+  if (p1 === 'all') return 'all'
+  if (p2 === 'all') return ', all'
+  return p1 ? supportedProperty(p1) : `, ${supportedProperty(p2)}`
+}
 
 /**
  * Returns prefixed value if needed. Returns `false` if value is not supported.
@@ -36,8 +51,12 @@ export default function supportedValue(property, value) {
     return false
   }
 
+  // Prefix transition properties.
+  if (transitionProperties.indexOf(property) !== -1) {
+    cache[cacheKey] = value.replace(transPropsRegExp, prefixTransitionCallback)
+  }
   // Value is supported as it is.
-  if (el.style[property] === value) {
+  else if (el.style[property] === value) {
     cache[cacheKey] = value
   }
   else {
