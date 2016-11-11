@@ -38,6 +38,11 @@ test('known value', function (assert) {
   assert.equal(value, 'none')
 })
 
+test('known value complex', function (assert) {
+  var value = cssVendor.supportedValue('color', 'rgba(255, 255, 255, 1.0)')
+  assert.equal(value, 'rgba(255, 255, 255, 1.0)')
+})
+
 test('known value prefixed', function (assert) {
   var value = cssVendor.supportedValue('display', 'flex')
   if (value == 'flex') {
