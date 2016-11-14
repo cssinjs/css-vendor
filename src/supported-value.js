@@ -37,7 +37,7 @@ export default function supportedValue(property, value) {
   }
 
   // Value is supported as it is.
-  if (el.style[property] === value) {
+  if (el.style[property] !== '') {
     cache[cacheKey] = value
   }
   else {
@@ -50,10 +50,13 @@ export default function supportedValue(property, value) {
     el.style[property] = value
 
     // Value is supported with vendor prefix.
-    if (el.style[property] === value) cache[cacheKey] = value
+    if (el.style[property] !== '') cache[cacheKey] = value
   }
 
   if (!cache[cacheKey]) cache[cacheKey] = false
+
+  // Reset style value.
+  el.style[property] = ''
 
   return cache[cacheKey]
 }
