@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/cssinjs/css-vendor.svg?branch=master)](https://travis-ci.org/cssinjs/css-vendor)
+
 ## CSS vendor prefix detection and property feature testing.
 
 ### Vendor prefixes
