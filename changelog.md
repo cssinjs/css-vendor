@@ -1,3 +1,10 @@
+## 0.3.8 / 2016-11-17
+
+- better cache prefill
+- fix supportedValue
+- migrate tests
+- introduce browerstack config and travis
+
 ## 0.3.7 / 2016-10-31
 
 - use cross-env
