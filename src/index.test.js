@@ -1,6 +1,12 @@
+/* eslint-disable func-names */
+
 import expect from 'expect.js'
+import {getSupport, currentBrowser} from 'caniuse-support'
 
 import {prefix, supportedProperty, supportedValue} from './index'
+
+const msg = `Detected browser: ${currentBrowser.id} ${currentBrowser.version}`
+console.log(msg) // eslint-disable-line no-console
 
 describe('css-vendor', () => {
   describe('.prefix', () => {
@@ -22,11 +28,11 @@ describe('css-vendor', () => {
       expect(supportedProperty('display')).to.be('display')
     })
 
-    it('should prefix if needed', () => {
-      const prop = supportedProperty(`${prefix.css}animation`)
-      if (prop !== 'animation') {
-        expect(prop).to.be(`${prefix.css}animation`)
-      }
+    it('should prefix if needed', function () {
+      const {level, needPrefix} = getSupport('transforms2d')
+      if (level === 'none' || level === 'unknown') this.skip()
+      const prop = needPrefix ? `${prefix.css}transform` : 'transform'
+      expect(supportedProperty('transform')).to.be(prop)
     })
 
     it('should return false', () => {
@@ -44,11 +50,11 @@ describe('css-vendor', () => {
       expect(supportedValue('color', value)).to.be(value)
     })
 
-    it('should should prefix if needed', () => {
-      const value = supportedValue('display', 'flex')
-      if (value !== 'flex') {
-        expect(value).to.be(`${prefix.css}flex`)
-      }
+    it('should prefix if needed', function () {
+      const {level, needPrefix} = getSupport('flexbox')
+      if (level !== 'full') this.skip()
+      const value = needPrefix ? `${prefix.css}flex` : 'flex'
+      expect(supportedValue('display', 'flex')).to.be(value)
     })
 
     it('should return false for unknown value', () => {

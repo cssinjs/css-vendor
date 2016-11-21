@@ -34,16 +34,21 @@ module.exports = (config) => {
   if (useCloud) {
     Object.assign(config, {
       browsers: Object.keys(browsers),
-      browserDisconnectTolerance: 3,
       // My current OS plan allows max 2 parallel connections.
       concurrency: 2,
-      retryLimit: 3
+      retryLimit: 3,
+
+      // Timeouts taken from https://github.com/karma-runner/karma-browserstack-launcher/issues/61
+      captureTimeout: 3e5,
+      browserNoActivityTimeout: 3e5,
+      browserDisconnectTimeout: 3e5,
+      browserDisconnectTolerance: 3
     })
 
     config.browserStack = {
       username: browserStackUserName,
       accessKey: browserStackAccessKey,
-      captureTimeout: 10000
+      captureTimeout: 3e5
     }
 
     if (isTravis) {
