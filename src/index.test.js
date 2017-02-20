@@ -4,6 +4,7 @@ import expect from 'expect.js'
 import {getSupport, currentBrowser} from 'caniuse-support'
 
 import {prefix, supportedProperty, supportedValue} from './index'
+import propertyPrefixFixture from '../test/fixtures/property-prefix'
 
 const msg = `Detected browser: ${currentBrowser.id} ${currentBrowser.version}`
 console.log(msg) // eslint-disable-line no-console
@@ -28,12 +29,10 @@ describe('css-vendor', () => {
       expect(supportedProperty('display')).to.be('display')
     })
 
-    it('should prefix if needed', function () {
-      const {level, needPrefix} = getSupport('transforms2d')
-      if (level === 'none' || level === 'unknown') this.skip()
-      const prop = needPrefix ? `${prefix.css}transform` : 'transform'
-      expect(supportedProperty('transform')).to.be(prop)
-    })
+    for (const property in propertyPrefixFixture) {
+      it(`should prefix ${property} if needed [${currentBrowser.id} ${currentBrowser.version}]`,
+        () => expect(supportedProperty(property)).to.be(propertyPrefixFixture[property]))
+    }
 
     it('should return false', () => {
       expect(supportedProperty('xxx')).to.be(false)
