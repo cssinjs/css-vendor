@@ -1,0 +1,37 @@
+import {getSupport, currentBrowser, getVersionIndex} from 'caniuse-support'
+import autoprefixer from 'autoprefixer'
+import data from 'autoprefixer/data/prefixes'
+import postcssJs from 'postcss-js'
+import {dashify} from '../utils'
+
+const browserQuery = `${currentBrowser.id} ${getVersionIndex(currentBrowser)}`
+const ap = autoprefixer({browsers: browserQuery})
+const prefixer = postcssJs.sync([ap])
+
+const skipProperties = [
+  // caniuse doesn't cover this property and spec might drop this: https://www.w3.org/TR/css-fonts-3/.
+  "font-language-override",
+]
+
+function generateFixture() {
+  const fixture = {}
+  const supported = Object.keys(data).
+    // Filters autoprefixer data to include only property prefix related entries.
+    filter(s => s.match(/^[^:@].*$/g)).
+    filter(s => data[s].props === undefined).
+    filter(s => skipProperties.indexOf(s) < 0).
+    // TODO: Remove the following line when this is resolved: https://github.com/Fyrd/caniuse/issues/3070.
+    filter(s => ["css3-cursors-grab", "css-text-spacing"].indexOf(data[s].feature) < 0).
+    map(s => ({ property: s, feature: data[s].feature, ...getSupport(data[s].feature) })).
+    // No support in caniuse db means no support for the spec, but
+    // no support in css-vendor means no browser support at all for the particular property,
+    // therefore we cannot test with the caniuse data for these cases.
+    filter(o => o.level !== "none").
+    forEach(o => {
+      fixture[o.property] = dashify(Object.keys(prefixer({[o.property]: ''}))[0])
+    })
+  return fixture
+}
+
+export default generateFixture()
+

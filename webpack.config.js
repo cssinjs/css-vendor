@@ -29,5 +29,8 @@ module.exports = {
         test: /\.json$/
       }
     ]
+  },
+  node: {
+    fs: "empty",
   }
 }
