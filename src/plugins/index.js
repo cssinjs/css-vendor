@@ -1,4 +1,7 @@
+import maskBorderOld from "./mask-border-old"
+
 const plugins = [
+  maskBorderOld,
 ]
 
 export const supportedPropertyPlugins = plugins
