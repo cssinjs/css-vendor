@@ -13,6 +13,11 @@ const skipProperties = [
   "font-language-override",
 ]
 
+const isNotSupported = (o) =>
+    o.level === "none" ||
+    // http://caniuse.com/#search=object-position
+    o.property === "object-position" && o.notes.indexOf(1) > -1
+
 function generateFixture() {
   const fixture = {}
   const supported = Object.keys(data).
@@ -26,7 +31,7 @@ function generateFixture() {
     // No support in caniuse db means no support for the spec, but
     // no support in css-vendor means no browser support at all for the particular property,
     // therefore we cannot test with the caniuse data for these cases.
-    filter(o => o.level !== "none").
+    filter(o => !isNotSupported(o)).
     forEach(o => {
       fixture[o.property] = dashify(Object.keys(prefixer({[o.property]: ''}))[0])
     })
