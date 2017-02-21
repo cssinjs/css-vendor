@@ -29,6 +29,12 @@ if (isInBrowser) {
       break
     }
   }
+
+  // Correctly detect the Edge browser.
+  if (js === 'Webkit' && 'msHyphens' in style) {
+    js = 'ms'
+    css = jsCssMap.ms
+  }
 }
 
 /**
