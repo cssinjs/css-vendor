@@ -1,6 +1,7 @@
 import isInBrowser from 'is-in-browser'
 import prefix from './prefix'
 import camelize from './camelize'
+import { supportedPropertyPlugins } from "./plugins"
 
 let el
 const cache = {}
@@ -23,6 +24,16 @@ if (isInBrowser) {
   }
 }
 
+const propertyDetectors = [
+  // Camelization is required because we can't test using
+  // css syntax for e.g. in FF.
+  // Test if property is supported as it is.
+  (prop, style) => camelize(prop) in style ? prop : false,
+  // Test if property is supported with vendor prefix.
+  (prop, style) => prefix.js + camelize(`-${prop}`) in style ? prefix.css + prop : false,
+  ...supportedPropertyPlugins
+]
+
 /**
  * Test if a property is supported, returns supported property with vendor
  * prefix if required. Returns `false` if not supported.
@@ -38,18 +49,9 @@ export default function supportedProperty(prop) {
   // We have not tested this prop yet, lets do the test.
   if (cache[prop] != null) return cache[prop]
 
-  // Camelization is required because we can't test using
-  // css syntax for e.g. in FF.
-  // Test if property is supported as it is.
-  if (camelize(prop) in el.style) {
-    cache[prop] = prop
-  }
-  // Test if property is supported with vendor prefix.
-  else if ((prefix.js + camelize(`-${prop}`)) in el.style) {
-    cache[prop] = prefix.css + prop
-  }
-  else {
-    cache[prop] = false
+  for (let i=0; i < propertyDetectors.length; i++) {
+    cache[prop] = propertyDetectors[i](prop, el.style)
+    if (cache[prop]) break
   }
 
   return cache[prop]
