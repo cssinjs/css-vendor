@@ -5,7 +5,7 @@ import camelize from '../camelize'
 // See https://github.com/postcss/autoprefixer/issues/324.
 export default {
   supportedProperty: (prop, style) => {
-    let newProp;
+    let newProp
     if (prop.match(/^(border|margin|padding)-block-start/)) {
       newProp = prop.replace('-block-start', '-before')
     }
