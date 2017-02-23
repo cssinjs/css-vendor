@@ -15,7 +15,7 @@ const skipProperties = [
 
 const isNotSupported = (o) =>
     o.level === "none" ||
-    // http://caniuse.com/#search=object-position
+    // http://caniuse.com/#feat=object-fit
     o.property === "object-position" && o.notes.indexOf(1) > -1
 
 function generateFixture() {
