@@ -16,7 +16,10 @@ const skipProperties = [
 const isNotSupported = (o) =>
     o.level === "none" ||
     // http://caniuse.com/#feat=object-fit
-    o.property === "object-position" && o.notes.indexOf(1) > -1
+    o.property === "object-position" && o.notes.indexOf(1) > -1 ||
+    // http://caniuse.com/#feat=multicolumn
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=616436
+    o.property === "column-span" && currentBrowser.id === "firefox"
 
 function generateFixture() {
   const fixture = {}
