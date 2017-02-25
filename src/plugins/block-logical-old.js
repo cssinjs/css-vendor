@@ -1,5 +1,5 @@
 import prefix from '../prefix'
-import camelize from '../camelize'
+import pascalize from '../pascalize'
 
 // Support old block-logical syntax.
 // See https://github.com/postcss/autoprefixer/issues/324.
@@ -15,6 +15,6 @@ export default {
     if (!newProp) {
       return false
     }
-    return prefix.js + camelize(`-${newProp}`) in style ? prefix.css + newProp : false
+    return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : false
   },
 }
