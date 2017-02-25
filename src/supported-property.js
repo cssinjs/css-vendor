@@ -1,6 +1,7 @@
 import isInBrowser from 'is-in-browser'
 import prefix from './prefix'
 import camelize from './camelize'
+import pascalize from './pascalize'
 import {supportedPropertyPlugins} from './plugins'
 
 let el
@@ -30,7 +31,7 @@ const propertyDetectors = [
   // Test if property is supported as it is.
   (prop, style) => (camelize(prop) in style ? prop : false),
   // Test if property is supported with vendor prefix.
-  (prop, style) => (prefix.js + camelize(`-${prop}`) in style ? prefix.css + prop : false),
+  (prop, style) => (prefix.js + pascalize(prop) in style ? prefix.css + prop : false),
   ...supportedPropertyPlugins
 ]
 

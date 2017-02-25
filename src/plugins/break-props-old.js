@@ -1,5 +1,5 @@
 import prefix from '../prefix'
-import camelize from '../camelize'
+import pascalize from '../pascalize'
 
 // Support old break-* props syntax.
 // http://caniuse.com/#feat=multicolumn
@@ -9,11 +9,11 @@ export default {
   supportedProperty: (prop, style) => {
     if (prop.match(/^break-/)) {
       if (prefix.js === 'Webkit') {
-        const jsProp = `WebkitColumn${camelize(`-${prop}`)}`
+        const jsProp = `WebkitColumn${pascalize(prop)}`
         return jsProp in style ? `${prefix.css}column-${prop}` : false
       }
       else if (prefix.js === 'Moz') {
-        const jsProp = `page${camelize(`-${prop}`)}`
+        const jsProp = `page${pascalize(prop)}`
         return jsProp in style ? `page-${prop}` : false
       }
     }
