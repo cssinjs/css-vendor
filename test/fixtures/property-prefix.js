@@ -19,7 +19,9 @@ const isNotSupported = (o) =>
     o.property === "object-position" && o.notes.indexOf(1) > -1 ||
     // http://caniuse.com/#feat=multicolumn
     // https://bugzilla.mozilla.org/show_bug.cgi?id=616436
-    o.property === "column-span" && currentBrowser.id === "firefox"
+    o.property === "column-span" && currentBrowser.id === "firefox" ||
+    // http://caniuse.com/#feat=css-masks
+    o.property.match(/^mask-/) && o.notes.indexOf(2) > -1
 
 function generateFixture() {
   const fixture = {}
