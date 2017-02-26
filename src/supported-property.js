@@ -1,8 +1,5 @@
 import isInBrowser from 'is-in-browser'
-import prefix from './prefix'
-import camelize from './camelize'
-import pascalize from './pascalize'
-import {supportedPropertyPlugins} from './plugins'
+import {propertyDetectors} from './plugins'
 
 let el
 const cache = {}
@@ -24,16 +21,6 @@ if (isInBrowser) {
     if (!isNaN(key)) cache[computed[key]] = computed[key]
   }
 }
-
-const propertyDetectors = [
-  // Camelization is required because we can't test using
-  // css syntax for e.g. in FF.
-  // Test if property is supported as it is.
-  (prop, style) => (camelize(prop) in style ? prop : false),
-  // Test if property is supported with vendor prefix.
-  (prop, style) => (prefix.js + pascalize(prop) in style ? prefix.css + prop : false),
-  ...supportedPropertyPlugins
-]
 
 /**
  * Test if a property is supported, returns supported property with vendor
