@@ -1,3 +1,4 @@
+import mask from './mask'
 import unprefixed from './unprefixed'
 import prefixed from './prefixed'
 import blockLogicalOld from './block-logical-old'
@@ -6,6 +7,7 @@ import maskBorderOld from './mask-border-old'
 import breakPropsOld from './break-props-old'
 
 const plugins = [
+  mask,
   unprefixed,
   prefixed,
   blockLogicalOld,
@@ -24,3 +26,4 @@ export const noPrefill = plugins
     a.push(...p.noPrefill)
     return a
   }, [])
+
