@@ -21,7 +21,10 @@ const isNotSupported = (o) =>
     // https://bugzilla.mozilla.org/show_bug.cgi?id=616436
     o.property === 'column-span' && currentBrowser.id === 'firefox' ||
     // http://caniuse.com/#feat=css-masks
-    o.property.match(/^mask-/) && o.notes.indexOf(2) > -1
+    o.property.match(/^mask-/) && o.notes.indexOf(2) > -1 ||
+    // http://caniuse.com/#feat=text-decoration
+    o.property === 'text-decoration-skip' && o.notes.indexOf(4) > -1 ||
+    o.property === 'text-decoration-style' && o.notes.indexOf(2) > -1
 
 function generateFixture() {
   const fixture = {}
