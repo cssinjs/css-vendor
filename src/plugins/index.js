@@ -1,4 +1,5 @@
 import mask from './mask'
+import writingMode from './writing-mode'
 import unprefixed from './unprefixed'
 import prefixed from './prefixed'
 import blockLogicalOld from './block-logical-old'
@@ -8,6 +9,7 @@ import breakPropsOld from './break-props-old'
 
 const plugins = [
   mask,
+  writingMode,
   unprefixed,
   prefixed,
   blockLogicalOld,
