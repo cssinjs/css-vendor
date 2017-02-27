@@ -1,5 +1,5 @@
 import isInBrowser from 'is-in-browser'
-import {propertyDetectors} from './plugins'
+import {propertyDetectors, noPrefill} from './plugins'
 
 let el
 const cache = {}
@@ -20,6 +20,10 @@ if (isInBrowser) {
   for (const key in computed) {
     if (!isNaN(key)) cache[computed[key]] = computed[key]
   }
+
+  // Properties that cannot be correctly detected using the
+  // cache prefill method.
+  noPrefill.forEach(x => delete cache[x])
 }
 
 /**
