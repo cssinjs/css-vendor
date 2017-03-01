@@ -30,7 +30,9 @@ const isNotSupported = (o) =>
     o.property === 'text-decoration-skip' && o.notes.indexOf(4) > -1 ||
     o.property === 'text-decoration-style' && o.notes.indexOf(2) > -1 ||
     // http://caniuse.com/#feat=css-crisp-edges
-    o.property === 'image-rendering' && o.notes.indexOf(2) > -1
+    o.property === 'image-rendering' && o.notes.indexOf(2) > -1 ||
+    // http://caniuse.com/#feat=css-logical-props
+    o.property.match(/^(border|margin|padding)-block-(start|end)/) && o.notes.indexOf(1) > -1
 
 function generateFixture() {
   const fixture = {}
