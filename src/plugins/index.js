@@ -1,6 +1,7 @@
 import mask from './mask'
 import writingMode from './writing-mode'
 import clipPath from './clip-path'
+import filter from './filter'
 import unprefixed from './unprefixed'
 import prefixed from './prefixed'
 import blockLogicalOld from './block-logical-old'
@@ -12,6 +13,7 @@ const plugins = [
   mask,
   writingMode,
   clipPath,
+  filter,
   unprefixed,
   prefixed,
   blockLogicalOld,

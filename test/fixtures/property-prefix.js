@@ -11,6 +11,8 @@ const prefixer = postcssJs.sync([ap])
 const skipProperties = [
   // caniuse doesn't cover this property and spec might drop this: https://www.w3.org/TR/css-fonts-3/.
   'font-language-override',
+  // Lack of caniuse data. See https://github.com/Fyrd/caniuse/issues/2116
+  'font-variant-ligatures',
 ]
 
 const isNotSupported = (o) =>
@@ -20,11 +22,17 @@ const isNotSupported = (o) =>
     // http://caniuse.com/#feat=multicolumn
     // https://bugzilla.mozilla.org/show_bug.cgi?id=616436
     o.property === 'column-span' && currentBrowser.id === 'firefox' ||
+    o.property === 'column-fill' && o.notes.indexOf(2) > -1 ||
     // http://caniuse.com/#feat=css-masks
     o.property.match(/^mask-/) && o.notes.indexOf(2) > -1 ||
+    o.property.match(/^mask-border-/) && o.notes.indexOf(3) > -1 ||
     // http://caniuse.com/#feat=text-decoration
     o.property === 'text-decoration-skip' && o.notes.indexOf(4) > -1 ||
-    o.property === 'text-decoration-style' && o.notes.indexOf(2) > -1
+    o.property === 'text-decoration-style' && o.notes.indexOf(2) > -1 ||
+    // http://caniuse.com/#feat=css-crisp-edges
+    o.property === 'image-rendering' && o.notes.indexOf(2) > -1 ||
+    // http://caniuse.com/#feat=css-logical-props
+    o.property.match(/^(border|margin|padding)-block-(start|end)/) && o.notes.indexOf(1) > -1
 
 function generateFixture() {
   const fixture = {}
