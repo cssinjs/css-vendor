@@ -28,7 +28,9 @@ const isNotSupported = (o) =>
     o.property.match(/^mask-border-/) && o.notes.indexOf(3) > -1 ||
     // http://caniuse.com/#feat=text-decoration
     o.property === 'text-decoration-skip' && o.notes.indexOf(4) > -1 ||
-    o.property === 'text-decoration-style' && o.notes.indexOf(2) > -1
+    o.property === 'text-decoration-style' && o.notes.indexOf(2) > -1 ||
+    // http://caniuse.com/#feat=css-crisp-edges
+    o.property === 'image-rendering' && o.notes.indexOf(2) > -1
 
 function generateFixture() {
   const fixture = {}
