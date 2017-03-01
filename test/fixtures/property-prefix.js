@@ -22,6 +22,7 @@ const isNotSupported = (o) =>
     // http://caniuse.com/#feat=multicolumn
     // https://bugzilla.mozilla.org/show_bug.cgi?id=616436
     o.property === 'column-span' && currentBrowser.id === 'firefox' ||
+    o.property === 'column-fill' && o.notes.indexOf(2) > -1 ||
     // http://caniuse.com/#feat=css-masks
     o.property.match(/^mask-/) && o.notes.indexOf(2) > -1 ||
     // http://caniuse.com/#feat=text-decoration
