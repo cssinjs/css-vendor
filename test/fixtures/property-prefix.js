@@ -15,6 +15,8 @@ const skipProperties = [
   'font-variant-ligatures',
 ]
 
+const flexOldUnsupported = ['flex-shrink', 'flex-basis', 'flex-wrap', 'align-self', 'align-content']
+
 const isNotSupported = (o) =>
     o.level === 'none' ||
     // http://caniuse.com/#feat=object-fit
@@ -32,7 +34,10 @@ const isNotSupported = (o) =>
     // http://caniuse.com/#feat=css-crisp-edges
     o.property === 'image-rendering' && o.notes.indexOf(2) > -1 ||
     // http://caniuse.com/#feat=css-logical-props
-    o.property.match(/^(border|margin|padding)-block-(start|end)/) && o.notes.indexOf(1) > -1
+    o.property.match(/^(border|margin|padding)-block-(start|end)/) && o.notes.indexOf(1) > -1 ||
+    // http://caniuse.com/#feat=flexbox
+    flexOldUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(1) > -1 ||
+    ['flex-wrap', 'flex-flow', 'align-content'].indexOf(o.property) > -1 && o.notes.indexOf(3) > -1
 
 function generateFixture() {
   const fixture = {}
