@@ -15,6 +15,8 @@ const skipProperties = [
   'font-variant-ligatures',
 ]
 
+const flexOldUnsupported = ['flex-shrink', 'flex-basis', 'flex-wrap', 'align-self', 'align-content']
+
 const isNotSupported = (o) =>
     o.level === 'none' ||
     // http://caniuse.com/#feat=object-fit
@@ -32,7 +34,10 @@ const isNotSupported = (o) =>
     // http://caniuse.com/#feat=css-crisp-edges
     o.property === 'image-rendering' && o.notes.indexOf(2) > -1 ||
     // http://caniuse.com/#feat=css-logical-props
-    o.property.match(/^(border|margin|padding)-block-(start|end)/) && o.notes.indexOf(1) > -1
+    o.property.match(/^(border|margin|padding)-block-(start|end)/) && o.notes.indexOf(1) > -1 ||
+    // http://caniuse.com/#feat=flexbox
+    flexOldUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(1) > -1 ||
+    ['flex-wrap', 'flex-flow', 'align-content'].indexOf(o.property) > -1 && o.notes.indexOf(3) > -1
 
 function generateFixture() {
   const fixture = {}
@@ -49,7 +54,10 @@ function generateFixture() {
     // therefore we cannot test with the caniuse data for these cases.
     filter(o => !isNotSupported(o)).
     forEach(o => {
-      fixture[o.property] = dashify(Object.keys(prefixer({[o.property]: ''}))[0])
+      let props = Object.keys(prefixer({[o.property]: ''})).map(dashify)
+      // Remove unprefixed prop (last in array) when prefix is needed.
+      props = props.length > 1 ? props.slice(0, props.length - 1) : props
+      fixture[o.property] = props.length === 1 ? props[0] : props
     })
   return fixture
 }

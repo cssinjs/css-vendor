@@ -31,10 +31,11 @@ if (isInBrowser) {
  * prefix if required. Returns `false` if not supported.
  *
  * @param {String} prop dash separated
+ * @param {Object} [options]
  * @return {String|Boolean}
  * @api public
  */
-export default function supportedProperty(prop) {
+export default function supportedProperty(prop, options = {}) {
   // For server-side rendering.
   if (!el) return prop
 
@@ -42,7 +43,7 @@ export default function supportedProperty(prop) {
   if (cache[prop] != null) return cache[prop]
 
   for (let i = 0; i < propertyDetectors.length; i++) {
-    cache[prop] = propertyDetectors[i](prop, el.style)
+    cache[prop] = propertyDetectors[i](prop, el.style, options)
     if (cache[prop]) break
   }
 
