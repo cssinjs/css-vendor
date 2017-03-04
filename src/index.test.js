@@ -29,9 +29,10 @@ describe('css-vendor', () => {
       expect(supportedProperty('display')).to.be('display')
     })
 
+    const opts = {multiple: true}
     for (const property in propertyPrefixFixture) {
       it(`should prefix ${property} if needed [${currentBrowser.id} ${currentBrowser.version}]`,
-        () => expect(supportedProperty(property)).to.be(propertyPrefixFixture[property]))
+        () => expect(supportedProperty(property, opts)).to.eql(propertyPrefixFixture[property]))
     }
 
     it('should return false', () => {

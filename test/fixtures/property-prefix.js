@@ -49,7 +49,10 @@ function generateFixture() {
     // therefore we cannot test with the caniuse data for these cases.
     filter(o => !isNotSupported(o)).
     forEach(o => {
-      fixture[o.property] = dashify(Object.keys(prefixer({[o.property]: ''}))[0])
+      let props = Object.keys(prefixer({[o.property]: ''})).map(dashify)
+      // Remove unprefixed prop (last in array) when prefix is needed.
+      props = props.length > 1 ? props.slice(0, props.length - 1) : props
+      fixture[o.property] = props.length === 1 ? props[0] : props
     })
   return fixture
 }
