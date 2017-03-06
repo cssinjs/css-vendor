@@ -17,6 +17,7 @@ const skipProperties = [
 
 const flexOldUnsupported = ['flex-shrink', 'flex-basis', 'flex-wrap', 'align-self', 'align-content']
 const flexOldFFUnsupported = ['flex-wrap', 'flex-flow', 'align-content']
+const msSnapPointsUnsupported = ['scroll-snap-coordinate', 'scroll-snap-destination']
 
 // No support in caniuse db means no support for the spec, but
 // no support in css-vendor means no browser support at all for the particular property,
@@ -43,7 +44,9 @@ const isExcluded = o =>
     flexOldUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(1) > -1 ||
     flexOldFFUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(3) > -1 ||
     // Autoprefixer Quirk: prefixes writing-mode for ie even though it is not necessary
-    o.property === 'writing-mode' && currentBrowser.id === 'ie'
+    o.property === 'writing-mode' && currentBrowser.id === 'ie' ||
+    // http://caniuse.com/#feat=css-snappoints
+    msSnapPointsUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(6) > -1
 
 function generateFixture() {
   const fixture = {}
