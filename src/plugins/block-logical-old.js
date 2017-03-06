@@ -6,10 +6,10 @@ import pascalize from '../pascalize'
 export default {
   supportedProperty: (prop, style) => {
     let newProp
-    if (prop.match(/^(border|margin|padding)-block-start/)) {
+    if (/^(border|margin|padding)-block-start/.test(prop)) {
       newProp = prop.replace('-block-start', '-before')
     }
-    if (prop.match(/^(border|margin|padding)-block-end/)) {
+    if (/^(border|margin|padding)-block-end/.test(prop)) {
       newProp = prop.replace('-block-end', '-after')
     }
     if (!newProp) {

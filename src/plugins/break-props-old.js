@@ -7,7 +7,7 @@ import pascalize from '../pascalize'
 // https://github.com/postcss/autoprefixer/issues/177
 export default {
   supportedProperty: (prop, style) => {
-    if (prop.match(/^break-/)) {
+    if (/^break-/.test(prop)) {
       if (prefix.js === 'Webkit') {
         const jsProp = `WebkitColumn${pascalize(prop)}`
         return jsProp in style ? `${prefix.css}column-${prop}` : false

@@ -17,7 +17,7 @@ const skipProperties = [
 
 const flexOldUnsupported = ['flex-shrink', 'flex-basis', 'flex-wrap', 'align-self', 'align-content']
 
-const isNotSupported = (o) =>
+const isNotSupported = o =>
     o.level === 'none' ||
     // http://caniuse.com/#feat=object-fit
     o.property === 'object-position' && o.notes.indexOf(1) > -1 ||
@@ -26,15 +26,15 @@ const isNotSupported = (o) =>
     o.property === 'column-span' && currentBrowser.id === 'firefox' ||
     o.property === 'column-fill' && o.notes.indexOf(2) > -1 ||
     // http://caniuse.com/#feat=css-masks
-    o.property.match(/^mask-/) && o.notes.indexOf(2) > -1 ||
-    o.property.match(/^mask-border-/) && o.notes.indexOf(3) > -1 ||
+    /^mask-/.test(o.property) && o.notes.indexOf(2) > -1 ||
+    /^mask-border-/.test(o.property) && o.notes.indexOf(3) > -1 ||
     // http://caniuse.com/#feat=text-decoration
     o.property === 'text-decoration-skip' && o.notes.indexOf(4) > -1 ||
     o.property === 'text-decoration-style' && o.notes.indexOf(2) > -1 ||
     // http://caniuse.com/#feat=css-crisp-edges
     o.property === 'image-rendering' && o.notes.indexOf(2) > -1 ||
     // http://caniuse.com/#feat=css-logical-props
-    o.property.match(/^(border|margin|padding)-block-(start|end)/) && o.notes.indexOf(1) > -1 ||
+    /^(border|margin|padding)-block-(start|end)/.test(o.property) && o.notes.indexOf(1) > -1 ||
     // http://caniuse.com/#feat=flexbox
     flexOldUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(1) > -1 ||
     ['flex-wrap', 'flex-flow', 'align-content'].indexOf(o.property) > -1 && o.notes.indexOf(3) > -1
@@ -43,7 +43,7 @@ function generateFixture() {
   const fixture = {}
   Object.keys(data).
     // Filters autoprefixer data to include only property prefix related entries.
-    filter(s => s.match(/^[^:@].*$/g)).
+    filter(s => /^[^:@].*$/.test(s)).
     filter(s => data[s].props === undefined).
     filter(s => skipProperties.indexOf(s) < 0).
     // TODO: Remove the following line when this is resolved: https://github.com/Fyrd/caniuse/issues/3070.
