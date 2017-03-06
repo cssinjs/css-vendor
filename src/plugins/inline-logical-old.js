@@ -5,7 +5,7 @@ import pascalize from '../pascalize'
 // See https://github.com/postcss/autoprefixer/issues/324.
 export default {
   supportedProperty: (prop, style) => {
-    if (prop.match(/^(border|margin|padding)-inline/)) {
+    if (/^(border|margin|padding)-inline/.test(prop)) {
       const newProp = prop.replace('-inline', '')
       return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : false
     }
