@@ -48,7 +48,10 @@ const isExcluded = o =>
     // http://caniuse.com/#feat=css-snappoints
     msSnapPointsUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(6) > -1 ||
     // http://caniuse.com/#feat=css-regions
-    o.property === 'region-fragment' && o.notes.indexOf(2) > -1
+    o.property === 'region-fragment' && o.notes.indexOf(2) > -1 ||
+    // https://github.com/postcss/autoprefixer/issues/796
+    // TODO: Remove next line once issue is resolved.
+    o.property === 'appearance' && ['edge', 'ie_mob'].indexOf(currentBrowser.id) > -1
 
 function generateFixture() {
   const fixture = {}
