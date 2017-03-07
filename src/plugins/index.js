@@ -9,6 +9,7 @@ import inlineLogicalOld from './inline-logical-old'
 import maskBorderOld from './mask-border-old'
 import breakPropsOld from './break-props-old'
 import flexOld from './flex-old'
+import gridOld from './grid-old'
 
 const plugins = [
   mask,
@@ -18,6 +19,7 @@ const plugins = [
   unprefixed,
   prefixed,
   flexOld,
+  gridOld,
   blockLogicalOld,
   inlineLogicalOld,
   maskBorderOld,

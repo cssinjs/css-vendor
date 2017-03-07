@@ -53,6 +53,9 @@ const isExcluded = o =>
     // TODO: Remove next line once issue is resolved.
     o.property === 'appearance' && ['edge', 'ie_mob'].indexOf(currentBrowser.id) > -1
 
+// Some properties need a certain value, so autoprefixer will prefix them.
+const propertyValue = p => (/^grid-(column|row)-end/.test(p) ? 'span 3' : '')
+
 function generateFixture() {
   const fixture = {}
   Object.keys(data).
@@ -65,7 +68,7 @@ function generateFixture() {
     map(s => ({property: s, feature: data[s].feature, ...getSupport(data[s].feature)})).
     filter(o => !isExcluded(o)).
     forEach(o => {
-      let props = Object.keys(prefixer({[o.property]: ''})).map(dashify)
+      let props = Object.keys(prefixer({[o.property]: propertyValue(o.property)})).map(dashify)
       // Remove unprefixed prop (last in array) when prefix is needed.
       props = props.length > 1 ? props.slice(0, props.length - 1) : props
       fixture[o.property] = props.length === 1 ? props[0] : props
