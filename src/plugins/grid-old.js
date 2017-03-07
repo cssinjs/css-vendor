@@ -9,6 +9,7 @@ const propMap = {
   'grid-row-start': 'grid-row',
   'grid-row-end': 'grid-row-span',
   'justify-items': 'grid-column-align',
+  // align-self is handled by `align-self` plugin.
 }
 
 const propKeys = Object.keys(propMap)

@@ -9,6 +9,7 @@ const propMap = {
   order: 'flex-order',
   'align-items': 'flex-align',
   'align-content': 'flex-line-pack',
+  // align-self is handled by `align-self` plugin.
 }
 
 const propKeys = Object.keys(propMap)
