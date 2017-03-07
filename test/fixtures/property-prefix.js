@@ -46,7 +46,9 @@ const isExcluded = o =>
     // Autoprefixer Quirk: prefixes writing-mode for ie even though it is not necessary
     o.property === 'writing-mode' && currentBrowser.id === 'ie' ||
     // http://caniuse.com/#feat=css-snappoints
-    msSnapPointsUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(6) > -1
+    msSnapPointsUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(6) > -1 ||
+    // http://caniuse.com/#feat=css-regions
+    o.property === 'region-fragment' && o.notes.indexOf(2) > -1
 
 function generateFixture() {
   const fixture = {}
