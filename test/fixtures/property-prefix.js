@@ -16,8 +16,13 @@ const skipProperties = [
 ]
 
 const flexOldUnsupported = ['flex-shrink', 'flex-basis', 'flex-wrap', 'align-self', 'align-content']
+const flexOldFFUnsupported = ['flex-wrap', 'flex-flow', 'align-content']
+const msSnapPointsUnsupported = ['scroll-snap-coordinate', 'scroll-snap-destination']
 
-const isNotSupported = o =>
+// No support in caniuse db means no support for the spec, but
+// no support in css-vendor means no browser support at all for the particular property,
+// therefore we cannot test with the caniuse data for these cases.
+const isExcluded = o =>
     o.level === 'none' ||
     // http://caniuse.com/#feat=object-fit
     o.property === 'object-position' && o.notes.indexOf(1) > -1 ||
@@ -37,7 +42,19 @@ const isNotSupported = o =>
     /^(border|margin|padding)-block-(start|end)/.test(o.property) && o.notes.indexOf(1) > -1 ||
     // http://caniuse.com/#feat=flexbox
     flexOldUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(1) > -1 ||
-    ['flex-wrap', 'flex-flow', 'align-content'].indexOf(o.property) > -1 && o.notes.indexOf(3) > -1
+    flexOldFFUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(3) > -1 ||
+    // Autoprefixer Quirk: prefixes writing-mode for ie even though it is not necessary
+    o.property === 'writing-mode' && currentBrowser.id === 'ie' ||
+    // http://caniuse.com/#feat=css-snappoints
+    msSnapPointsUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(6) > -1 ||
+    // http://caniuse.com/#feat=css-regions
+    o.property === 'region-fragment' && o.notes.indexOf(2) > -1 ||
+    // https://github.com/postcss/autoprefixer/issues/796
+    // TODO: Remove next line once issue is resolved.
+    o.property === 'appearance' && ['edge', 'ie_mob'].indexOf(currentBrowser.id) > -1
+
+// Some properties need a certain value, so autoprefixer will prefix them.
+const propertyValue = p => (/^grid-(column|row)-end/.test(p) ? 'span 3' : '')
 
 function generateFixture() {
   const fixture = {}
@@ -49,12 +66,9 @@ function generateFixture() {
     // TODO: Remove the following line when this is resolved: https://github.com/Fyrd/caniuse/issues/3070.
     filter(s => ['css3-cursors-grab', 'css-text-spacing'].indexOf(data[s].feature) < 0).
     map(s => ({property: s, feature: data[s].feature, ...getSupport(data[s].feature)})).
-    // No support in caniuse db means no support for the spec, but
-    // no support in css-vendor means no browser support at all for the particular property,
-    // therefore we cannot test with the caniuse data for these cases.
-    filter(o => !isNotSupported(o)).
+    filter(o => !isExcluded(o)).
     forEach(o => {
-      let props = Object.keys(prefixer({[o.property]: ''})).map(dashify)
+      let props = Object.keys(prefixer({[o.property]: propertyValue(o.property)})).map(dashify)
       // Remove unprefixed prop (last in array) when prefix is needed.
       props = props.length > 1 ? props.slice(0, props.length - 1) : props
       fixture[o.property] = props.length === 1 ? props[0] : props
