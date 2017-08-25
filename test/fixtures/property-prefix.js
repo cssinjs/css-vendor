@@ -11,9 +11,12 @@ const prefixer = postcssJs.sync([ap])
 const skipProperties = [
   // caniuse doesn't cover this property and spec might drop this: https://www.w3.org/TR/css-fonts-3/.
   'font-language-override',
+  // caniuse doesn't cover this property
+  'grid-row-align',
   // Lack of caniuse data. See https://github.com/Fyrd/caniuse/issues/2116
   'font-variant-ligatures',
 ]
+
 
 const flexOldUnsupported = ['flex-shrink', 'flex-basis', 'flex-wrap', 'align-self', 'align-content']
 const flexOldFFUnsupported = ['flex-wrap', 'flex-flow', 'align-content']
@@ -48,10 +51,7 @@ const isExcluded = o =>
     // http://caniuse.com/#feat=css-snappoints
     msSnapPointsUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(6) > -1 ||
     // http://caniuse.com/#feat=css-regions
-    o.property === 'region-fragment' && o.notes.indexOf(2) > -1 ||
-    // https://github.com/postcss/autoprefixer/issues/796
-    // TODO: Remove next line once issue is resolved.
-    o.property === 'appearance' && ['edge', 'ie_mob'].indexOf(currentBrowser.id) > -1
+    o.property === 'region-fragment' && o.notes.indexOf(2) > -1
 
 // Some properties need a certain value, so autoprefixer will prefix them.
 const propertyValue = p => (/^grid-(column|row)-end/.test(p) ? 'span 3' : '')
