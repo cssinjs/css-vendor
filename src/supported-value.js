@@ -1,8 +1,22 @@
 import isInBrowser from 'is-in-browser'
 import prefix from './prefix'
+import supportedProperty from './supported-property'
 
 const cache = {}
-let el
+const transitionProperties = [
+  'transition',
+  'transition-property',
+  '-webkit-transition',
+  '-webkit-transition-property',
+]
+const transPropsRegExp = /(^\s*\w+)|, (\s*\w+)/g;
+let el;
+
+function prefixTransitionCallback(match, p1, p2) {
+  if (p1 === 'all') return 'all'
+  if (p2 === 'all') return ', all'
+  return p1 ? supportedProperty(p1) : `, ${supportedProperty(p2)}`
+}
 
 if (isInBrowser) el = document.createElement('p')
 
@@ -14,6 +28,7 @@ if (isInBrowser) el = document.createElement('p')
  * @return {String|Boolean}
  * @api public
  */
+
 export default function supportedValue(property, value) {
   // For server-side rendering.
   if (!el) return value
@@ -37,7 +52,10 @@ export default function supportedValue(property, value) {
   }
 
   // Value is supported as it is.
-  if (el.style[property] !== '') {
+  if (transitionProperties.indexOf(property) !== -1) {
+    cache[cacheKey] = value.replace(transPropsRegExp, prefixTransitionCallback)
+  }
+  else if (el.style[property] !== '') {
     cache[cacheKey] = value
   }
   else {

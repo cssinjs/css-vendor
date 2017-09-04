@@ -40,7 +40,9 @@ export default function supportedProperty(prop, options = {}) {
   if (!el) return prop
 
   // We have not tested this prop yet, lets do the test.
-  if (cache[prop] != null) return cache[prop]
+  if (cache[prop] != null && cache[prop] !== 'transform') return cache[prop]
+
+  if (cache[prop] === 'transform') options.transform = true
 
   for (let i = 0; i < propertyDetectors.length; i++) {
     cache[prop] = propertyDetectors[i](prop, el.style, options)
