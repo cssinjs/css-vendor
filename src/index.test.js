@@ -64,5 +64,15 @@ describe('css-vendor', () => {
     it('should return false for "content" value', () => {
       expect(supportedValue('content', 'bar')).to.be(false)
     })
+
+    it('known transition value prefixed', () => {
+      expect(supportedValue('transition', 'all 100ms ease, transform 200ms linear'))
+        .to.be(`all 100ms ease, ${prefix.css}transform 200ms linear`)
+    })
+
+    it('known transition-property value prefixed', () => {
+      expect(supportedValue('transition-property', 'all, transform'))
+        .to.be(`all, ${prefix.css}transform`)
+    })
   })
 })

@@ -1,3 +1,4 @@
+import transform from './transform'
 import mask from './mask'
 import writingMode from './writing-mode'
 import clipPath from './clip-path'
@@ -14,6 +15,7 @@ import alignSelf from './align-self'
 import flex2012 from './flex-2012'
 
 const plugins = [
+  transform,
   mask,
   writingMode,
   clipPath,
@@ -27,7 +29,7 @@ const plugins = [
   blockLogicalOld,
   inlineLogicalOld,
   maskBorderOld,
-  breakPropsOld,
+  breakPropsOld
 ]
 
 export const propertyDetectors = plugins
