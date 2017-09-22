@@ -7,7 +7,6 @@ export default {
   noPrefill: ['transition'],
   supportedProperty: (prop, style, options) => {
     if (prop === 'transition') {
-      console.log(prop, options.transition)
       if (options.transition) {
         return prefix.css + prop
       }
