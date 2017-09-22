@@ -82,8 +82,8 @@
     "is-in-browser": "^1.0.2"
   },
   "lint-staged": {
-    "./src/*.js": [
-      "eslint",
+    "**/*.js": [
+      "eslint --fix",
       "git add"
     ]
   },
