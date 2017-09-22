@@ -4,10 +4,11 @@ import prefix from '../prefix'
 // but in other cases it might need a prefix. We can resort to value testing.
 // See https://developer.mozilla.org/de/docs/Web/CSS/filter
 export default {
-  noPrefill: ['transform'],
+  noPrefill: ['transition'],
   supportedProperty: (prop, style, options) => {
-    if (prop === 'transform') {
-      if (options.transform) {
+    if (prop === 'transition') {
+      console.log(prop, options.transition)
+      if (options.transition) {
         return prefix.css + prop
       }
       return prop

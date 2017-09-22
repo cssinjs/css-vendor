@@ -8,8 +8,7 @@ export default {
     if (prefix.js + pascalized in style) return prefix.css + prop
     // Try webkit fallback.
     // E.g. appearance in Edge & IE Mobile needs a -webkit- prefix.
-    if (prefix.js !== 'Webkit' && `Webkit${pascalized}` in style) return `-webkit-${prop}`
+    if (prefix.js !== 'Webkit' && `Webkit${pascalized}` in style) return `${prop}`
     return false
   }
 }
-
