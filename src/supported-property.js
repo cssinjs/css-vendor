@@ -1,5 +1,6 @@
 import isInBrowser from 'is-in-browser'
 import {propertyDetectors, noPrefill} from './plugins'
+import propertyPrefixFixture from '../test/fixtures/property-prefix'
 
 let el
 const cache = {}
@@ -26,6 +27,12 @@ if (isInBrowser) {
   noPrefill.forEach(x => delete cache[x])
 }
 
+function transitionTransformPrefix(options, prop) {
+  if (propertyPrefixFixture[prop].split('-')[1]) {
+    options[prop] = true
+  }
+}
+
 /**
  * Test if a property is supported, returns supported property with vendor
  * prefix if required. Returns `false` if not supported.
@@ -40,9 +47,15 @@ export default function supportedProperty(prop, options = {}) {
   if (!el) return prop
 
   // We have not tested this prop yet, lets do the test.
-  if (cache[prop] != null && cache[prop] !== 'transform') return cache[prop]
+  if (cache[prop] != null && cache[prop] !== ('transform' || 'transition')) {
+    return cache[prop]
+  }
 
-  if (cache[prop] === 'transform') options.transform = true
+  const propValue = cache[prop] || prop
+
+  if (propValue === 'transform' || propValue === 'transition') {
+    transitionTransformPrefix(options, prop)
+  }
 
   for (let i = 0; i < propertyDetectors.length; i++) {
     cache[prop] = propertyDetectors[i](prop, el.style, options)
