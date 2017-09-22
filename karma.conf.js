@@ -12,7 +12,7 @@ const travisJobNumber = process.env.TRAVIS_JOB_NUMBER
 module.exports = (config) => {
   config.set({
     customLaunchers: browsers,
-    browsers: ['Opera'],
+    browsers: ['Chrome'],
     frameworks: ['mocha'],
     files: [
       'node_modules/es5-shim/es5-shim.js',
