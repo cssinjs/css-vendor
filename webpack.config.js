@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['./src/index.js', './src/index.test.js'],
   output: {
     filename: 'dist/bundle.js',
     library: 'cssVendor',
