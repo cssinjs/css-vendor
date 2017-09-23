@@ -1,72 +1,9 @@
 {
-  "BS_Android4.1": {
-    "base": "BrowserStack",
-    "os": "android",
-    "os_version": "4.1",
-    "browser": "Android Browser",
-    "real_mobile": false
-  },
-  "BS_MobileSafari8.3": {
-    "base": "BrowserStack",
-    "os": "ios",
-    "os_version": "8.3",
-    "browser": "Mobile Safari",
-    "real_mobile": false
-  },
-  "BS_Opera22": {
-    "base": "BrowserStack",
-    "os": "OS X",
-    "os_version": "Yosemite",
-    "browser": "opera",
-    "browser_version": "22.0"
-  },
-  "BS_Chrome28": {
-    "base": "BrowserStack",
-    "os": "OS X",
-    "os_version": "Mavericks",
-    "browser": "chrome",
-    "browser_version": "28.0"
-  },
-  "BS_Safari8": {
-    "base": "BrowserStack",
-    "os": "OS X",
-    "os_version": "Yosemite",
-    "browser": "safari",
-    "browser_version": "8.0"
-  },
-  "BS_Firefox25": {
-    "base": "BrowserStack",
-    "os": "OS X",
-    "os_version": "Yosemite",
-    "browser": "firefox",
-    "browser_version": "25.0"
-  },
   "BS_InternetExplorer9": {
     "base": "BrowserStack",
     "os": "Windows",
     "os_version": "7",
     "browser": "ie",
     "browser_version": "9.0"
-  },
-  "BS_InternetExplorer10": {
-    "base": "BrowserStack",
-    "os": "Windows",
-    "os_version": "8",
-    "browser": "ie",
-    "browser_version": "10"
-  },
-  "BS_InternetExplorer11": {
-    "base": "BrowserStack",
-    "os": "Windows",
-    "os_version": "8.1",
-    "browser": "ie",
-    "browser_version": "11.0"
-  },
-  "BS_Edge13": {
-    "base": "BrowserStack",
-    "os": "Windows",
-    "os_version": "10",
-    "browser": "edge",
-    "browser_version": "13.0"
   }
 }
