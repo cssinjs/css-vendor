@@ -12,7 +12,7 @@ const travisJobNumber = process.env.TRAVIS_JOB_NUMBER
 module.exports = (config) => {
   config.set({
     customLaunchers: browsers,
-    browsers: ['Chrome'],
+    browsers: ['Safari'],
     frameworks: ['mocha'],
     files: [
       'node_modules/es5-shim/es5-shim.js',
@@ -39,16 +39,13 @@ module.exports = (config) => {
       retryLimit: 3,
 
       // Timeouts taken from https://github.com/karma-runner/karma-browserstack-launcher/issues/61
-      captureTimeout: 3e5,
-      browserNoActivityTimeout: 3e5,
-      browserDisconnectTimeout: 3e5,
       browserDisconnectTolerance: 3
     })
 
     config.browserStack = {
       username: browserStackUserName,
       accessKey: browserStackAccessKey,
-      captureTimeout: 3e5
+      captureTimeout: 10000
     }
 
     if (isTravis) {
