@@ -77,4 +77,3 @@ function generateFixture() {
 }
 
 export default generateFixture()
-
