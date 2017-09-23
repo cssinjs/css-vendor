@@ -1,4 +1,5 @@
 import transform from './transform'
+import transition from './transition'
 import mask from './mask'
 import writingMode from './writing-mode'
 import clipPath from './clip-path'
@@ -16,6 +17,7 @@ import flex2012 from './flex-2012'
 
 const plugins = [
   transform,
+  transition,
   mask,
   writingMode,
   clipPath,
@@ -42,4 +44,3 @@ export const noPrefill = plugins
     a.push(...p.noPrefill)
     return a
   }, [])
-
