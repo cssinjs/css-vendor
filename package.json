@@ -78,6 +78,7 @@
     "webpack": "^1.12.2"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "is-in-browser": "^1.0.2"
   },
   "lint-staged": {
