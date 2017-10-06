@@ -67,12 +67,12 @@ describe('css-vendor', () => {
 
     it('known transition value prefixed', () => {
       expect(supportedValue('transition', 'all 100ms ease, transform 200ms linear'))
-        .to.be(`all 100ms ease, ${prefix.css}transform 200ms linear`)
+        .to.be(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear`)
     })
 
     it('known transition-property value prefixed', () => {
       expect(supportedValue('transition-property', 'all, transform'))
-        .to.be(`all, ${prefix.css}transform`)
+        .to.be(`all, ${propertyPrefixFixture.transform}`)
     })
   })
 })

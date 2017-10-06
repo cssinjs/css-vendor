@@ -13,11 +13,13 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 module.exports = {
+  entry: ['./src/index.js', './src/index.test.js'],
   output: {
+    filename: 'dist/bundle.js',
     library: 'cssVendor',
     libraryTarget: 'umd'
   },
-  plugins: plugins,
+  plugins,
   module: {
     loaders: [
       {
@@ -31,6 +33,6 @@ module.exports = {
     ]
   },
   node: {
-    fs: "empty",
+    fs: 'empty',
   }
 }
