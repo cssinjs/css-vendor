@@ -1,6 +1,6 @@
 export default {
   supportedProperty: (prop) => {
-    if (prop.startsWith('scroll-snap')) {
+    if (prop.substring(0, 11) === 'scroll-snap') {
       return prop
     }
     return false
