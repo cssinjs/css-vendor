@@ -8,10 +8,6 @@ export default {
   noPrefill: ['writing-mode'],
   supportedProperty: (prop, style) => {
     if (prop === 'writing-mode' && prefix.js === 'Webkit') {
-      style.writingMode = 'horizontal-tb'
-      const value = style.writingMode
-      style.writingMode = ''
-      if (value) return prop
       if (prefix.js + pascalize(prop) in style) {
         return prefix.css + prop
       }
