@@ -8,9 +8,11 @@ export default {
   noPrefill: ['writing-mode'],
   supportedProperty: (prop, style) => {
     if (prop === 'writing-mode' && prefix.js === 'Webkit') {
-      if (prefix.js + pascalize(prop) in style) {
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+      if (prefix.js + pascalize(prop) in style && isSafari) {
         return prefix.css + prop
       }
+      return prop
     }
     return false
   }
