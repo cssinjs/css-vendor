@@ -8,16 +8,10 @@ export default {
   noPrefill: ['writing-mode'],
   supportedProperty: (prop) => {
     if (prop === 'writing-mode') {
-      switch (prefix.js) {
-        case 'Webkit': {
-          return prefix.css + prop
-        }
-        case 'ms': {
-          return prefix.css + prop
-        }
-        default:
-          return prop
+      if (prefix.js === 'Webkit' || prefix.js === 'ms') {
+        return prefix.css + prop
       }
+      return prop
     }
     return false
   }
