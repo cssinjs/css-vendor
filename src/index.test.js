@@ -35,6 +35,14 @@ describe('css-vendor', () => {
         () => expect(supportedProperty(property, opts)).to.eql(propertyPrefixFixture[property]))
     }
 
+    it('should prefix writing-mode', () => {
+      let isPrefixed = false
+      if (prefix.js === 'Webkit' || prefix.js === 'ms') {
+        isPrefixed = true
+      }
+      expect(supportedProperty('writing-mode')).to.be(`${isPrefixed ? prefix.css : ''}writing-mode`)
+    })
+
     it('should return false', () => {
       expect(supportedProperty('xxx')).to.be(false)
     })

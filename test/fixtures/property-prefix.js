@@ -47,7 +47,7 @@ const isExcluded = o =>
     flexOldUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(1) > -1 ||
     flexOldFFUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(3) > -1 ||
     // Autoprefixer Quirk: prefixes writing-mode for ie even though it is not necessary
-    o.property === 'writing-mode' && currentBrowser.id === 'ie' ||
+    o.property === 'writing-mode' ||
     // http://caniuse.com/#feat=css-snappoints
     msSnapPointsUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(6) > -1 ||
     // http://caniuse.com/#feat=css-regions
@@ -77,4 +77,3 @@ function generateFixture() {
 }
 
 export default generateFixture()
-
