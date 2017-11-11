@@ -7,7 +7,7 @@ export default {
   supportedProperty: (prop, style) => {
     if (/^mask-border/.test(prop)) {
       const newProp = prop.replace(/^mask-border/, 'mask-box-image')
-      return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : false
+      return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : prop
     }
     return false
   }

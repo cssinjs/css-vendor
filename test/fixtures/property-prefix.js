@@ -34,8 +34,7 @@ const isExcluded = o =>
     o.property === 'column-span' && currentBrowser.id === 'firefox' ||
     o.property === 'column-fill' && o.notes.indexOf(2) > -1 ||
     // http://caniuse.com/#feat=css-masks
-    /^mask-/.test(o.property) && o.notes.indexOf(2) > -1 ||
-    /^mask-border-/.test(o.property) && o.notes.indexOf(3) > -1 ||
+    /^mask-/.test(o.property) && o.notes.indexOf(1) > -1 ||
     // http://caniuse.com/#feat=text-decoration
     o.property === 'text-decoration-skip' && o.notes.indexOf(4) > -1 ||
     o.property === 'text-decoration-style' && o.notes.indexOf(2) > -1 ||
