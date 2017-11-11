@@ -21,6 +21,7 @@ const skipProperties = [
 const flexOldUnsupported = ['flex-shrink', 'flex-basis', 'flex-wrap', 'align-self', 'align-content']
 const flexOldFFUnsupported = ['flex-wrap', 'flex-flow', 'align-content']
 const msSnapPointsUnsupported = ['scroll-snap-coordinate', 'scroll-snap-destination']
+const breakProps = ['break-before', 'break-inside', 'break-after']
 
 // No support in caniuse db means no support for the spec, but
 // no support in css-vendor means no browser support at all for the particular property,
@@ -50,7 +51,8 @@ const isExcluded = o =>
     // http://caniuse.com/#feat=css-snappoints
     msSnapPointsUnsupported.indexOf(o.property) > -1 && o.notes.indexOf(6) > -1 ||
     // http://caniuse.com/#feat=css-regions
-    o.property === 'region-fragment' && o.notes.indexOf(2) > -1
+    o.property === 'region-fragment' && o.notes.indexOf(2) > -1 ||
+    breakProps.indexOf(o.property) > -1 && o.notes.indexOf(1) > -1
 
 // Some properties need a certain value, so autoprefixer will prefix them.
 const propertyValue = p => (/^grid-(column|row)-end/.test(p) ? 'span 3' : '')
