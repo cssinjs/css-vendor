@@ -1,13 +1,15 @@
 import prefix from '../prefix'
-import pascalize from '../pascalize'
 
 // Support old mask-border syntax.
 // See https://github.com/postcss/autoprefixer/issues/502.
 export default {
-  supportedProperty: (prop, style) => {
+  supportedProperty: (prop) => {
     if (/^mask-border/.test(prop)) {
       const newProp = prop.replace(/^mask-border/, 'mask-box-image')
-      return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : prop
+      if (prefix.js === 'Webkit') {
+        return prefix.css + newProp
+      }
+      return prop
     }
     return false
   }
