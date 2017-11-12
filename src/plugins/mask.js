@@ -7,16 +7,18 @@ import camelize from '../camelize'
 export default {
   noPrefill: ['mask'],
   supportedProperty: (prop, style) => {
-    if (prop === 'mask' && prefix.js === 'Webkit') {
-      const longhand = 'mask-image'
-      if (camelize(longhand) in style) {
-        return prop
+    if (/^mask/.test(prop)) {
+      if (prefix.js === 'Webkit') {
+        const longhand = 'mask-image'
+        if (camelize(longhand) in style) {
+          return prop
+        }
+        if (prefix.js + pascalize(longhand) in style) {
+          return prefix.css + prop
+        }
       }
-      if (prefix.js + pascalize(longhand) in style) {
-        return prefix.css + prop
-      }
+      return prop
     }
     return false
   }
 }
-
