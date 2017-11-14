@@ -58,6 +58,11 @@ describe('css-vendor', () => {
       expect(supportedValue('color', value)).to.be(value)
     })
 
+    it('should return value with important keyword', () => {
+      const value = 'red !important'
+      expect(supportedValue('color', value)).to.be(value)
+    })
+
     it('should prefix if needed', function () {
       const {level, needPrefix} = getSupport('flexbox')
       if (level !== 'full') this.skip()
