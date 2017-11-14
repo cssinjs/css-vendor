@@ -9,6 +9,7 @@ const transitionProperties = [
   '-webkit-transition',
   '-webkit-transition-property',
 ]
+const importantRegExp = /(\s*!important)/
 const transPropsRegExp = /(^\s*\w+)|, (\s*\w+)/g
 let el
 
@@ -37,9 +38,16 @@ export default function supportedValue(property, value) {
   // We want only prefixable values here.
   if (typeof value !== 'string' || !isNaN(parseInt(value, 10))) return value
 
+  let postfix = ''
+
+  if (importantRegExp.test(value)) {
+    postfix = value.match(importantRegExp)[0]
+    value = value.replace(importantRegExp, '')
+  }
+
   const cacheKey = property + value
 
-  if (cache[cacheKey] != null) return cache[cacheKey]
+  if (cache[cacheKey] != null) return cache[cacheKey] && cache[cacheKey] + postfix
 
   // IE can even throw an error in some cases, for e.g. style.content = 'bar'
   try {
@@ -76,5 +84,5 @@ export default function supportedValue(property, value) {
   // Reset style value.
   el.style[property] = ''
 
-  return cache[cacheKey]
+  return cache[cacheKey] && cache[cacheKey] + postfix
 }
