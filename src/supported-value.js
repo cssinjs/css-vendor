@@ -18,12 +18,27 @@ function prefixTransitionCallback(match, p1, p2) {
   return p1 ? supportedProperty(p1) : `, ${supportedProperty(p2)}`
 }
 
-function stringToTwoDimantionalArray(string) {
-  const doubleArray = []
-  string.split(', ').forEach((a, key) => {
-    doubleArray[key] = [a]
-  })
-  return doubleArray
+function stringToArray(string) {
+  const arrayOfValues = []
+  const values = string.split(', ')
+  for (let v = 0; v < values.length; v++) {
+    arrayOfValues[v] = values[v]
+  }
+  return arrayOfValues
+}
+
+function stringToDoubleArray(string) {
+  const arrayOfArraysValues = []
+  const valuesArrays = string.split(', ')
+  for (let a = 0; a < valuesArrays.length; a++) {
+    const arrayOfValues = []
+    const values = valuesArrays[a].split(' ')
+    for (let v = 0; v < values.length; v++) {
+      arrayOfValues.push(values[v])
+    }
+    arrayOfArraysValues.push(arrayOfValues)
+  }
+  return arrayOfArraysValues
 }
 
 if (isInBrowser) el = document.createElement('p')
@@ -52,21 +67,36 @@ export default function supportedValue(property, value) {
   let isArray = false
 
   if (Array.isArray(value)) {
-    if (value.every(v => Array.isArray(v))) {
+    if (Array.isArray(value[0])) {
       isDoubleArray = true
-      value.forEach((v, key) => {
-        if (key + 1 !== value.length) {
-          value[key] = `${v[0]}, `
+      let doubleArrayValue = ''
+      for (let a = 0; a < value.length; a++) {
+        for (let v = 0; v < value[a].length; v++) {
+          if (v + 1 !== value[a].length) {
+            doubleArrayValue += `${value[a][v]} `
+          }
+          else {
+            doubleArrayValue += value[a][v]
+          }
         }
-        else {
-          value[key] = v[0]
+        if (a + 1 !== value.length) {
+          doubleArrayValue += ', '
         }
-      })
-      value = value.join('')
+      }
+      value = doubleArrayValue
     }
     else {
       isArray = true
-      value = value[0]
+      let arrayValue = ''
+      for (let v = 0; v < value.length; v++) {
+        if (v + 1 !== value.length) {
+          arrayValue += `${value[v]}, `
+        }
+        else {
+          arrayValue += value[v]
+        }
+      }
+      value = arrayValue
     }
   }
 
@@ -74,10 +104,10 @@ export default function supportedValue(property, value) {
 
   if (cache[cacheKey] != null) {
     if (isArray) {
-      return [cache[cacheKey]]
+      return stringToArray(cache[cacheKey])
     }
     else if (isDoubleArray) {
-      return stringToTwoDimantionalArray(cache[cacheKey])
+      return stringToDoubleArray(cache[cacheKey])
     }
     return cache[cacheKey]
   }
@@ -118,10 +148,10 @@ export default function supportedValue(property, value) {
   el.style[property] = ''
 
   if (isArray) {
-    return [cache[cacheKey]]
+    return stringToArray(cache[cacheKey])
   }
   else if (isDoubleArray) {
-    return stringToTwoDimantionalArray(cache[cacheKey])
+    return stringToDoubleArray(cache[cacheKey])
   }
   return cache[cacheKey]
 }
