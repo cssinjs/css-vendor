@@ -80,7 +80,12 @@ describe('css-vendor', () => {
 
     it('known transition value as array prefixed', () => {
       expect(supportedValue('transition', ['all 100ms ease, transform 200ms linear']))
-        .to.be(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear`)
+        .to.eql([`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear`])
+    })
+
+    it('known transition value as double array prefixed', () => {
+      expect(supportedValue('transition', [['all 100ms ease'], ['transform 200ms linear']]))
+        .to.eql([['all 100ms ease'], [`${propertyPrefixFixture.transform} 200ms linear`]])
     })
 
     it('known transition-property value prefixed', () => {

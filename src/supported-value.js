@@ -18,6 +18,14 @@ function prefixTransitionCallback(match, p1, p2) {
   return p1 ? supportedProperty(p1) : `, ${supportedProperty(p2)}`
 }
 
+function stringToTwoDimantionalArray(string) {
+  const doubleArray = []
+  string.split(', ').forEach((a, key) => {
+    doubleArray[key] = [a]
+  })
+  return doubleArray
+}
+
 if (isInBrowser) el = document.createElement('p')
 
 /**
@@ -40,9 +48,39 @@ export default function supportedValue(property, value) {
     return value
   }
 
+  let isDoubleArray = false
+  let isArray = false
+
+  if (Array.isArray(value)) {
+    if (value.every(v => Array.isArray(v))) {
+      isDoubleArray = true
+      value.forEach((v, key) => {
+        if (key + 1 !== value.length) {
+          value[key] = `${v[0]}, `
+        }
+        else {
+          value[key] = v[0]
+        }
+      })
+      value = value.join('')
+    }
+    else {
+      isArray = true
+      value = value[0]
+    }
+  }
+
   const cacheKey = property + value
 
-  if (cache[cacheKey] != null) return cache[cacheKey]
+  if (cache[cacheKey] != null) {
+    if (isArray) {
+      return [cache[cacheKey]]
+    }
+    else if (isDoubleArray) {
+      return stringToTwoDimantionalArray(cache[cacheKey])
+    }
+    return cache[cacheKey]
+  }
 
   // IE can even throw an error in some cases, for e.g. style.content = 'bar'
   try {
@@ -79,5 +117,11 @@ export default function supportedValue(property, value) {
   // Reset style value.
   el.style[property] = ''
 
+  if (isArray) {
+    return [cache[cacheKey]]
+  }
+  else if (isDoubleArray) {
+    return stringToTwoDimantionalArray(cache[cacheKey])
+  }
   return cache[cacheKey]
 }
