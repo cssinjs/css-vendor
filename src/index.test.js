@@ -91,13 +91,13 @@ describe('css-vendor', () => {
         ])
     })
 
-    it('known transition value as two dimentional array prefixed', () => {
+    it('known transition value as two dimensional array prefixed', () => {
       expect(supportedValue('transition', [['all', '100ms', 'ease'],
       ['transform', '200ms', 'linear']]))
         .to.eql([['all', '100ms', 'ease'], [propertyPrefixFixture.transform, '200ms', 'linear']])
     })
 
-    it('known transition value as two dimentional array with important keyword prefixed', () => {
+    it('known transition value as two dimensional array with important keyword prefixed', () => {
       expect(supportedValue('transition', [
         ['all', '100ms', 'ease'],
         ['transform', '200ms', 'linear'],
