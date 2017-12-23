@@ -31,12 +31,17 @@ function stringToDoubleArray(string) {
   const arrayOfArraysValues = []
   const valuesArrays = string.split(', ')
   for (let a = 0; a < valuesArrays.length; a++) {
-    const arrayOfValues = []
-    const values = valuesArrays[a].split(' ')
-    for (let v = 0; v < values.length; v++) {
-      arrayOfValues.push(values[v])
+    if (valuesArrays[a] !== '!important') {
+      const arrayOfValues = []
+      const values = valuesArrays[a].split(' ')
+      for (let v = 0; v < values.length; v++) {
+        arrayOfValues.push(values[v])
+      }
+      arrayOfArraysValues.push(arrayOfValues)
     }
-    arrayOfArraysValues.push(arrayOfValues)
+    else {
+      arrayOfArraysValues.push(valuesArrays[a])
+    }
   }
   return arrayOfArraysValues
 }
@@ -71,13 +76,18 @@ export default function supportedValue(property, value) {
       isDoubleArray = true
       let doubleArrayValue = ''
       for (let a = 0; a < value.length; a++) {
-        for (let v = 0; v < value[a].length; v++) {
-          if (v + 1 !== value[a].length) {
-            doubleArrayValue += `${value[a][v]} `
+        if (Array.isArray(value[a])) {
+          for (let v = 0; v < value[a].length; v++) {
+            if (v + 1 !== value[a].length) {
+              doubleArrayValue += `${value[a][v]} `
+            }
+            else {
+              doubleArrayValue += value[a][v]
+            }
           }
-          else {
-            doubleArrayValue += value[a][v]
-          }
+        }
+        else {
+          doubleArrayValue += value[a]
         }
         if (a + 1 !== value.length) {
           doubleArrayValue += ', '

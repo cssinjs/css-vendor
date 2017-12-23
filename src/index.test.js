@@ -78,10 +78,36 @@ describe('css-vendor', () => {
         .to.eql(['all 100ms ease', `${propertyPrefixFixture.transform} 200ms linear`])
     })
 
+    it('known transition value as array with important keyword prefixed', () => {
+      expect(supportedValue('transition', [
+        'all 100ms ease',
+        'transform 200ms linear',
+        '!important'
+      ]))
+        .to.eql([
+          'all 100ms ease',
+          `${propertyPrefixFixture.transform} 200ms linear`,
+          '!important'
+        ])
+    })
+
     it('known transition value as two dimentional array prefixed', () => {
       expect(supportedValue('transition', [['all', '100ms', 'ease'],
       ['transform', '200ms', 'linear']]))
         .to.eql([['all', '100ms', 'ease'], [propertyPrefixFixture.transform, '200ms', 'linear']])
+    })
+
+    it('known transition value as two dimentional array with important keyword prefixed', () => {
+      expect(supportedValue('transition', [
+        ['all', '100ms', 'ease'],
+        ['transform', '200ms', 'linear'],
+        '!important'
+      ]))
+        .to.eql([
+          ['all', '100ms', 'ease'],
+          [propertyPrefixFixture.transform, '200ms', 'linear'],
+          '!important'
+        ])
     })
 
     it('known transition-property value prefixed', () => {
