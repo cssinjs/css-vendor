@@ -1,5 +1,5 @@
 import prefix from '../prefix'
-import pascalize from '../pascalize'
+import pascalize from '../utils/pascalize'
 
 // Support old block-logical syntax.
 // See https://github.com/postcss/autoprefixer/issues/324.

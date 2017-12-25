@@ -1,5 +1,5 @@
 import prefix from '../prefix'
-import pascalize from '../pascalize'
+import pascalize from '../utils/pascalize'
 
 const reduce = (r, v) => (r ? [r, v] : v)
 const gridProp = 'grid-row-align'

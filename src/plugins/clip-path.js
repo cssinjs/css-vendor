@@ -1,5 +1,5 @@
 import prefix from '../prefix'
-import pascalize from '../pascalize'
+import pascalize from '../utils/pascalize'
 
 // clip-path has basic support in webkit without prefix for svg documents
 // but in other cases it might need a prefix. We can resort to value testing.

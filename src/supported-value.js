@@ -35,7 +35,7 @@ export default function supportedValue(property, value) {
 
   // It is a string or a number as a string like '1'.
   // We want only prefixable values here.
-  if (typeof value !== 'string' || !isNaN(parseInt(value, 10))) return value
+  if (typeof value !== 'string' || !Number.isNaN(parseInt(value, 10))) return value
 
   const cacheKey = property + value
 
