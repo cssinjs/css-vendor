@@ -51,6 +51,10 @@ export default function supportedValue(property, value) {
     return false
   }
 
+  if (value === 'flex') {
+    console.log(el.style, property)
+  }
+
   // Value is supported as it is.
   if (transitionProperties.indexOf(property) !== -1) {
     cache[cacheKey] = value.replace(transPropsRegExp, prefixTransitionCallback)

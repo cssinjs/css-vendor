@@ -80,6 +80,7 @@
     "webpack": "^3.10.0"
   },
   "dependencies": {
+    "caniuse-db": "^1.0.30000784",
     "is-in-browser": "^1.0.2"
   },
   "lint-staged": {
