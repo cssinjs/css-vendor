@@ -10,8 +10,9 @@ const prefixer = postcssJs.sync([ap])
 const skipProperties = [
   // caniuse doesn't cover this property and spec might drop this: https://www.w3.org/TR/css-fonts-3/.
   'font-language-override',
-  // caniuse doesn't cover this property
+  // caniuse doesn't cover those properties
   'grid-row-align',
+  'grid-column-align',
   // Lack of caniuse data. See https://github.com/Fyrd/caniuse/issues/2116
   'font-variant-ligatures'
 ]
