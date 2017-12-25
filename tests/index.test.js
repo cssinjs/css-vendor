@@ -60,7 +60,7 @@ describe('css-vendor', () => {
 
     it('should prefix if needed', () => {
       const {level, needPrefix} = getSupport('flexbox')
-      if (level !== 'full') this.skip()
+      if (level !== 'full') it.skip('level not equal full')
       const value = needPrefix ? `${prefix.css}flex` : 'flex'
       expect(supportedValue('display', 'flex')).to.be(value)
     })

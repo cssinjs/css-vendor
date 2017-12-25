@@ -16,6 +16,14 @@ const skipProperties = [
   // Lack of caniuse data. See https://github.com/Fyrd/caniuse/issues/2116
   'font-variant-ligatures'
 ]
+
+const gridProps = [
+  'grid-template-columns', 'grid-template-rows',
+  'grid-row-start', 'grid-column-start',
+  'grid-row-end', 'grid-column-end',
+  'grid-row', 'grid-column', 'grid-area',
+  'grid-template', 'grid-template-areas'
+]
 const flexOldUnsupported = ['flex-shrink', 'flex-basis', 'flex-wrap', 'align-self', 'align-content']
 const flexOldFFUnsupported = ['flex-wrap', 'flex-flow', 'align-content']
 const msSnapPointsUnsupported = ['scroll-snap-coordinate', 'scroll-snap-destination']
@@ -35,6 +43,7 @@ const isExcluded = o =>
   // http://caniuse.com/#feat=css-masks
   /^mask-/.test(o.property) ||
   // http://caniuse.com/#feat=text-decoration
+  o.property === 'text-decoration' ||
   o.property === 'text-decoration-skip' ||
   o.property === 'text-decoration-style' ||
   // http://caniuse.com/#feat=css-crisp-edges
@@ -45,6 +54,7 @@ const isExcluded = o =>
   flexOldUnsupported.indexOf(o.property) > -1 ||
   flexOldFFUnsupported.indexOf(o.property) > -1 ||
   skipProperties.indexOf(o.property) > -1 ||
+  gridProps.indexOf(o.property) > -1 ||
   // Autoprefixer Quirk: prefixes writing-mode for ie even though it is not necessary
   o.property === 'writing-mode' ||
   // http://caniuse.com/#feat=css-snappoints
