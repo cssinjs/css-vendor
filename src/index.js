@@ -15,6 +15,7 @@ export default {
   supportedProperty,
   supportedValue
 }
+
 export {
   prefix,
   supportedProperty,

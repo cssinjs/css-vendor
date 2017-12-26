@@ -19,7 +19,8 @@ if (isInBrowser) {
     O: '-o-',
     Webkit: '-webkit-'
   }
-  const style = document.createElement('p').style
+
+  const {style} = document.createElement('p')
   const testProp = 'Transform'
 
   for (const key in jsCssMap) {
