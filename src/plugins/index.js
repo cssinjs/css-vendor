@@ -1,3 +1,4 @@
+import appearence from './appearence'
 import transform from './transform'
 import transition from './transition'
 import scrollSnap from './scroll-snap'
@@ -15,6 +16,7 @@ import flexOld from './flex-old'
 import flex2012 from './flex-2012'
 
 const plugins = [
+  appearence,
   transform,
   transition,
   scrollSnap,
