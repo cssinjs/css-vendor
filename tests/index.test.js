@@ -58,12 +58,16 @@ describe('css-vendor', () => {
       expect(supportedValue('color', value)).to.be(value)
     })
 
-    it('should prefix if needed', () => {
-      const {level, needPrefix} = getSupport('flexbox')
-      if (level !== 'full') this.skip()
-      const value = needPrefix ? `${prefix.css}flex` : 'flex'
-      expect(supportedValue('display', 'flex')).to.be(value)
-    })
+    const {level, needPrefix} = getSupport('flexbox')
+    if (level === 'full') {
+      it('should prefix if needed for flex value', () => {
+        const value = needPrefix ? `${prefix.css}flex` : 'flex'
+        expect(supportedValue('display', 'flex')).to.be(value)
+      })
+    }
+    else {
+      it.skip('skip for not full support for flex in current browser')
+    }
 
     it('should return false for unknown value', () => {
       expect(supportedValue('display', 'xxx')).to.be(false)

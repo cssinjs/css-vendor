@@ -34,6 +34,7 @@ const isExcluded = o =>
   // http://caniuse.com/#feat=css-masks
   /^mask-/.test(o.property) ||
   // http://caniuse.com/#feat=text-decoration
+  o.property === 'text-decoration' ||
   o.property === 'text-decoration-skip' ||
   o.property === 'text-decoration-style' ||
   // http://caniuse.com/#feat=css-crisp-edges
