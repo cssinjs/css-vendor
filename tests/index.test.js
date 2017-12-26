@@ -1,10 +1,8 @@
-/* eslint-disable func-names */
-
 import expect from 'expect.js'
 import {getSupport, currentBrowser} from 'caniuse-support'
 
-import {prefix, supportedProperty, supportedValue} from './index'
-import propertyPrefixFixture from '../test/fixtures/property-prefix'
+import {prefix, supportedProperty, supportedValue} from '../src/.'
+import propertyPrefixFixture from './fixtures'
 
 const msg = `Detected browser: ${currentBrowser.id} ${currentBrowser.version}`
 console.log(msg) // eslint-disable-line no-console
@@ -31,8 +29,10 @@ describe('css-vendor', () => {
 
     const opts = {multiple: true}
     for (const property in propertyPrefixFixture) {
-      it(`should prefix ${property} if needed [${currentBrowser.id} ${currentBrowser.version}]`,
-        () => expect(supportedProperty(property, opts)).to.eql(propertyPrefixFixture[property]))
+      it(
+        `should prefix ${property} if needed [${currentBrowser.id} ${currentBrowser.version}]`,
+        () => expect(supportedProperty(property, opts)).to.eql(propertyPrefixFixture[property])
+      )
     }
 
     it('should prefix writing-mode', () => {
@@ -58,12 +58,16 @@ describe('css-vendor', () => {
       expect(supportedValue('color', value)).to.be(value)
     })
 
-    it('should prefix if needed', function () {
-      const {level, needPrefix} = getSupport('flexbox')
-      if (level !== 'full') this.skip()
-      const value = needPrefix ? `${prefix.css}flex` : 'flex'
-      expect(supportedValue('display', 'flex')).to.be(value)
-    })
+    const {level, needPrefix} = getSupport('flexbox')
+    if (level === 'full') {
+      it('should prefix if needed for flex value', () => {
+        const value = needPrefix ? `${prefix.css}flex` : 'flex'
+        expect(supportedValue('display', 'flex')).to.be(value)
+      })
+    }
+    else {
+      it.skip('skip for not full support for flex in current browser')
+    }
 
     it('should return false for unknown value', () => {
       expect(supportedValue('display', 'xxx')).to.be(false)

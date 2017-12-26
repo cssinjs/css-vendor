@@ -1,6 +1,6 @@
 import isInBrowser from 'is-in-browser'
 import {propertyDetectors, noPrefill} from './plugins'
-import propertyPrefixFixture from '../test/fixtures/property-prefix'
+import propertyPrefixFixture from '../tests/fixtures'
 
 let el
 const cache = {}
@@ -19,7 +19,7 @@ if (isInBrowser) {
    */
   const computed = window.getComputedStyle(document.documentElement, '')
   for (const key in computed) {
-    if (!isNaN(key)) cache[computed[key]] = computed[key]
+    if (!Number.isNaN(key)) cache[computed[key]] = computed[key]
   }
 
   // Properties that cannot be correctly detected using the
@@ -46,7 +46,6 @@ export default function supportedProperty(prop, options = {}) {
   // For server-side rendering.
   if (!el) return prop
 
-  // We have not tested this prop yet, lets do the test.
   if (cache[prop] != null && cache[prop] !== ('transform' || 'transition')) {
     return cache[prop]
   }

@@ -6,6 +6,7 @@ const regExp = /[-\s]+(.)?/g
  * @param {String} str
  * @return {String}
  */
+
 export default function camelize(str) {
   return str.replace(regExp, toUpper)
 }
@@ -13,4 +14,3 @@ export default function camelize(str) {
 function toUpper(match, c) {
   return c ? c.toUpperCase() : ''
 }
-
