@@ -1,6 +1,6 @@
 import prefix from '../prefix'
-import pascalize from '../pascalize'
-import camelize from '../camelize'
+import pascalize from '../utils/pascalize'
+import camelize from '../utils/camelize'
 
 // mask property support cannot be directly detected in webkit browsers,
 // but we can use a longhand property instead.

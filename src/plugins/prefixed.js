@@ -1,5 +1,5 @@
 import prefix from '../prefix'
-import pascalize from '../pascalize'
+import pascalize from '../utils/pascalize'
 
 // Test if property is supported with vendor prefix.
 export default {
@@ -7,7 +7,7 @@ export default {
     const pascalized = pascalize(prop)
     if (prefix.js + pascalized in style) return prefix.css + prop
     // Try webkit fallback.
-    if (prefix.js !== 'Webkit' && `Webkit${pascalized}` in style) return `${prop}`
+    if (prefix.js !== 'Webkit' && `Webkit${pascalized}` in style) return prop
     return false
   }
 }

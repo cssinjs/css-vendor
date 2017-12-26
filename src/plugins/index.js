@@ -12,8 +12,6 @@ import inlineLogicalOld from './inline-logical-old'
 import maskBorderOld from './mask-border-old'
 import breakPropsOld from './break-props-old'
 import flexOld from './flex-old'
-import gridOld from './grid-old'
-import alignSelf from './align-self'
 import flex2012 from './flex-2012'
 
 const plugins = [
@@ -24,12 +22,10 @@ const plugins = [
   writingMode,
   clipPath,
   filter,
-  alignSelf,
   unprefixed,
   prefixed,
   flex2012,
   flexOld,
-  gridOld,
   blockLogicalOld,
   inlineLogicalOld,
   maskBorderOld,

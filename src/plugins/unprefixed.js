@@ -1,4 +1,4 @@
-import camelize from '../camelize'
+import camelize from '../utils/camelize'
 
 // Test if property is supported as it is.
 // Camelization is required because we can't test using
