@@ -1,6 +1,7 @@
 import isInBrowser from 'is-in-browser'
 import prefix from './prefix'
 import supportedProperty from './supported-property'
+import toCssValue from 'jss/lib/utils/toCssValue'
 
 const cache = {}
 const transitionProperties = [
@@ -11,11 +12,25 @@ const transitionProperties = [
 ]
 const transPropsRegExp = /(^\s*\w+)|, (\s*\w+)/g
 let el
+let isDoubleArray = false
+let isArray = false
+let isImportantExist = false
 
 function prefixTransitionCallback(match, p1, p2) {
   if (p1 === 'all') return 'all'
   if (p2 === 'all') return ', all'
   return p1 ? supportedProperty(p1) : `, ${supportedProperty(p2)}`
+}
+
+function stringifyValue(value) {
+  if (value[value.length - 1] === '!important') {
+    isImportantExist = true
+    value = toCssValue(value.slice(0, -1))
+  }
+  else {
+    value = toCssValue(value)
+  }
+  return value
 }
 
 if (isInBrowser) el = document.createElement('p')
@@ -48,49 +63,18 @@ export default function supportedValue(property, value) {
     return cache[cacheKey]
   }
 
-  let isDoubleArray = false
-  let isArray = false
-
   if (Array.isArray(value)) {
     if (Array.isArray(value[0])) {
       isDoubleArray = true
-      let doubleArrayValue = ''
-      for (let a = 0; a < value.length; a++) {
-        if (Array.isArray(value[a])) {
-          for (let v = 0; v < value[a].length; v++) {
-            if (v + 1 !== value[a].length) {
-              doubleArrayValue += `${value[a][v]} `
-            }
-            else {
-              doubleArrayValue += value[a][v]
-            }
-          }
-        }
-        else {
-          doubleArrayValue += value[a]
-        }
-        if (a + 1 !== value.length) {
-          doubleArrayValue += ', '
-        }
-      }
-      value = doubleArrayValue
+      value = stringifyValue(value)
     }
     else {
       isArray = true
-      let arrayValue = ''
-      for (let v = 0; v < value.length; v++) {
-        if (v + 1 !== value.length) {
-          arrayValue += `${value[v]}, `
-        }
-        else {
-          arrayValue += value[v]
-        }
-      }
-      value = arrayValue
+      value = stringifyValue(value)
     }
   }
 
-  // IE can even throw an error in some cases, for e.g. style.content = 'bar'
+  // IE can even throw an error in some cases, for e.g. style.content = 'bar's
   try {
     // Test value as it is.
     el.style[property] = value
@@ -131,7 +115,9 @@ export default function supportedValue(property, value) {
     for (let v = 0; v < values.length; v++) {
       arrayOfValues[v] = values[v]
     }
-    cache[cacheKey] = arrayOfValues
+    value = arrayOfValues
+    isArray = false
+    cache[cacheKey] = value
   }
   else if (isDoubleArray) {
     const arrayOfArraysValues = []
@@ -148,7 +134,16 @@ export default function supportedValue(property, value) {
       }
       arrayOfArraysValues.push(valuesArrays[a])
     }
-    cache[cacheKey] = arrayOfArraysValues
+    value = arrayOfArraysValues
+    isDoubleArray = false
+    cache[cacheKey] = value
   }
+
+  if (isImportantExist) {
+    value.push('!important')
+    isImportantExist = false
+    cache[cacheKey] = value
+  }
+
   return cache[cacheKey]
 }
