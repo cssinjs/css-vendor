@@ -18,34 +18,6 @@ function prefixTransitionCallback(match, p1, p2) {
   return p1 ? supportedProperty(p1) : `, ${supportedProperty(p2)}`
 }
 
-function stringToArray(string) {
-  const arrayOfValues = []
-  const values = string.split(', ')
-  for (let v = 0; v < values.length; v++) {
-    arrayOfValues[v] = values[v]
-  }
-  return arrayOfValues
-}
-
-function stringToDoubleArray(string) {
-  const arrayOfArraysValues = []
-  const valuesArrays = string.split(', ')
-  for (let a = 0; a < valuesArrays.length; a++) {
-    if (valuesArrays[a] !== '!important') {
-      const arrayOfValues = []
-      const values = valuesArrays[a].split(' ')
-      for (let v = 0; v < values.length; v++) {
-        arrayOfValues.push(values[v])
-      }
-      arrayOfArraysValues.push(arrayOfValues)
-    }
-    else {
-      arrayOfArraysValues.push(valuesArrays[a])
-    }
-  }
-  return arrayOfArraysValues
-}
-
 if (isInBrowser) el = document.createElement('p')
 
 /**
@@ -63,9 +35,17 @@ export default function supportedValue(property, value) {
 
   // It is a string or a number as a string like '1'.
   // We want only prefixable values here.
-  if ((typeof value !== 'string' && !Array.isArray(value)) ||
+  if (
+    (typeof value !== 'string' &&
+    !Array.isArray(value)) ||
     !isNaN(parseInt(value, 10))) {
     return value
+  }
+
+  const cacheKey = property + value
+
+  if (cache[cacheKey] != null) {
+    return cache[cacheKey]
   }
 
   let isDoubleArray = false
@@ -110,18 +90,6 @@ export default function supportedValue(property, value) {
     }
   }
 
-  const cacheKey = property + value
-
-  if (cache[cacheKey] != null) {
-    if (isArray) {
-      return stringToArray(cache[cacheKey])
-    }
-    else if (isDoubleArray) {
-      return stringToDoubleArray(cache[cacheKey])
-    }
-    return cache[cacheKey]
-  }
-
   // IE can even throw an error in some cases, for e.g. style.content = 'bar'
   try {
     // Test value as it is.
@@ -158,10 +126,29 @@ export default function supportedValue(property, value) {
   el.style[property] = ''
 
   if (isArray) {
-    return stringToArray(cache[cacheKey])
+    const arrayOfValues = []
+    const values = value.split(', ')
+    for (let v = 0; v < values.length; v++) {
+      arrayOfValues[v] = values[v]
+    }
+    cache[cacheKey] = arrayOfValues
   }
   else if (isDoubleArray) {
-    return stringToDoubleArray(cache[cacheKey])
+    const arrayOfArraysValues = []
+    const valuesArrays = value.split(', ')
+    for (let a = 0; a < valuesArrays.length; a++) {
+      if (valuesArrays[a] !== '!important') {
+        const arrayOfValues = []
+        const values = valuesArrays[a].split(' ')
+        for (let v = 0; v < values.length; v++) {
+          arrayOfValues.push(values[v])
+        }
+        arrayOfArraysValues.push(arrayOfValues)
+        continue
+      }
+      arrayOfArraysValues.push(valuesArrays[a])
+    }
+    cache[cacheKey] = arrayOfArraysValues
   }
   return cache[cacheKey]
 }
