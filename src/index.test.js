@@ -69,13 +69,17 @@ describe('css-vendor', () => {
       expect(supportedValue('display', 'xxx')).to.be(false)
     })
 
+    it('should return false for unknown value', () => {
+      expect(supportedValue('display', 'xxx')).to.be(false)
+    })
+
     it('should return false for "content" value', () => {
       expect(supportedValue('content', 'bar')).to.be(false)
     })
 
     it('known transition value as array prefixed', () => {
       expect(supportedValue('transition', ['all 100ms ease', 'transform 200ms linear']))
-        .to.eql(['all 100ms ease', `${propertyPrefixFixture.transform} 200ms linear`])
+        .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear`)
     })
 
     it('known transition value as array with important keyword prefixed', () => {
@@ -84,17 +88,13 @@ describe('css-vendor', () => {
         'transform 200ms linear',
         '!important'
       ]))
-        .to.eql([
-          'all 100ms ease',
-          `${propertyPrefixFixture.transform} 200ms linear`,
-          '!important'
-        ])
+        .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear !important`)
     })
 
     it('known transition value as two dimensional array prefixed', () => {
       expect(supportedValue('transition', [['all', '100ms', 'ease'],
       ['transform', '200ms', 'linear']]))
-        .to.eql([['all', '100ms', 'ease'], [propertyPrefixFixture.transform, '200ms', 'linear']])
+        .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear`)
     })
 
     it('known transition value as two dimensional array with important keyword prefixed', () => {
@@ -103,11 +103,7 @@ describe('css-vendor', () => {
         ['transform', '200ms', 'linear'],
         '!important'
       ]))
-        .to.eql([
-          ['all', '100ms', 'ease'],
-          [propertyPrefixFixture.transform, '200ms', 'linear'],
-          '!important'
-        ])
+        .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear !important`)
     })
 
     it('known transition-property value prefixed', () => {

@@ -12,25 +12,12 @@ const transitionProperties = [
 ]
 const transPropsRegExp = /(^\s*\w+)|, (\s*\w+)/g
 let el
-let isDoubleArray = false
-let isArray = false
 let isImportantExist = false
 
 function prefixTransitionCallback(match, p1, p2) {
   if (p1 === 'all') return 'all'
   if (p2 === 'all') return ', all'
   return p1 ? supportedProperty(p1) : `, ${supportedProperty(p2)}`
-}
-
-function stringifyValue(value) {
-  if (value[value.length - 1] === '!important') {
-    isImportantExist = true
-    value = toCssValue(value.slice(0, -1))
-  }
-  else {
-    value = toCssValue(value)
-  }
-  return value
 }
 
 if (isInBrowser) el = document.createElement('p')
@@ -59,18 +46,20 @@ export default function supportedValue(property, value) {
 
   const cacheKey = property + value
 
-  if (cache[cacheKey] != null) {
+  if (cache[cacheKey]) {
     return cache[cacheKey]
+  }
+  else if (cache[cacheKey] === null) {
+    return false
   }
 
   if (Array.isArray(value)) {
-    if (Array.isArray(value[0])) {
-      isDoubleArray = true
-      value = stringifyValue(value)
+    if (value[value.length - 1] === '!important') {
+      isImportantExist = true
+      value = toCssValue(value.slice(0, -1))
     }
     else {
-      isArray = true
-      value = stringifyValue(value)
+      value = toCssValue(value)
     }
   }
 
@@ -100,50 +89,22 @@ export default function supportedValue(property, value) {
 
     el.style[property] = value
 
-    // Value is supported with vendor prefix.
-    if (el.style[property] !== '') cache[cacheKey] = value
+    if (el.style[property] === '') value = false
   }
-
-  if (!cache[cacheKey]) cache[cacheKey] = false
 
   // Reset style value.
   el.style[property] = ''
 
-  if (isArray) {
-    const arrayOfValues = []
-    const values = value.split(', ')
-    for (let v = 0; v < values.length; v++) {
-      arrayOfValues[v] = values[v]
-    }
-    value = arrayOfValues
-    isArray = false
-    cache[cacheKey] = value
-  }
-  else if (isDoubleArray) {
-    const arrayOfArraysValues = []
-    const valuesArrays = value.split(', ')
-    for (let a = 0; a < valuesArrays.length; a++) {
-      if (valuesArrays[a] !== '!important') {
-        const arrayOfValues = []
-        const values = valuesArrays[a].split(' ')
-        for (let v = 0; v < values.length; v++) {
-          arrayOfValues.push(values[v])
-        }
-        arrayOfArraysValues.push(arrayOfValues)
-        continue
-      }
-      arrayOfArraysValues.push(valuesArrays[a])
-    }
-    value = arrayOfArraysValues
-    isDoubleArray = false
-    cache[cacheKey] = value
+  if (!value) {
+    cache[cacheKey] = null
+    return false
   }
 
   if (isImportantExist) {
-    value.push('!important')
+    value += ' !important'
     isImportantExist = false
     cache[cacheKey] = value
   }
 
-  return cache[cacheKey]
+  return value
 }
