@@ -46,21 +46,13 @@ export default function supportedValue(property, value) {
 
   const cacheKey = property + value
 
-  if (cache[cacheKey]) {
-    return cache[cacheKey]
-  }
-  else if (cache[cacheKey] === false) {
-    return false
-  }
+  if (cache[cacheKey] != null) return cache[cacheKey]
 
   if (Array.isArray(value)) {
     if (value[value.length - 1] === '!important') {
       isImportantExist = true
-      value = toCssValue(value.slice(0, -1))
     }
-    else {
-      value = toCssValue(value)
-    }
+    value = toCssValue(value, true)
   }
 
   // IE can even throw an error in some cases, for e.g. style.content = 'bar's
