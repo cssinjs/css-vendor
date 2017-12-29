@@ -75,12 +75,9 @@ export default function supportedValue(property, value) {
 
   // Value is supported as it is.
   if (transitionProperties.indexOf(property) !== -1) {
-    cache[cacheKey] = value.replace(transPropsRegExp, prefixTransitionCallback)
+    value = value.replace(transPropsRegExp, prefixTransitionCallback)
   }
-  else if (el.style[property] !== '') {
-    cache[cacheKey] = value
-  }
-  else {
+  else if (el.style[property] === '') {
     // Test value with vendor prefix.
     value = prefix.css + value
 
@@ -103,8 +100,9 @@ export default function supportedValue(property, value) {
   if (isImportantExist) {
     value += ' !important'
     isImportantExist = false
-    cache[cacheKey] = value
   }
+
+  cache[cacheKey] = value
 
   return value
 }
