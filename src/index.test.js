@@ -101,10 +101,5 @@ describe('css-vendor', () => {
       ]))
         .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear !important`)
     })
-
-    it('known transition-property value prefixed', () => {
-      expect(supportedValue('transition-property', 'all, transform'))
-        .to.be(`all, ${propertyPrefixFixture.transform}`)
-    })
   })
 })
