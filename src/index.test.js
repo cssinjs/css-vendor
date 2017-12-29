@@ -69,10 +69,6 @@ describe('css-vendor', () => {
       expect(supportedValue('display', 'xxx')).to.be(false)
     })
 
-    it('should return false for unknown value', () => {
-      expect(supportedValue('display', 'xxx')).to.be(false)
-    })
-
     it('should return false for "content" value', () => {
       expect(supportedValue('content', 'bar')).to.be(false)
     })

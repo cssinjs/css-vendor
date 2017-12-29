@@ -49,7 +49,7 @@ export default function supportedValue(property, value) {
   if (cache[cacheKey]) {
     return cache[cacheKey]
   }
-  else if (cache[cacheKey] === null) {
+  else if (cache[cacheKey] === false) {
     return false
   }
 
@@ -96,7 +96,7 @@ export default function supportedValue(property, value) {
   el.style[property] = ''
 
   if (!value) {
-    cache[cacheKey] = null
+    cache[cacheKey] = false
     return false
   }
 
