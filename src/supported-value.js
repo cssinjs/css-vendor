@@ -12,7 +12,7 @@ const transitionProperties = [
 ]
 const transPropsRegExp = /(^\s*\w+)|, (\s*\w+)/g
 let el
-let isImportantExist = false
+let isImportant = false
 
 function prefixTransitionCallback(match, p1, p2) {
   if (p1 === 'all') return 'all'
@@ -50,7 +50,7 @@ export default function supportedValue(property, value) {
 
   if (Array.isArray(value)) {
     if (value[value.length - 1] === '!important') {
-      isImportantExist = true
+      isImportant = true
     }
     value = toCssValue(value, true)
   }
@@ -89,9 +89,9 @@ export default function supportedValue(property, value) {
     return false
   }
 
-  if (isImportantExist) {
+  if (isImportant) {
     value += ' !important'
-    isImportantExist = false
+    isImportant = false
   }
 
   cache[cacheKey] = value
