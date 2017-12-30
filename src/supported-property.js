@@ -47,13 +47,11 @@ export default function supportedProperty(prop, options = {}) {
   if (!el) return prop
 
   // We have not tested this prop yet, lets do the test.
-  if (cache[prop] != null && cache[prop] !== ('transform' || 'transition')) {
+  if (cache[prop] != null) {
     return cache[prop]
   }
 
-  const propValue = cache[prop] || prop
-
-  if (propValue === 'transform' || propValue === 'transition') {
+  if (prop === 'transform' || prop === 'transition') {
     transitionTransformPrefix(options, prop)
   }
 

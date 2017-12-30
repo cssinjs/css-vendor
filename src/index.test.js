@@ -46,6 +46,10 @@ describe('css-vendor', () => {
     it('should return false', () => {
       expect(supportedProperty('xxx')).to.be(false)
     })
+
+    it('should return false', () => {
+      expect(supportedProperty('xxx')).to.be(false)
+    })
   })
 
   describe('.supportedValue()', () => {
@@ -71,6 +75,16 @@ describe('css-vendor', () => {
 
     it('should return false for "content" value', () => {
       expect(supportedValue('content', 'bar')).to.be(false)
+    })
+
+    it('known transition-property value prefixed', () => {
+      expect(supportedValue('transition-property', 'all, transform'))
+        .to.be(`all, ${propertyPrefixFixture.transform}`)
+    })
+
+    it('known transform value prefixed', () => {
+      expect(supportedValue('transform', 'rotate(0.5turn)'))
+        .to.be('rotate(0.5turn)')
     })
 
     it('known transition value as array prefixed', () => {

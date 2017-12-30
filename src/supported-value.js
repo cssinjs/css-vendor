@@ -8,7 +8,7 @@ const transitionProperties = [
   'transition',
   'transition-property',
   '-webkit-transition',
-  '-webkit-transition-property',
+  '-webkit-transition-property'
 ]
 const transPropsRegExp = /(^\s*\w+)|, (\s*\w+)/g
 let el
@@ -78,16 +78,14 @@ export default function supportedValue(property, value) {
 
     el.style[property] = value
 
-    if (el.style[property] === '') value = false
+    if (el.style[property] === '') {
+      cache[cacheKey] = false
+      return false
+    }
   }
 
   // Reset style value.
   el.style[property] = ''
-
-  if (!value) {
-    cache[cacheKey] = false
-    return false
-  }
 
   if (isImportant) {
     value += ' !important'
@@ -96,5 +94,5 @@ export default function supportedValue(property, value) {
 
   cache[cacheKey] = value
 
-  return value
+  return cache[cacheKey]
 }
