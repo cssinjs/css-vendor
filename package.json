@@ -69,6 +69,7 @@
     "karma-firefox-launcher": "^1.0.0",
     "karma-mocha": "^1.0.1",
     "karma-mocha-reporter": "^2.0.2",
+    "karma-opera-launcher": "^1.0.0",
     "karma-safari-launcher": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.5",
     "karma-webpack": "^1.7.0",
@@ -80,7 +81,8 @@
     "webpack": "^1.12.2"
   },
   "dependencies": {
-    "is-in-browser": "^1.0.2"
+    "is-in-browser": "^1.0.2",
+    "jss": "^9.4.0"
   },
   "lint-staged": {
     "**/*.js": [

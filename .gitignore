@@ -8,3 +8,4 @@ coverage
 tests
 tmp
 .env
+libpeerconnection.log
