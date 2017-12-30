@@ -70,6 +70,7 @@
     "karma-firefox-launcher": "^1.1.0",
     "karma-mocha": "^1.0.1",
     "karma-mocha-reporter": "^2.2.5",
+    "karma-opera-launcher": "^1.0.0",
     "karma-safari-launcher": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.5",
     "karma-webpack": "^2.0.9",
@@ -81,8 +82,8 @@
     "webpack": "^3.10.0"
   },
   "dependencies": {
-    "caniuse-db": "^1.0.30000784",
-    "is-in-browser": "^1.0.2"
+    "is-in-browser": "^1.0.2",
+    "jss": "^9.4.0"
   },
   "lint-staged": {
     "**/*.js": [

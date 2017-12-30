@@ -46,13 +46,12 @@ export default function supportedProperty(prop, options = {}) {
   // For server-side rendering.
   if (!el) return prop
 
-  if (cache[prop] != null && cache[prop] !== ('transform' || 'transition')) {
+  // We have not tested this prop yet, lets do the test.
+  if (cache[prop] != null) {
     return cache[prop]
   }
 
-  const propValue = cache[prop] || prop
-
-  if (propValue === 'transform' || propValue === 'transition') {
+  if (prop === 'transform' || prop === 'transition') {
     transitionTransformPrefix(options, prop)
   }
 
