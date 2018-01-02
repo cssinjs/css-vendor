@@ -9,4 +9,3 @@ import camelize from './camelize'
 export default function pascalize(str) {
   return camelize(`-${str}`)
 }
-
