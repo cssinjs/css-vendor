@@ -8,6 +8,7 @@ const isTravis = process.env.TRAVIS
 const travisBuildNumber = process.env.TRAVIS_BUILD_NUMBER
 const travisBuildId = process.env.TRAVIS_BUILD_ID
 const travisJobNumber = process.env.TRAVIS_JOB_NUMBER
+const isBench = process.env.NODE_ENV === 'benchmark'
 
 module.exports = (config) => {
   config.set({
@@ -30,6 +31,19 @@ module.exports = (config) => {
     },
     reporters: ['mocha']
   })
+
+  if (isBench) {
+    Object.assign(config, {
+      browsers: ['Chrome'],
+      frameworks: ['benchmark'],
+      // Using a fixed position for a file name, m.b. should use an args parser later.
+      files: [process.argv[4] || 'benchmark/**/*.js'],
+      preprocessors: {'benchmark/**/*.js': ['webpack']},
+      reporters: ['benchmark'],
+      // Some tests are slow.
+      browserNoActivityTimeout: 20000
+    })
+  }
 
   if (useCloud) {
     Object.assign(config, {

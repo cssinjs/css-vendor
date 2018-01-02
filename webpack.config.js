@@ -3,7 +3,8 @@ const webpack = require('webpack')
 const plugins = [
   new webpack.DefinePlugin({
     __DEV__: process.env.NODE_ENV === 'development',
-    __TEST__: process.env.NODE_ENV === 'test'
+    __TEST__: process.env.NODE_ENV === 'test',
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
   })
 ]
 

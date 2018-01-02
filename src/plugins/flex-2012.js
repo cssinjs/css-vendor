@@ -12,13 +12,11 @@ const propMap = {
   // align-self is handled by `align-self` plugin.
 }
 
-const propKeys = Object.keys(propMap)
-
 // Support old flex spec from 2012.
 export default {
   supportedProperty: (prop, style) => {
-    if (propKeys.indexOf(prop) > -1) return false
     const newProp = propMap[prop]
+    if (!newProp) return false
     return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : false
   }
 }

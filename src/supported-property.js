@@ -47,7 +47,7 @@ export default function supportedProperty(prop, options = {}) {
   if (!el) return prop
 
   // We have not tested this prop yet, lets do the test.
-  if (cache[prop] != null) {
+  if (process.env.NODE_ENV !== 'benchmark' && cache[prop] != null) {
     return cache[prop]
   }
 

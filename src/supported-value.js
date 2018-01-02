@@ -45,7 +45,9 @@ export default function supportedValue(property, value) {
 
   const cacheKey = property + value
 
-  if (cache[cacheKey] != null) return cache[cacheKey]
+  if (process.env.NODE_ENV !== 'benchmark' && cache[cacheKey] != null) {
+    return cache[cacheKey]
+  }
 
   let isImportant = false
 
