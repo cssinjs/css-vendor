@@ -1,9 +1,25 @@
+## 1.0.0 / 2018-02-01
+
+- Added support for various properties for old browsers, undetectable with feature tests:
+  - appearance
+  - break-*
+  - clip-path
+  - filter
+  - flex
+  - (border|margin|padding)-inline
+  - mask-*
+  - scroll-snap
+  - transform
+  - transition
+  - writing-mode
+- Use autoprefixer data to generate tests for full compatibility.
+
 ## 0.3.8 / 2016-11-17
 
 - better cache prefill
 - fix supportedValue
 - migrate tests
-- introduce browerstack config and travis
+- introduce browserstack config and travis
 
 ## 0.3.7 / 2016-10-31
 
