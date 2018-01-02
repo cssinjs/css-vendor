@@ -8,7 +8,6 @@ import clipPath from './clip-path'
 import filter from './filter'
 import unprefixed from './unprefixed'
 import prefixed from './prefixed'
-import blockLogicalOld from './block-logical-old'
 import inlineLogicalOld from './inline-logical-old'
 import maskBorderOld from './mask-border-old'
 import breakPropsOld from './break-props-old'
@@ -28,7 +27,6 @@ const plugins = [
   prefixed,
   flex2012,
   flex2009,
-  blockLogicalOld,
   inlineLogicalOld,
   maskBorderOld,
   breakPropsOld
