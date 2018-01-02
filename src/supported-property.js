@@ -56,10 +56,7 @@ export default function supportedProperty(prop, options = {}) {
   }
 
   if (prop === 'transform' || prop === 'transition') {
-    transitionTransformPrefix(
-      options,
-      prop
-    )
+    transitionTransformPrefix(options, prop)
   }
 
   for (let i = 0; i < propertyDetectors.length; i++) {
