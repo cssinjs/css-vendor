@@ -7,10 +7,10 @@ const regExp = /[-\s]+(.)?/g
  * @return {String}
  */
 
-export default function camelize(str) {
-  return str.replace(regExp, toUpper)
-}
-
 function toUpper(match, c) {
   return c ? c.toUpperCase() : ''
+}
+
+export default function camelize(str) {
+  return str.replace(regExp, toUpper)
 }
