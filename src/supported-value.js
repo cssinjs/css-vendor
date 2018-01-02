@@ -3,12 +3,12 @@ import prefix from './prefix'
 import supportedProperty from './supported-property'
 
 const cache = {}
-const transitionProperties = [
-  'transition',
-  'transition-property',
-  '-webkit-transition',
-  '-webkit-transition-property'
-]
+const transitionProperties = {
+  transition: 1,
+  'transition-property': 1,
+  '-webkit-transition': 1,
+  '-webkit-transition-property': 1
+}
 const transPropsRegExp = /(^\s*\w+)|, (\s*\w+)/g
 let el
 
@@ -59,7 +59,7 @@ export default function supportedValue(property, value) {
   }
 
   // Value is supported as it is.
-  if (transitionProperties.indexOf(property) !== -1) {
+  if (transitionProperties[property]) {
     value = value.replace(transPropsRegExp, prefixTransitionCallback)
   }
   else if (el.style[property] === '') {
