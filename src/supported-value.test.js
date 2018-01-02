@@ -35,39 +35,9 @@ describe('css-vendor', () => {
       expect(supportedValue('content', 'bar')).to.be(false)
     })
 
-    it('known transition-property value prefixed', () => {
-      expect(supportedValue('transition-property', 'all, transform'))
-        .to.be(`all, ${propertyPrefixFixture.transform}`)
-    })
-
     it('known transform value prefixed', () => {
-      expect(supportedValue('transform', 'rotate(0.5turn)'))
-        .to.be('rotate(0.5turn)')
-    })
-
-    it('known transition value as array prefixed', () => {
-      expect(supportedValue('transition', ['all 100ms ease', 'transform 200ms linear']))
+      expect(supportedValue('transition', 'all 100ms ease, transform 200ms linear'))
         .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear`)
-    })
-
-    it('known transition value as array with important keyword prefixed', () => {
-      expect(supportedValue('transition', ['all 100ms ease', 'transform 200ms linear', '!important']))
-        .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear !important`)
-    })
-
-    it('known transition value as two dimensional array prefixed', () => {
-      expect(supportedValue('transition', [['all', '100ms', 'ease'], ['transform', '200ms', 'linear']]))
-        .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear`)
-    })
-
-    it('known transition value as two dimensional array with important keyword prefixed', () => {
-      const value = [
-        ['all', '100ms', 'ease'],
-        ['transform', '200ms', 'linear'],
-        '!important'
-      ]
-      expect(supportedValue('transition', value))
-        .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear !important`)
     })
   })
 })

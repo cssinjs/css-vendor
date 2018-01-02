@@ -81,8 +81,7 @@
     "webpack": "^3.10.0"
   },
   "dependencies": {
-    "is-in-browser": "^1.0.2",
-    "jss": "^9.5.0"
+    "is-in-browser": "^1.0.2"
   },
   "lint-staged": {
     "**/*.js": [

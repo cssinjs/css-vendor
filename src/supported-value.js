@@ -1,5 +1,4 @@
 import isInBrowser from 'is-in-browser'
-import {toCssValue} from 'jss'
 import prefix from './prefix'
 import supportedProperty from './supported-property'
 
@@ -49,15 +48,6 @@ export default function supportedValue(property, value) {
     return cache[cacheKey]
   }
 
-  let isImportant = false
-
-  if (Array.isArray(value)) {
-    if (value[value.length - 1] === '!important') {
-      isImportant = true
-    }
-    value = toCssValue(value, true)
-  }
-
   // IE can even throw an error in some cases, for e.g. style.content = 'bar's
   try {
     // Test value as it is.
@@ -89,11 +79,6 @@ export default function supportedValue(property, value) {
 
   // Reset style value.
   el.style[property] = ''
-
-  if (isImportant) {
-    value += ' !important'
-    isImportant = false
-  }
 
   cache[cacheKey] = value
 
