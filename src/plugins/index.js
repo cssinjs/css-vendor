@@ -1,3 +1,4 @@
+import appearence from './appearence'
 import transform from './transform'
 import transition from './transition'
 import scrollSnap from './scroll-snap'
@@ -7,16 +8,14 @@ import clipPath from './clip-path'
 import filter from './filter'
 import unprefixed from './unprefixed'
 import prefixed from './prefixed'
-import blockLogicalOld from './block-logical-old'
 import inlineLogicalOld from './inline-logical-old'
 import maskBorderOld from './mask-border-old'
 import breakPropsOld from './break-props-old'
-import flexOld from './flex-old'
-import gridOld from './grid-old'
-import alignSelf from './align-self'
+import flex2009 from './flex-2009'
 import flex2012 from './flex-2012'
 
 const plugins = [
+  appearence,
   transform,
   transition,
   scrollSnap,
@@ -24,13 +23,10 @@ const plugins = [
   writingMode,
   clipPath,
   filter,
-  alignSelf,
   unprefixed,
   prefixed,
   flex2012,
-  flexOld,
-  gridOld,
-  blockLogicalOld,
+  flex2009,
   inlineLogicalOld,
   maskBorderOld,
   breakPropsOld

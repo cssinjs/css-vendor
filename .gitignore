@@ -5,6 +5,6 @@ npm-debug.log
 lib
 dist
 coverage
-tests
 tmp
 .env
+libpeerconnection.log

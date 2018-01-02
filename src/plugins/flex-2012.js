@@ -1,5 +1,5 @@
 import prefix from '../prefix'
-import pascalize from '../pascalize'
+import pascalize from '../utils/pascalize'
 
 const propMap = {
   'flex-grow': 'flex-positive',
@@ -12,15 +12,11 @@ const propMap = {
   // align-self is handled by `align-self` plugin.
 }
 
-const propKeys = Object.keys(propMap)
-
 // Support old flex spec from 2012.
 export default {
   supportedProperty: (prop, style) => {
-    if (propKeys.indexOf(prop) > -1) {
-      const newProp = propMap[prop]
-      return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : false
-    }
-    return false
+    const newProp = propMap[prop]
+    if (!newProp) return false
+    return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : false
   }
 }

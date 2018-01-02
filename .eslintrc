@@ -1,4 +1,7 @@
 {
   "parser": "babel-eslint",
-  "extends": "eslint-config-jss"
+  "extends": "eslint-config-jss",
+  "globals": {
+    "benchmark": true
+  }
 }

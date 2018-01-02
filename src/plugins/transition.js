@@ -3,12 +3,10 @@ import prefix from '../prefix'
 export default {
   noPrefill: ['transition'],
   supportedProperty: (prop, style, options) => {
-    if (prop === 'transition') {
-      if (options.transition) {
-        return prefix.css + prop
-      }
+    if (prop !== 'transition') return false
+    if (options.transition) {
       return prop
     }
-    return false
+    return prefix.css + prop
   }
 }

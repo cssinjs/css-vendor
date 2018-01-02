@@ -1,5 +1,5 @@
 import prefix from '../prefix'
-import pascalize from '../pascalize'
+import pascalize from '../utils/pascalize'
 
 // Support old break-* props syntax.
 // http://caniuse.com/#feat=multicolumn
@@ -7,15 +7,14 @@ import pascalize from '../pascalize'
 // https://github.com/postcss/autoprefixer/issues/177
 export default {
   supportedProperty: (prop, style) => {
-    if (/^break-/.test(prop)) {
-      if (prefix.js === 'Webkit') {
-        const jsProp = `WebkitColumn${pascalize(prop)}`
-        return jsProp in style ? `${prefix.css}column-${prop}` : false
-      }
-      else if (prefix.js === 'Moz') {
-        const jsProp = `page${pascalize(prop)}`
-        return jsProp in style ? `page-${prop}` : false
-      }
+    if (!/^break-/.test(prop)) return false
+    if (prefix.js === 'Webkit') {
+      const jsProp = `WebkitColumn${pascalize(prop)}`
+      return jsProp in style ? `${prefix.css}column-${prop}` : false
+    }
+    if (prefix.js === 'Moz') {
+      const jsProp = `page${pascalize(prop)}`
+      return jsProp in style ? `page-${prop}` : false
     }
     return false
   }

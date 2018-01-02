@@ -3,12 +3,12 @@ import prefix from './prefix'
 import supportedProperty from './supported-property'
 
 const cache = {}
-const transitionProperties = [
-  'transition',
-  'transition-property',
-  '-webkit-transition',
-  '-webkit-transition-property',
-]
+const transitionProperties = {
+  transition: 1,
+  'transition-property': 1,
+  '-webkit-transition': 1,
+  '-webkit-transition-property': 1
+}
 const transPropsRegExp = /(^\s*\w+)|, (\s*\w+)/g
 let el
 
@@ -35,13 +35,20 @@ export default function supportedValue(property, value) {
 
   // It is a string or a number as a string like '1'.
   // We want only prefixable values here.
-  if (typeof value !== 'string' || !isNaN(parseInt(value, 10))) return value
+  if (
+    typeof value !== 'string' ||
+    !Number.isNaN(parseInt(value, 10))
+  ) {
+    return value
+  }
 
   const cacheKey = property + value
 
-  if (cache[cacheKey] != null) return cache[cacheKey]
+  if (process.env.NODE_ENV !== 'benchmark' && cache[cacheKey] != null) {
+    return cache[cacheKey]
+  }
 
-  // IE can even throw an error in some cases, for e.g. style.content = 'bar'
+  // IE can even throw an error in some cases, for e.g. style.content = 'bar's
   try {
     // Test value as it is.
     el.style[property] = value
@@ -51,14 +58,10 @@ export default function supportedValue(property, value) {
     return false
   }
 
-  // Value is supported as it is.
-  if (transitionProperties.indexOf(property) !== -1) {
-    cache[cacheKey] = value.replace(transPropsRegExp, prefixTransitionCallback)
+  if (transitionProperties[property]) {
+    value = value.replace(transPropsRegExp, prefixTransitionCallback)
   }
-  else if (el.style[property] !== '') {
-    cache[cacheKey] = value
-  }
-  else {
+  else if (el.style[property] === '') {
     // Test value with vendor prefix.
     value = prefix.css + value
 
@@ -67,14 +70,16 @@ export default function supportedValue(property, value) {
 
     el.style[property] = value
 
-    // Value is supported with vendor prefix.
-    if (el.style[property] !== '') cache[cacheKey] = value
+    if (el.style[property] === '') {
+      cache[cacheKey] = false
+      return false
+    }
   }
-
-  if (!cache[cacheKey]) cache[cacheKey] = false
 
   // Reset style value.
   el.style[property] = ''
+
+  cache[cacheKey] = value
 
   return cache[cacheKey]
 }
