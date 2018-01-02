@@ -72,7 +72,7 @@ describe('css-vendor', () => {
       expect(supportedValue('display', 'xxx')).to.be(false)
     })
 
-    it('should return false when property is content "content"', () => {
+    it('should return false when property is "content"', () => {
       expect(supportedValue('content', 'bar')).to.be(false)
     })
 
