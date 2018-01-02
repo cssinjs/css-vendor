@@ -66,14 +66,14 @@ describe('css-vendor', () => {
       })
     }
     else {
-      it.skip('skip for not full support for flex in current browser')
+      it.skip('flex is not fully supported in the current browser')
     }
 
-    it('should return false for unknown value', () => {
+    it('should return false when value is unknown', () => {
       expect(supportedValue('display', 'xxx')).to.be(false)
     })
 
-    it('should return false for "content" value', () => {
+    it('should return false when property is content "content"', () => {
       expect(supportedValue('content', 'bar')).to.be(false)
     })
 
