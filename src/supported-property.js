@@ -3,11 +3,6 @@ import {propertyDetectors, noPrefill} from './plugins'
 
 let el
 const cache = {}
-const probeValues = {
-  transition: 'all 100ms ease, transform 200ms linear',
-  transform: 'rotate(0.5turn)'
-}
-
 if (isInBrowser) {
   el = document.createElement('p')
 
@@ -30,13 +25,6 @@ if (isInBrowser) {
   noPrefill.forEach(x => delete cache[x])
 }
 
-function transitionTransformPrefix(options, prop) {
-  el.style[prop] = probeValues[prop]
-  if (el.style[prop] === probeValues[prop]) {
-    options[prop] = true
-  }
-}
-
 /**
  * Test if a property is supported, returns supported property with vendor
  * prefix if required. Returns `false` if not supported.
@@ -46,6 +34,11 @@ function transitionTransformPrefix(options, prop) {
  * @return {String|Boolean}
  * @api public
  */
+const isPropertySupported = (prop) => {
+  if (prop in el.style) return true
+  return false
+}
+
 export default function supportedProperty(prop, options = {}) {
   // For server-side rendering.
   if (!el) return prop
@@ -55,8 +48,8 @@ export default function supportedProperty(prop, options = {}) {
     return cache[prop]
   }
 
-  if (prop === 'transform' || prop === 'transition') {
-    transitionTransformPrefix(options, prop)
+  if (prop === 'transition' || prop === 'transform') {
+    options[prop] = isPropertySupported(prop)
   }
 
   for (let i = 0; i < propertyDetectors.length; i++) {

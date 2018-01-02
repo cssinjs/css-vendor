@@ -5,8 +5,8 @@ export default {
   supportedProperty: (prop, style, options) => {
     if (prop !== 'transform') return false
     if (options.transform) {
-      return prefix.css + prop
+      return prop
     }
-    return prop
+    return prefix.css + prop
   }
 }

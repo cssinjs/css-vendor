@@ -5,8 +5,8 @@ export default {
   supportedProperty: (prop, style, options) => {
     if (prop !== 'transition') return false
     if (options.transition) {
-      return prefix.css + prop
+      return prop
     }
-    return prop
+    return prefix.css + prop
   }
 }
