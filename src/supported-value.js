@@ -12,7 +12,6 @@ const transitionProperties = [
 ]
 const transPropsRegExp = /(^\s*\w+)|, (\s*\w+)/g
 let el
-let isImportant = false
 
 function prefixTransitionCallback(match, p1, p2) {
   if (p1 === 'all') return 'all'
@@ -34,6 +33,8 @@ if (isInBrowser) el = document.createElement('p')
 export default function supportedValue(property, value) {
   // For server-side rendering.
   if (!el) return value
+
+  let isImportant = false
 
   // It is a string or a number as a string like '1'.
   // We want only prefixable values here.
