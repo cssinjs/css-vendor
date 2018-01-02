@@ -17,6 +17,8 @@ const skipProperties = [
   'font-variant-ligatures'
 ]
 
+const notDescribedCanIUseProps = ['css3-cursors-grab', 'css-text-spacing']
+
 const gridProps = [
   'grid-template-columns', 'grid-template-rows',
   'grid-row-start', 'grid-column-start',
@@ -75,9 +77,10 @@ function generateFixture() {
   const fixture = {}
   Object.keys(data)
     // Filters autoprefixer data to include only property prefix related entries.
-    .filter(s => /^[^:@].*$/.test(s))
-    .filter(s => data[s].props === undefined)
-    .filter(s => ['css3-cursors-grab', 'css-text-spacing'].indexOf(data[s].feature) < 0)
+    .filter(s =>
+      /^[^:@].*$/.test(s) &&
+      data[s].props === undefined &&
+      notDescribedCanIUseProps.indexOf(data[s].feature) < 0)
     .map(s => ({property: s, feature: data[s].feature, ...getSupport(data[s].feature)}))
     .filter(o => !isExcluded(o))
     .forEach((o) => {
