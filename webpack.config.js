@@ -2,8 +2,6 @@ const webpack = require('webpack')
 
 const plugins = [
   new webpack.DefinePlugin({
-    __DEV__: process.env.NODE_ENV === 'development',
-    __TEST__: process.env.NODE_ENV === 'test',
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
   })
 ]
@@ -13,9 +11,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 module.exports = {
-  entry: ['./src/index.js', './tests/index.test.js'],
+  entry: ['./src/index.js'],
   output: {
-    filename: 'dist/bundle.js',
     library: 'cssVendor',
     libraryTarget: 'umd'
   },

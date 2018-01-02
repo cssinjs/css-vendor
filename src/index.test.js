@@ -1,8 +1,8 @@
 import expect from 'expect.js'
 import {getSupport, currentBrowser} from 'caniuse-support'
 
-import {prefix, supportedProperty, supportedValue} from '../src/.'
-import propertyPrefixFixture from './fixtures'
+import {prefix, supportedProperty, supportedValue} from '../'
+import propertyPrefixFixture from '../tests/fixtures'
 
 const msg = `Detected browser: ${currentBrowser.id} ${currentBrowser.version}`
 console.log(msg) // eslint-disable-line no-console
