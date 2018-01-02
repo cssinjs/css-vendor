@@ -34,8 +34,6 @@ export default function supportedValue(property, value) {
   // For server-side rendering.
   if (!el) return value
 
-  let isImportant = false
-
   // It is a string or a number as a string like '1'.
   // We want only prefixable values here.
   if (
@@ -48,6 +46,8 @@ export default function supportedValue(property, value) {
   const cacheKey = property + value
 
   if (cache[cacheKey] != null) return cache[cacheKey]
+
+  let isImportant = false
 
   if (Array.isArray(value)) {
     if (value[value.length - 1] === '!important') {
