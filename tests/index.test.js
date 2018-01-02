@@ -29,10 +29,9 @@ describe('css-vendor', () => {
 
     const opts = {multiple: true}
     for (const property in propertyPrefixFixture) {
-      it(
-        `should prefix ${property} if needed [${currentBrowser.id} ${currentBrowser.version}]`,
-        () => expect(supportedProperty(property, opts)).to.eql(propertyPrefixFixture[property])
-      )
+      it(`should prefix ${property} if needed [${currentBrowser.id} ${currentBrowser.version}]`, () => (
+        expect(supportedProperty(property, opts)).to.eql(propertyPrefixFixture[property])
+      ))
     }
 
     it('should prefix writing-mode', () => {
@@ -93,26 +92,22 @@ describe('css-vendor', () => {
     })
 
     it('known transition value as array with important keyword prefixed', () => {
-      expect(supportedValue('transition', [
-        'all 100ms ease',
-        'transform 200ms linear',
-        '!important'
-      ]))
+      expect(supportedValue('transition', ['all 100ms ease', 'transform 200ms linear', '!important']))
         .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear !important`)
     })
 
     it('known transition value as two dimensional array prefixed', () => {
-      expect(supportedValue('transition', [['all', '100ms', 'ease'],
-        ['transform', '200ms', 'linear']]))
+      expect(supportedValue('transition', [['all', '100ms', 'ease'], ['transform', '200ms', 'linear']]))
         .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear`)
     })
 
     it('known transition value as two dimensional array with important keyword prefixed', () => {
-      expect(supportedValue('transition', [
+      const value = [
         ['all', '100ms', 'ease'],
         ['transform', '200ms', 'linear'],
         '!important'
-      ]))
+      ]
+      expect(supportedValue('transition', value))
         .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear !important`)
     })
   })
