@@ -12,7 +12,7 @@ export default {
       const jsProp = `WebkitColumn${pascalize(prop)}`
       return jsProp in style ? `${prefix.css}column-${prop}` : false
     }
-    else if (prefix.js === 'Moz') {
+    if (prefix.js === 'Moz') {
       const jsProp = `page${pascalize(prop)}`
       return jsProp in style ? `page-${prop}` : false
     }

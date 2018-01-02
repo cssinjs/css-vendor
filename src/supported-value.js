@@ -58,7 +58,6 @@ export default function supportedValue(property, value) {
     return false
   }
 
-  // Value is supported as it is.
   if (transitionProperties[property]) {
     value = value.replace(transPropsRegExp, prefixTransitionCallback)
   }
