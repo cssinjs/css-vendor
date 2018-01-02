@@ -43,11 +43,7 @@ describe('css-vendor', () => {
       expect(supportedProperty('writing-mode')).to.be(`${isPrefixed ? prefix.css : ''}writing-mode`)
     })
 
-    it('should return false', () => {
-      expect(supportedProperty('xxx')).to.be(false)
-    })
-
-    it('should return false', () => {
+    it('should return false when property is unsupported', () => {
       expect(supportedProperty('xxx')).to.be(false)
     })
   })
