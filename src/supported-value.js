@@ -1,5 +1,5 @@
 import isInBrowser from 'is-in-browser'
-import toCssValue from 'jss/lib/utils/toCssValue'
+import {toCssValue} from 'jss'
 import prefix from './prefix'
 import supportedProperty from './supported-property'
 

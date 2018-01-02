@@ -12,7 +12,7 @@ import blockLogicalOld from './block-logical-old'
 import inlineLogicalOld from './inline-logical-old'
 import maskBorderOld from './mask-border-old'
 import breakPropsOld from './break-props-old'
-import flexOld from './flex-old'
+import flex2009 from './flex-2009'
 import flex2012 from './flex-2012'
 
 const plugins = [
@@ -27,7 +27,7 @@ const plugins = [
   unprefixed,
   prefixed,
   flex2012,
-  flexOld,
+  flex2009,
   blockLogicalOld,
   inlineLogicalOld,
   maskBorderOld,
