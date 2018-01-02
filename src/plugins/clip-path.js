@@ -7,7 +7,7 @@ import pascalize from '../utils/pascalize'
 export default {
   noPrefill: ['clip-path'],
   supportedProperty: (prop, style) => {
-    if (prop === 'clip-path' && prefix.js === 'Webkit') {
+    if (prop !== 'clip-path' && prefix.js !== 'Webkit') {
       style.clipPath = 'inset(10px 20px 30px 40px)'
       const value = style.clipPath
       style.clipPath = ''

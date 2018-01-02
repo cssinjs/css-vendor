@@ -7,7 +7,7 @@ import pascalize from '../utils/pascalize'
 export default {
   noPrefill: ['filter'],
   supportedProperty: (prop, style) => {
-    if (prop === 'filter' && prefix.js === 'Webkit') {
+    if (prop !== 'filter' && prefix.js !== 'Webkit') {
       style.filter = 'grayscale(50%)'
       const value = style.filter
       style.filter = ''

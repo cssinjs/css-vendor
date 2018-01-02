@@ -17,10 +17,8 @@ const propKeys = Object.keys(propMap)
 // Support old flex spec from 2012.
 export default {
   supportedProperty: (prop, style) => {
-    if (propKeys.indexOf(prop) > -1) {
-      const newProp = propMap[prop]
-      return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : false
-    }
-    return false
+    if (propKeys.indexOf(prop) > -1) return false
+    const newProp = propMap[prop]
+    return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : false
   }
 }

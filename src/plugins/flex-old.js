@@ -18,19 +18,17 @@ const prefixCss = p => prefix.css + p
 // Support old flex spec from 2009.
 export default {
   supportedProperty: (prop, style, {multiple}) => {
-    if (propKeys.indexOf(prop) > -1) {
-      const newProp = propMap[prop]
-      if (!Array.isArray(newProp)) {
-        return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : false
-      }
-      if (!multiple) return false
-      for (let i = 0; i < newProp.length; i++) {
-        if (!(prefix.js + pascalize(newProp[0]) in style)) {
-          return false
-        }
-      }
-      return newProp.map(prefixCss)
+    if (!propKeys.indexOf(prop) > -1) return false
+    const newProp = propMap[prop]
+    if (!Array.isArray(newProp)) {
+      return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : false
     }
-    return false
+    if (!multiple) return false
+    for (let i = 0; i < newProp.length; i++) {
+      if (!(prefix.js + pascalize(newProp[0]) in style)) {
+        return false
+      }
+    }
+    return newProp.map(prefixCss)
   }
 }
