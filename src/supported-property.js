@@ -34,10 +34,6 @@ if (isInBrowser) {
  * @return {String|Boolean}
  * @api public
  */
-const isPropertySupported = (prop) => {
-  if (prop in el.style) return true
-  return false
-}
 
 export default function supportedProperty(prop, options = {}) {
   // For server-side rendering.
@@ -49,7 +45,7 @@ export default function supportedProperty(prop, options = {}) {
   }
 
   if (prop === 'transition' || prop === 'transform') {
-    options[prop] = isPropertySupported(prop)
+    options[prop] = prop in el.style
   }
 
   for (let i = 0; i < propertyDetectors.length; i++) {
