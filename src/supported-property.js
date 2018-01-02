@@ -3,7 +3,7 @@ import {propertyDetectors, noPrefill} from './plugins'
 
 let el
 const cache = {}
-const propertiesToCheck = {
+const probeValues = {
   transition: 'all 100ms ease, transform 200ms linear',
   transform: 'rotate(0.5turn)'
 }
@@ -30,9 +30,9 @@ if (isInBrowser) {
   noPrefill.forEach(x => delete cache[x])
 }
 
-function transitionTransformPrefix(options, prop, value) {
-  el.style[prop] = value
-  if (el.style[prop] === value) {
+function transitionTransformPrefix(options, prop) {
+  el.style[prop] = probeValues[prop]
+  if (el.style[prop] === probeValues[prop]) {
     options[prop] = true
   }
 }
@@ -58,8 +58,7 @@ export default function supportedProperty(prop, options = {}) {
   if (prop === 'transform' || prop === 'transition') {
     transitionTransformPrefix(
       options,
-      prop,
-      propertiesToCheck[prop]
+      prop
     )
   }
 
