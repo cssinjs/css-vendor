@@ -1,9 +1,12 @@
 import isInBrowser from 'is-in-browser'
 import {propertyDetectors, noPrefill} from './plugins'
-import propertyPrefixFixture from '../tests/fixtures'
 
 let el
 const cache = {}
+const propertiesToCheck = {
+  transition: 'all 100ms ease, transform 200ms linear',
+  transform: 'rotate(0.5turn)'
+}
 
 if (isInBrowser) {
   el = document.createElement('p')
@@ -27,8 +30,9 @@ if (isInBrowser) {
   noPrefill.forEach(x => delete cache[x])
 }
 
-function transitionTransformPrefix(options, prop) {
-  if (propertyPrefixFixture[prop].split('-')[1]) {
+function transitionTransformPrefix(options, prop, value) {
+  el.style[prop] = value
+  if (el.style[prop] === value) {
     options[prop] = true
   }
 }
@@ -52,13 +56,19 @@ export default function supportedProperty(prop, options = {}) {
   }
 
   if (prop === 'transform' || prop === 'transition') {
-    transitionTransformPrefix(options, prop)
+    transitionTransformPrefix(
+      options,
+      prop,
+      propertiesToCheck[prop]
+    )
   }
 
   for (let i = 0; i < propertyDetectors.length; i++) {
     cache[prop] = propertyDetectors[i](prop, el.style, options)
     if (cache[prop]) break
   }
+
+  el.style[prop] = ''
 
   return cache[prop]
 }
