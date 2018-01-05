@@ -2,8 +2,10 @@ import prefix from '../prefix'
 import pascalize from '../utils/pascalize'
 import camelize from '../utils/camelize'
 
-// mask property support cannot be directly detected in webkit browsers,
-// but we can use a longhand property instead.
+/** Mask property support cannot be directly detected in WebKit browsers,
+ * but we can use a longhand property instead.
+ * https://caniuse.com/#search=mask
+ */
 export default {
   noPrefill: ['mask'],
   supportedProperty: (prop, style) => {

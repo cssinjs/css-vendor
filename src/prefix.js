@@ -10,11 +10,11 @@ let css = ''
 
 // We should not do anything if required serverside.
 if (isInBrowser) {
-  // Order matters. We need to check Webkit the last one because
-  // other vendors use to add Webkit prefixes to some properties
+  /** Order matters. We need to check Webkit the last one because
+   * other vendors use to add Webkit prefixes to some properties
+   */
   const jsCssMap = {
     Moz: '-moz-',
-    // IE did it wrong again ...
     ms: '-ms-',
     O: '-o-',
     Webkit: '-webkit-'

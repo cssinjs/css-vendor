@@ -12,6 +12,15 @@ const transitionProperties = {
 const transPropsRegExp = /(^\s*\w+)|, (\s*\w+)/g
 let el
 
+/**
+ * Returns prefixed value transition/transform if needed.
+ *
+ * @param {String} match
+ * @param {String} p1
+ * @param {String} p2
+ * @return {String}
+ * @api private
+ */
 function prefixTransitionCallback(match, p1, p2) {
   if (p1 === 'all') return 'all'
   if (p2 === 'all') return ', all'
@@ -42,43 +51,50 @@ export default function supportedValue(property, value) {
     return value
   }
 
+  // Create cache key for current value.
   const cacheKey = property + value
 
+  // Remove cache for benchmark tests or return value from cache.
   if (process.env.NODE_ENV !== 'benchmark' && cache[cacheKey] != null) {
     return cache[cacheKey]
   }
 
-  // IE can even throw an error in some cases, for e.g. style.content = 'bar's
+  // IE can even throw an error in some cases, for e.g. style.content = 'bar'.
   try {
     // Test value as it is.
     el.style[property] = value
   }
   catch (err) {
+    // Return false if value not supported.
     cache[cacheKey] = false
     return false
   }
 
+  // If 'transition' or 'transition-property' property.
   if (transitionProperties[property]) {
     value = value.replace(transPropsRegExp, prefixTransitionCallback)
   }
   else if (el.style[property] === '') {
-    // Test value with vendor prefix.
+    // Value with vendor prefix.
     value = prefix.css + value
 
     // Hardcode test to convert "flex" to "-ms-flexbox" for IE10.
     if (value === '-ms-flex') value = '-ms-flexbox'
 
+    // Test prefixed value.
     el.style[property] = value
 
+    // Return false if value not supported.
     if (el.style[property] === '') {
       cache[cacheKey] = false
       return false
     }
   }
 
-  // Reset style value.
+  // Reset styles for current property.
   el.style[property] = ''
 
+  // Write current value to cache.
   cache[cacheKey] = value
 
   return cache[cacheKey]

@@ -5,6 +5,7 @@ import camelize from './camelize'
  *
  * @param {String} str
  * @return {String}
+ * @api private
  */
 export default function pascalize(str) {
   return camelize(`-${str}`)

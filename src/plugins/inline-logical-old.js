@@ -1,8 +1,9 @@
 import prefix from '../prefix'
 import pascalize from '../utils/pascalize'
 
-// Support old inline-logical syntax.
-// See https://github.com/postcss/autoprefixer/issues/324.
+/** Support old inline-logical syntax.
+ * See https://github.com/postcss/autoprefixer/issues/324.
+ */
 export default {
   supportedProperty: (prop, style) => {
     if (!/^(border|margin|padding)-inline/.test(prop)) return false

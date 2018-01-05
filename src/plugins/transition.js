@@ -1,5 +1,8 @@
 import prefix from '../prefix'
 
+/** Support transition prop syntax.
+ * https://caniuse.com/#search=transition
+ */
 export default {
   noPrefill: ['transition'],
   supportedProperty: (prop, style, options) => {
