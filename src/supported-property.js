@@ -13,7 +13,7 @@ if (isInBrowser) {
    *
    * Prefill cache with known css properties to reduce amount of
    * properties we need to feature test at runtime.
-   * http://davidwalsh.name/vendor-prefix.
+   * http://davidwalsh.name/vendor-prefix
    */
   const computed = window.getComputedStyle(document.documentElement, '')
   for (const key in computed) {
