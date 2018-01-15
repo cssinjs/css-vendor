@@ -17,7 +17,8 @@ if (isInBrowser) {
    */
   const computed = window.getComputedStyle(document.documentElement, '')
   for (const key in computed) {
-    if (!Number.isNaN(key)) cache[computed[key]] = computed[key]
+    // eslint-disable-next-line no-restricted-globals
+    if (!isNaN(key)) cache[computed[key]] = computed[key]
   }
 
   // Properties that cannot be correctly detected using the

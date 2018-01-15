@@ -1,4 +1,8 @@
-## 1.0.0 / 2018-02-01
+## 1.0.1 / 2018-01-15
+
+- Fix Number.isNaN
+
+## 1.0.0 / 2018-01-02
 
 - Added support for various properties for old browsers, undetectable with feature tests:
   - appearance
