@@ -54,7 +54,12 @@ export default function supportedProperty(prop, options = {}) {
     if (cache[prop]) break
   }
 
-  el.style[prop] = ''
+  // Firefox can even throw an error for invalid properties, e.g. "0"
+  try {
+      el.style[prop] = '';
+  } catch (err) {
+      return false;
+  }
 
   return cache[prop]
 }
