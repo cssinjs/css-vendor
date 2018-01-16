@@ -73,7 +73,7 @@ export default function supportedValue(property, value) {
     value = value.replace(transPropsRegExp, prefixTransitionCallback)
   }
   else if (el.style[property] === '') {
-    // Value with vendor prefix.
+    // Value with a vendor prefix.
     value = prefix.css + value
 
     // Hardcode test to convert "flex" to "-ms-flexbox" for IE10.

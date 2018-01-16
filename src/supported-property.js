@@ -42,7 +42,7 @@ export default function supportedProperty(prop, options = {}) {
   // For server-side rendering.
   if (!el) return prop
 
-  // Remove cache for benchmark tests or return property from cache.
+  // Remove cache for benchmark tests or return property from the cache.
   if (process.env.NODE_ENV !== 'benchmark' && cache[prop] != null) {
     return cache[prop]
   }
@@ -52,7 +52,7 @@ export default function supportedProperty(prop, options = {}) {
     options[prop] = prop in el.style
   }
 
-  // Find plugin to prefix current property.
+  // Find a plugin for current prefix property.
   for (let i = 0; i < propertyDetectors.length; i++) {
     cache[prop] = propertyDetectors[i](prop, el.style, options)
     // Break loop, if value found.
@@ -60,7 +60,7 @@ export default function supportedProperty(prop, options = {}) {
   }
 
   /** Reset styles for current property.
-   * Firefox can even throw an error for invalid properties, e.g. "0"
+   * Firefox can even throw an error for invalid properties, e.g., "0".
    */
   try {
     el.style[prop] = ''

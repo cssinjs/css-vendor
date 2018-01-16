@@ -13,7 +13,7 @@ function toUpper(match, c) {
 }
 
 /**
- * Convert dash separated strings to camel cased.
+ * Convert dash separated strings to camel-cased.
  *
  * @param {String} str
  * @return {String}

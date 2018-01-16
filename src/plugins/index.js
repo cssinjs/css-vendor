@@ -13,7 +13,7 @@ import transition from './transition'
 import unprefixed from './unprefixed'
 import writingMode from './writing-mode'
 
-/** Please, keep orger plugins:
+/** Please, keep order plugins:
  * plugins = [
  *   ...plugins,
  *    breakPropsOld,
