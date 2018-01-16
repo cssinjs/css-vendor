@@ -17,7 +17,8 @@ if (isInBrowser) {
    */
   const computed = window.getComputedStyle(document.documentElement, '')
   for (const key in computed) {
-    if (!Number.isNaN(key)) cache[computed[key]] = computed[key]
+    // eslint-disable-next-line no-restricted-globals
+    if (!isNaN(key)) cache[computed[key]] = computed[key]
   }
 
   /**
@@ -58,8 +59,15 @@ export default function supportedProperty(prop, options = {}) {
     if (cache[prop]) break
   }
 
-  // Reset styles for current property.
-  el.style[prop] = ''
+  /** Reset styles for current property.
+   * Firefox can even throw an error for invalid properties, e.g. "0"
+   */
+  try {
+    el.style[prop] = ''
+  }
+  catch (err) {
+    return false
+  }
 
   return cache[prop]
 }
