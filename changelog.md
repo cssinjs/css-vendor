@@ -1,3 +1,7 @@
+## 1.0.2 / 2018-01-22
+
+- Catch errors when testing a property
+
 ## 1.0.1 / 2018-01-15
 
 - Fix Number.isNaN
