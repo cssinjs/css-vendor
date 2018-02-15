@@ -9,7 +9,7 @@ const transitionProperties = {
   '-webkit-transition': 1,
   '-webkit-transition-property': 1
 }
-const transPropsRegExp = /(^\s*\w+)|, (\s*\w+)/g
+const transPropsRegExp = /(^\s*\w+)|, (\s*\w+)(?![^()]*\))/g
 let el
 
 function prefixTransitionCallback(match, p1, p2) {

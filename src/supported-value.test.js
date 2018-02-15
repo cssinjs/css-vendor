@@ -39,5 +39,10 @@ describe('css-vendor', () => {
       expect(supportedValue('transition', 'all 100ms ease, transform 200ms linear'))
         .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear`)
     })
+
+    it('should not break a complex transition value', () => {
+      const value = 'margin 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms'
+      expect(supportedValue('transition', value)).to.be(value)
+    })
   })
 })
