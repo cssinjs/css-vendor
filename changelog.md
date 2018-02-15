@@ -1,3 +1,7 @@
+## 1.0.3 / 2018-02-15
+
+- Fixed functions in values
+
 ## 1.0.2 / 2018-01-22
 
 - Catch errors when testing a property
