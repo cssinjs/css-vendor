@@ -1,9 +1,8 @@
 import prefix from '../prefix'
 import pascalize from '../utils/pascalize'
 
-/** Support old filter props syntax.
- * https://caniuse.com/#search=filter
- */
+// Support old filter props syntax.
+// https://caniuse.com/#search=filter
 export default {
   noPrefill: ['filter'],
   supportedProperty: (prop, style) => {

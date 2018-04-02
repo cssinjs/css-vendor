@@ -1,11 +1,10 @@
 import prefix from '../prefix'
 import pascalize from '../utils/pascalize'
 
-/** Support old break-* props syntax.
- * https://caniuse.com/#search=multicolumn
- * https://github.com/postcss/autoprefixer/issues/491
- * https://github.com/postcss/autoprefixer/issues/177
- */
+// Support old break-* props syntax.
+// https://caniuse.com/#search=multicolumn
+// https://github.com/postcss/autoprefixer/issues/491
+// https://github.com/postcss/autoprefixer/issues/177
 export default {
   supportedProperty: (prop, style) => {
     if (!/^break-/.test(prop)) return false

@@ -1,9 +1,8 @@
 import prefix from '../prefix'
 import pascalize from '../utils/pascalize'
 
-/** Support old *-clip-path props syntax.
- * https://caniuse.com/#search=clip-path
- */
+// Support old *-clip-path props syntax.
+// https://caniuse.com/#search=clip-path
 export default {
   noPrefill: ['clip-path'],
   supportedProperty: (prop, style) => {

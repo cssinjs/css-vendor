@@ -1,8 +1,7 @@
 import prefix from '../prefix'
 
-/** Support old appearance props syntax.
- * https://caniuse.com/#search=appearance
- */
+// Support old appearance props syntax.
+// https://caniuse.com/#search=appearance
 export default {
   noPrefill: ['appearance'],
   supportedProperty: (prop) => {

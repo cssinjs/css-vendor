@@ -7,24 +7,21 @@ const cache = {}
 if (isInBrowser) {
   el = document.createElement('p')
 
-  /** We test every property on vendor prefix requirement.
-   * Once tested, result is cached. It gives us up to 70% perf boost.
-   * http://jsperf.com/element-style-object-access-vs-plain-object
-   *
-   * Prefill cache with known css properties to reduce amount of
-   * properties we need to feature test at runtime.
-   * http://davidwalsh.name/vendor-prefix
-   */
+  // We test every property on vendor prefix requirement.
+  // Once tested, result is cached. It gives us up to 70% perf boost.
+  // http://jsperf.com/element-style-object-access-vs-plain-object
+  //
+  // Prefill cache with known css properties to reduce amount of
+  // properties we need to feature test at runtime.
+  // http://davidwalsh.name/vendor-prefix
   const computed = window.getComputedStyle(document.documentElement, '')
   for (const key in computed) {
     // eslint-disable-next-line no-restricted-globals
     if (!isNaN(key)) cache[computed[key]] = computed[key]
   }
 
-  /**
-   * Properties that cannot be correctly detected using the
-   * cache prefill method.
-   */
+  // Properties that cannot be correctly detected using the
+  // cache prefill method.
   noPrefill.forEach(x => delete cache[x])
 }
 
@@ -59,9 +56,8 @@ export default function supportedProperty(prop, options = {}) {
     if (cache[prop]) break
   }
 
-  /** Reset styles for current property.
-   * Firefox can even throw an error for invalid properties, e.g., "0".
-   */
+  // Reset styles for current property.
+  // Firefox can even throw an error for invalid properties, e.g., "0".
   try {
     el.style[prop] = ''
   }

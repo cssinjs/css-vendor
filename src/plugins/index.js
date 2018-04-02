@@ -13,22 +13,21 @@ import transition from './transition'
 import unprefixed from './unprefixed'
 import writingMode from './writing-mode'
 
-/** Please, keep order plugins:
- * plugins = [
- *   ...plugins,
- *    breakPropsOld,
- *    inlineLogicalOld,
- *    unprefixed,
- *    prefixed,
- *    scrollSnap,
- *    flex2012,
- *    flex2009
- * ]
- * Plugins without 'noPrefill' value, going last.
- * 'flex-*' plugins should be at the bottom.
- * 'flex2009' going after 'flex2012'.
- * 'prefixed' going after 'unprefixed'
- */
+// Please, keep order plugins:
+// plugins = [
+//   ...plugins,
+//    breakPropsOld,
+//    inlineLogicalOld,
+//    unprefixed,
+//    prefixed,
+//    scrollSnap,
+//    flex2012,
+//    flex2009
+// ]
+// Plugins without 'noPrefill' value, going last.
+// 'flex-*' plugins should be at the bottom.
+// 'flex2009' going after 'flex2012'.
+// 'prefixed' going after 'unprefixed'
 const plugins = [
   appearence,
   clipPath,

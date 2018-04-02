@@ -1,8 +1,7 @@
 import prefix from '../prefix'
 
-/** Support writing-mode prop syntax.
- * https://caniuse.com/#search=writing-mode
- */
+// Support writing-mode prop syntax.
+// https://caniuse.com/#search=writing-mode
 export default {
   noPrefill: ['writing-mode'],
   supportedProperty: (prop) => {

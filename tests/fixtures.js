@@ -31,10 +31,9 @@ const flexOldFFUnsupported = ['flex-wrap', 'flex-flow', 'align-content']
 const msSnapPointsUnsupported = ['scroll-snap-coordinate', 'scroll-snap-destination']
 const breakProps = ['break-before', 'break-inside', 'break-after']
 
-/** In caniuse db, no supported value/ prop means spec does not support it, but
- * no support in css-vendor implies no browser support at all for the
- * particular property. Therefore we cannot test the caniuse data for these cases.
- */
+// In caniuse db, no supported value/prop means spec does not support it, but
+// no support in css-vendor implies no browser support at all for the
+// particular property. Therefore we cannot test the caniuse data for these cases.
 const isExcluded = o =>
   o.level === 'none' ||
   // https://caniuse.com/#search=object-fit
