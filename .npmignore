@@ -1,3 +1,10 @@
 src
-coverage
-tmp
+tests
+.babelrc
+.eslintrc
+.travis.yml
+browsers.json
+karma.conf.js
+tests.html
+tests.webpack.js
+webpack.config.js
