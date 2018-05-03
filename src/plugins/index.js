@@ -1,35 +1,48 @@
 import appearence from './appearence'
-import transform from './transform'
-import transition from './transition'
-import scrollSnap from './scroll-snap'
-import mask from './mask'
-import writingMode from './writing-mode'
+import breakPropsOld from './break-props-old'
 import clipPath from './clip-path'
 import filter from './filter'
-import unprefixed from './unprefixed'
-import prefixed from './prefixed'
-import inlineLogicalOld from './inline-logical-old'
-import maskBorderOld from './mask-border-old'
-import breakPropsOld from './break-props-old'
 import flex2009 from './flex-2009'
 import flex2012 from './flex-2012'
+import inlineLogicalOld from './inline-logical-old'
+import mask from './mask'
+import prefixed from './prefixed'
+import scrollSnap from './scroll-snap'
+import transform from './transform'
+import transition from './transition'
+import unprefixed from './unprefixed'
+import writingMode from './writing-mode'
 
+// Please, keep order plugins:
+// plugins = [
+//   ...plugins,
+//    breakPropsOld,
+//    inlineLogicalOld,
+//    unprefixed,
+//    prefixed,
+//    scrollSnap,
+//    flex2012,
+//    flex2009
+// ]
+// Plugins without 'noPrefill' value, going last.
+// 'flex-*' plugins should be at the bottom.
+// 'flex2009' going after 'flex2012'.
+// 'prefixed' going after 'unprefixed'
 const plugins = [
   appearence,
-  transform,
-  transition,
-  scrollSnap,
-  mask,
-  writingMode,
   clipPath,
   filter,
+  mask,
+  transform,
+  transition,
+  writingMode,
+  breakPropsOld,
+  inlineLogicalOld,
   unprefixed,
   prefixed,
+  scrollSnap,
   flex2012,
   flex2009,
-  inlineLogicalOld,
-  maskBorderOld,
-  breakPropsOld
 ]
 
 export const propertyDetectors = plugins
