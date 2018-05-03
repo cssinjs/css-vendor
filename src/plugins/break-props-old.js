@@ -2,7 +2,7 @@ import prefix from '../prefix'
 import pascalize from '../utils/pascalize'
 
 // Support old break-* props syntax.
-// http://caniuse.com/#feat=multicolumn
+// https://caniuse.com/#search=multicolumn
 // https://github.com/postcss/autoprefixer/issues/491
 // https://github.com/postcss/autoprefixer/issues/177
 export default {
