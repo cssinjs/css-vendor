@@ -2,12 +2,14 @@
   "BS_MobileChrome4.4": {
     "base": "BrowserStack",
     "os": "android",
+    "os_version": "7.1",
     "browser": "Chrome",
     "real_mobile": false
   },
   "BS_MobileSafari11": {
     "base": "BrowserStack",
     "os": "ios",
+    "os_version": "11",
     "browser": "Safari",
     "real_mobile": false
   },
