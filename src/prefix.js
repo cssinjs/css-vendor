@@ -1,7 +1,5 @@
-/**
- * Export javascript style and css style vendor prefixes.
- * Based on "transform" support test.
- */
+// Export javascript style and css style vendor prefixes.
+// Based on "transform" support test.
 
 import isInBrowser from 'is-in-browser'
 
@@ -14,7 +12,6 @@ if (isInBrowser) {
   // other vendors use to add Webkit prefixes to some properties
   const jsCssMap = {
     Moz: '-moz-',
-    // IE did it wrong again ...
     ms: '-ms-',
     O: '-o-',
     Webkit: '-webkit-'

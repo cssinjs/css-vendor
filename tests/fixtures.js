@@ -8,12 +8,12 @@ const ap = autoprefixer({browsers: browserQuery})
 const prefixer = postcssJs.sync([ap])
 
 const skipProperties = [
-  // caniuse doesn't cover this property and spec might drop this: https://www.w3.org/TR/css-fonts-3/.
+  // Caniuse doesn't cover this property and spec might drop this: https://www.w3.org/TR/css-fonts-3/.
   'font-language-override',
-  // caniuse doesn't cover those properties
+  // Caniuse doesn't cover those properties.
   'grid-row-align',
   'grid-column-align',
-  // Lack of caniuse data. See https://github.com/Fyrd/caniuse/issues/2116
+  // Lack of caniuse data. See https://github.com/Fyrd/caniuse/issues/2116.
   'font-variant-ligatures'
 ]
 
@@ -31,37 +31,38 @@ const flexOldFFUnsupported = ['flex-wrap', 'flex-flow', 'align-content']
 const msSnapPointsUnsupported = ['scroll-snap-coordinate', 'scroll-snap-destination']
 const breakProps = ['break-before', 'break-inside', 'break-after']
 
-// No support in caniuse db means no support for the spec, but
-// no support in css-vendor means no browser support at all for the particular property,
-// therefore we cannot test with the caniuse data for these cases.
+// In caniuse db, no supported value/prop means spec does not support it, but
+// no support in css-vendor implies no browser support at all for the
+// particular property. Therefore we cannot test the caniuse data for these cases.
 const isExcluded = o =>
   o.level === 'none' ||
-  // http://caniuse.com/#feat=object-fit
+  // https://caniuse.com/#search=object-fit
   o.property === 'object-position' ||
-  // http://caniuse.com/#feat=multicolumn
+  // https://caniuse.com/#search=multicolumn
   // https://bugzilla.mozilla.org/show_bug.cgi?id=616436
   (o.property === 'column-span' && currentBrowser.id === 'firefox') ||
   o.property === 'column-fill' ||
-  // http://caniuse.com/#feat=css-masks
+  // https://caniuse.com/#search=css-masks
   /^mask-/.test(o.property) ||
-  // http://caniuse.com/#feat=text-decoration
+  // https://caniuse.com/#search=text-decoration
   o.property === 'text-decoration' ||
   o.property === 'text-decoration-skip' ||
   o.property === 'text-decoration-style' ||
-  // http://caniuse.com/#feat=css-crisp-edges
+  // https://caniuse.com/#search=css-crisp-edges
   o.property === 'image-rendering' ||
-  // http://caniuse.com/#feat=css-logical-props
+  // https://caniuse.com/#search=css-logical-props
   /^(border|margin|padding)-block-(start|end)/.test(o.property) ||
-  // http://caniuse.com/#feat=flexbox
+  // https://caniuse.com/#search=flexbox
   flexOldUnsupported.indexOf(o.property) > -1 ||
   flexOldFFUnsupported.indexOf(o.property) > -1 ||
   skipProperties.indexOf(o.property) > -1 ||
+  // https://caniuse.com/#search=grid
   gridProps.indexOf(o.property) > -1 ||
-  // Autoprefixer Quirk: prefixes writing-mode for ie even though it is not necessary
+  // css-vendor will prefix writing-mode anyway
   o.property === 'writing-mode' ||
-  // http://caniuse.com/#feat=css-snappoints
+  // https://caniuse.com/#search=css-snappoints
   msSnapPointsUnsupported.indexOf(o.property) > -1 ||
-  // http://caniuse.com/#feat=css-regions
+  // https://caniuse.com/#search=css-regions
   o.property === 'region-fragment' ||
   breakProps.indexOf(o.property) > -1
 
@@ -81,9 +82,12 @@ function generateFixture() {
       /^[^:@].*$/.test(s) &&
       data[s].props === undefined &&
       notDescribedCanIUseProps.indexOf(data[s].feature) < 0)
+    // Add data from caniuse-db.
     .map(s => ({property: s, feature: data[s].feature, ...getSupport(data[s].feature)}))
+    // Exclude unnecessary properties.
     .filter(o => !isExcluded(o))
     .forEach((o) => {
+      // Current properties.
       let props = Object.keys(prefixer({[o.property]: propertyValue(o.property)})).map(dashify)
       // Remove unprefixed prop (last in array) when prefix is needed.
       props = props.length > 1 ? props.slice(0, props.length - 1) : props

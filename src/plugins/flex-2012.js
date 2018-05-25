@@ -9,7 +9,7 @@ const propMap = {
   order: 'flex-order',
   'align-items': 'flex-align',
   'align-content': 'flex-line-pack',
-  // align-self is handled by `align-self` plugin.
+  // 'align-self' is handled by 'align-self' plugin.
 }
 
 // Support old flex spec from 2012.
