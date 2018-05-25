@@ -1,8 +1,6 @@
 import appearence from './appearence'
 import breakPropsOld from './break-props-old'
-import clipPath from './clip-path'
 import colorAdjust from './color-adjust'
-import filter from './filter'
 import flex2009 from './flex-2009'
 import flex2012 from './flex-2012'
 import inlineLogicalOld from './inline-logical-old'
@@ -37,9 +35,7 @@ const plugins = [
   transition,
   mask,
   writingMode,
-  clipPath,
   colorAdjust,
-  filter,
   breakPropsOld,
   inlineLogicalOld,
   unprefixed,
