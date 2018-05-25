@@ -18,16 +18,11 @@ module.exports = {
   },
   plugins,
   module: {
-    rules: [
-      {
-        loader: 'babel-loader',
-        test: /\.js$/,
-        exclude: /node_modules/
-      }, {
-        loader: 'json-loader',
-        test: /\.json$/
-      }
-    ]
+    rules: [{
+      loader: 'babel-loader',
+      test: /\.js$/,
+      exclude: /node_modules/
+    }]
   },
   node: {
     fs: 'empty',
