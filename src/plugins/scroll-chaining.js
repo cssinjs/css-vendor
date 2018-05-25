@@ -4,7 +4,7 @@ import prefix from '../prefix'
 // https://caniuse.com/#search=scroll-chaining
 export default {
   supportedProperty: (prop) => {
-    if (prop.substring(0, 15) !== 'scroll-chaining') return false
+    if (prop !== 'scroll-chaining') return false
     if (prefix.js === 'ms') {
       return `${prefix.css}${prop}`
     }
