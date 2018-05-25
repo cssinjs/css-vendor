@@ -1,12 +1,4 @@
 {
-  "BS_Android8.0": {
-    "base": "BrowserStack",
-    "os": "android",
-    "os_version": "8.0",
-    "browser": "android",
-    "device": "Google Pixel",
-    "real_mobile": true
-  },
   "BS_MobileSafari11": {
     "base": "BrowserStack",
     "os": "ios",

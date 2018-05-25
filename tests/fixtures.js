@@ -64,6 +64,16 @@ const isExcluded = o =>
   msSnapPointsUnsupported.indexOf(o.property) > -1 ||
   // https://caniuse.com/#search=css-regions
   o.property === 'region-fragment' ||
+  // We do not detecting browser version/platform.
+  // font-kerning, clip-path have different prefix
+  // rules for same browsers family (like Webkit) on dirrefent platforms.
+  // https://caniuse.com/#search=font-kerning
+  // https://caniuse.com/#search=clip-path
+  o.property === 'font-kerning' ||
+  o.property === 'clip-path' ||
+  // Filter prefix rules changed within time.
+  // https://caniuse.com/#search=filter
+  o.property === 'filter' ||
   breakProps.indexOf(o.property) > -1
 
 // Some properties need a certain value, so autoprefixer will prefix them.
