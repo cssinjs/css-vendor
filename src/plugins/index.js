@@ -9,7 +9,7 @@ import inlineLogicalOld from './inline-logical-old'
 import mask from './mask'
 import prefixed from './prefixed'
 import scrollSnap from './scroll-snap'
-import scrollChaining from './scroll-chaining'
+import overscrollBehavior from './overscroll-behavior'
 import transform from './transform'
 import transition from './transition'
 import unprefixed from './unprefixed'
@@ -45,7 +45,7 @@ const plugins = [
   unprefixed,
   prefixed,
   scrollSnap,
-  scrollChaining,
+  overscrollBehavior,
   flex2012,
   flex2009,
 ]
