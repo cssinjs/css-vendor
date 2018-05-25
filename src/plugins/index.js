@@ -9,6 +9,7 @@ import inlineLogicalOld from './inline-logical-old'
 import mask from './mask'
 import prefixed from './prefixed'
 import scrollSnap from './scroll-snap'
+import scrollChaining from './scroll-chaining'
 import transform from './transform'
 import transition from './transition'
 import unprefixed from './unprefixed'
@@ -22,6 +23,7 @@ import writingMode from './writing-mode'
 //    unprefixed,
 //    prefixed,
 //    scrollSnap,
+//    scrollChaining,
 //    flex2012,
 //    flex2009
 // ]
@@ -43,6 +45,7 @@ const plugins = [
   unprefixed,
   prefixed,
   scrollSnap,
+  scrollChaining,
   flex2012,
   flex2009,
 ]
