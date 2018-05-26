@@ -1,5 +1,5 @@
 {
-  "BS_MobileSafari11": {
+  "BS_MobileSafari": {
     "base": "BrowserStack",
     "os": "ios",
     "os_version": "11.0",
@@ -12,19 +12,19 @@
     "os_version": "High Sierra",
     "browser": "opera"
   },
-  "BS_Chrome65": {
+  "BS_Chrome": {
     "base": "BrowserStack",
     "os": "OS X",
     "os_version": "High Sierra",
     "browser": "chrome"
   },
-  "BS_Safari11.1": {
+  "BS_Safari": {
     "base": "BrowserStack",
     "os": "OS X",
     "os_version": "High Sierra",
     "browser": "safari"
   },
-  "BS_Firefox59": {
+  "BS_Firefox": {
     "base": "BrowserStack",
     "os": "OS X",
     "os_version": "High Sierra",
