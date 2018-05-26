@@ -1,13 +1,13 @@
 import appearence from './appearence'
 import breakPropsOld from './break-props-old'
-import clipPath from './clip-path'
-import filter from './filter'
+import colorAdjust from './color-adjust'
 import flex2009 from './flex-2009'
 import flex2012 from './flex-2012'
 import inlineLogicalOld from './inline-logical-old'
 import mask from './mask'
 import prefixed from './prefixed'
 import scrollSnap from './scroll-snap'
+import overscrollBehavior from './overscroll-behavior'
 import transform from './transform'
 import transition from './transition'
 import unprefixed from './unprefixed'
@@ -21,6 +21,7 @@ import writingMode from './writing-mode'
 //    unprefixed,
 //    prefixed,
 //    scrollSnap,
+//    scrollChaining,
 //    flex2012,
 //    flex2009
 // ]
@@ -30,17 +31,17 @@ import writingMode from './writing-mode'
 // 'prefixed' going after 'unprefixed'
 const plugins = [
   appearence,
-  clipPath,
-  filter,
-  mask,
   transform,
   transition,
+  mask,
   writingMode,
+  colorAdjust,
   breakPropsOld,
   inlineLogicalOld,
   unprefixed,
   prefixed,
   scrollSnap,
+  overscrollBehavior,
   flex2012,
   flex2009,
 ]
