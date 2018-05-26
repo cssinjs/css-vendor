@@ -6,6 +6,7 @@ import pascalize from '../utils/pascalize'
 export default {
   supportedProperty: (prop, style) => {
     if (!/^(border|margin|padding)-inline/.test(prop)) return false
+    if (prefix.js === 'Moz') return prop
     const newProp = prop.replace('-inline', '')
     return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : false
   }
