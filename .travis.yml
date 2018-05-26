@@ -4,5 +4,6 @@ node_js:
 branches:
   only:
   - master
+  - /^greenkeeper/.*$/
 dd:
   secure: OhXW1SOYeMBB76/EN5AGzz5DvSAd30XGjT7fwueBUk3t05Y66klg92SkprpOxKuoAjW17EC8+gBAi6+WLHF/GoNNKulvhmLe+J30OwB0gCzhedB269Wlq2JHUseKVYQEfJ5mah7v5V4UYLDqBTAOdRlWslIF56eOK9LES/k6CTA=

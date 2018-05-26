@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/cssinjs/css-vendor.svg?branch=master)](https://travis-ci.org/cssinjs/css-vendor)
+[![Build Status](https://travis-ci.org/cssinjs/css-vendor.svg?branch=master)](https://travis-ci.org/cssinjs/css-vendor) [![Greenkeeper badge](https://badges.greenkeeper.io/cssinjs/css-vendor.svg)](https://greenkeeper.io/)
 
 ## CSS vendor prefix detection and property feature testing.
 
