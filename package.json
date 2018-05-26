@@ -87,5 +87,9 @@
       "git add"
     ]
   },
-  "pre-commit": "lint:staged"
+  "pre-commit": "lint:staged",
+  "files": [
+    "dist",
+    "lib"
+  ]
 }
