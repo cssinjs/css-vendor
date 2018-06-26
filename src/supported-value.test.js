@@ -35,9 +35,9 @@ describe('css-vendor', () => {
       expect(supportedValue('content', 'bar')).to.be(false)
     })
 
-    it('known transform value prefixed', () => {
-      expect(supportedValue('transition', 'all 100ms ease, transform 200ms linear'))
-        .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear`)
+    it('should return known transform value prefixed', () => {
+      expect(supportedValue('transition', 'all 100ms ease, transform 200ms linear, max-height 300ms ease-in-out'))
+        .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear, max-height 300ms ease-in-out`)
     })
 
     it('should not break a complex transition value', () => {
