@@ -52,7 +52,7 @@
     "caniuse-support": "^0.4.1",
     "cross-env": "^5.1.4",
     "es5-shim": "^4.5.10",
-    "eslint": "^4.19.1",
+    "eslint": "^5.0.0",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-config-jss": "^3.0.0",
     "eslint-plugin-import": "^2.11.0",
