@@ -26,8 +26,8 @@
     "build": "npm run clean && npm run build:lib && npm run build:dist",
     "build:lib": "babel src --out-dir lib",
     "build:dist": "npm run build:dist:max && npm run build:dist:min",
-    "build:dist:max": "cross-env NODE_ENV=development webpack src/index.js dist/css-vendor.js",
-    "build:dist:min": "cross-env NODE_ENV=production webpack src/index.js dist/css-vendor.min.js",
+    "build:dist:max": "cross-env webpack --mode=development src/index.js --output-filename=css-vendor.js",
+    "build:dist:min": "cross-env webpack --mode=production src/index.js --output-filename=css-vendor.min.js",
     "clean": "rimraf {lib,dist,tmp}/*",
     "lint": "eslint ./src ./tests --fix",
     "lint:staged": "lint-staged",
@@ -76,7 +76,8 @@
     "postcss-js": "^1.0.1",
     "pre-commit": "^1.1.3",
     "rimraf": "^2.6.2",
-    "webpack": "^4.14.0"
+    "webpack": "^4.14.0",
+    "webpack-cli": "^3.0.8"
   },
   "dependencies": {
     "is-in-browser": "^1.0.2"
