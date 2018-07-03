@@ -1,4 +1,4 @@
-## 1.0.3 / 2018-07-03
+## 1.0.3 / 2018-07-04
 
 - Fix for dashed property values
 
