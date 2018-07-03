@@ -1,3 +1,7 @@
+## 1.0.3 / 2018-07-03
+
+- Fix for dashed property values
+
 ## 1.0.3 / 2018-02-15
 
 - Fixed functions in values
