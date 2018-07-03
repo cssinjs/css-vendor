@@ -36,8 +36,13 @@ describe('css-vendor', () => {
     })
 
     it('should return known transform value prefixed', () => {
-      expect(supportedValue('transition', 'all 100ms ease, transform 200ms linear, max-height 300ms ease-in-out'))
-        .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear, max-height 300ms ease-in-out`)
+      expect(supportedValue('transition', 'all 100ms ease, transform 200ms linear'))
+        .to.eql(`all 100ms ease, ${propertyPrefixFixture.transform} 200ms linear`)
+    })
+
+    it('should return dashed property value as it is', () => {
+      expect(supportedValue('transition', 'max-height 300ms ease-in-out'))
+        .to.eql('max-height 300ms ease-in-out')
     })
 
     it('should not break a complex transition value', () => {
