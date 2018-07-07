@@ -7,17 +7,20 @@
  */
 
 import prefix from './prefix'
+import supportedKeyframes from './supported-keyframes'
 import supportedProperty from './supported-property'
 import supportedValue from './supported-value'
 
 export default {
   prefix,
+  supportedKeyframes,
   supportedProperty,
   supportedValue
 }
 
 export {
   prefix,
+  supportedKeyframes,
   supportedProperty,
   supportedValue
 }

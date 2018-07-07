@@ -18,7 +18,7 @@ describe('css-vendor', () => {
       ))
     }
 
-    it('should prefix writing-mode', () => {
+    it('should prefix writing-mode if needed', () => {
       let isPrefixed = false
       if (prefix.js === 'Webkit' || prefix.js === 'ms') {
         isPrefixed = true
