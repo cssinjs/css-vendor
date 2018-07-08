@@ -10,12 +10,17 @@ describe('css-vendor', () => {
         css: '-ms-'
       })
       expect(supportedKeyframes('@keyframes a')).to.be('@keyframes a')
-      // eslint-disable-next-line no-underscore-dangle
-      supportedKeyframes.__ResetDependency__('prefix')
     })
 
     it('should prefix keyframe at-rule', () => {
+      // eslint-disable-next-line no-underscore-dangle
+      supportedKeyframes.__Rewire__('prefix', {
+        js: 'Webkit',
+        css: '-webkit-'
+      })
       expect(supportedKeyframes('@keyframes a')).to.be('@-webkit-keyframes a')
+      // eslint-disable-next-line no-underscore-dangle
+      supportedKeyframes.__ResetDependency__('prefix')
     })
 
     it('should return keyframe at-rule as it is', () => {
