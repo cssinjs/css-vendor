@@ -1,4 +1,8 @@
-## 1.0.3 / 2018-07-04
+## 1.1.0 / 2018-07-08
+
+- Added supportedKeyframes function, to prefix @keyframes at-rule
+
+## 1.0.4 / 2018-07-04
 
 - Fix for dashed property values
 
