@@ -9,8 +9,10 @@ import prefix from './prefix'
  */
 
 export default function supportedKeyframes(key) {
+  // Keyframe already prefixed. e.g. key = '@-webkit-keyframes a'
   if (key[1] === '-') return key
-  const rest = key.substr(10)
-  if (prefix.js === 'ms') return `@keyframes${rest}`
-  return `@${prefix.css}keyframes${rest}`
+  // For IE/Edge browsers prefix don't need
+  // https://caniuse.com/#search=keyframes
+  if (prefix.js === 'ms') return key
+  return `@${prefix.css}keyframes${key.substr(10)}`
 }
