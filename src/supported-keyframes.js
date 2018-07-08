@@ -8,7 +8,7 @@ import prefix from './prefix'
  * @api public
  */
 
-export default function supportedKeyframes(browser = prefix.js) {
-  if (browser === 'ms') return false
-  return true
+export default function supportedKeyframes() {
+  if (prefix.js === 'ms') return '@'
+  return `@${prefix.css}`
 }
