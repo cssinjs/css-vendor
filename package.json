@@ -39,7 +39,7 @@
   "license": "MIT",
   "main": "./lib/index",
   "devDependencies": {
-    "autoprefixer": "^8.6.5",
+    "autoprefixer": "^9.0.0",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.5",
