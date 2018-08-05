@@ -24,7 +24,14 @@ module.exports = (config) => {
       'tests.webpack.js': ['webpack', 'sourcemap'],
     },
     webpack: Object.assign(webpackConfig, {
-      devtool: 'inline-source-map'
+      devtool: 'inline-source-map',
+      module: {
+        rules: [{
+          loader: 'babel-loader',
+          test: /\.js$/,
+          exclude: /node_modules(?!(\/|\\)camelcase-css)/
+        }]
+      }
     }),
     webpackServer: {
       noInfo: true
