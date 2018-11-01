@@ -1,6 +1,7 @@
 import appearence from './appearence'
 import breakPropsOld from './break-props-old'
 import colorAdjust from './color-adjust'
+import inline from './inline'
 import flex2009 from './flex-2009'
 import flex2012 from './flex-2012'
 import inlineLogicalOld from './inline-logical-old'
@@ -21,7 +22,6 @@ import writingMode from './writing-mode'
 //    unprefixed,
 //    prefixed,
 //    scrollSnap,
-//    scrollChaining,
 //    flex2012,
 //    flex2009
 // ]
@@ -36,6 +36,7 @@ const plugins = [
   mask,
   writingMode,
   colorAdjust,
+  inline,
   breakPropsOld,
   inlineLogicalOld,
   unprefixed,
