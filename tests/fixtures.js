@@ -50,7 +50,7 @@ const isExcluded = o => o.level === 'none'
   // https://caniuse.com/#search=css-crisp-edges
   || o.property === 'image-rendering'
   // https://caniuse.com/#search=css-logical-props
-  || /^(border|margin|padding)-block-(start|end)/.test(o.property)
+  || /^(border|margin|padding)-(block|inline)-(start|end)/.test(o.property)
   // https://caniuse.com/#search=flexbox
   || flexOldUnsupported.indexOf(o.property) > -1
   || flexOldFFUnsupported.indexOf(o.property) > -1
@@ -74,6 +74,7 @@ const isExcluded = o => o.level === 'none'
   // property changed within the time (Chrome)
   // https://caniuse.com/#search=filter
   || o.property === 'filter'
+  || o.property === 'place-self'
   || breakProps.indexOf(o.property) > -1
 
 // Some properties need a certain value, so autoprefixer will prefix them.

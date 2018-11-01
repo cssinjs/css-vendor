@@ -21,7 +21,6 @@ import writingMode from './writing-mode'
 //    unprefixed,
 //    prefixed,
 //    scrollSnap,
-//    scrollChaining,
 //    flex2012,
 //    flex2009
 // ]
