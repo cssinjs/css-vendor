@@ -1,7 +1,6 @@
 import appearence from './appearence'
 import breakPropsOld from './break-props-old'
 import colorAdjust from './color-adjust'
-import inline from './inline'
 import flex2009 from './flex-2009'
 import flex2012 from './flex-2012'
 import inlineLogicalOld from './inline-logical-old'
@@ -36,7 +35,6 @@ const plugins = [
   mask,
   writingMode,
   colorAdjust,
-  inline,
   breakPropsOld,
   inlineLogicalOld,
   unprefixed,
