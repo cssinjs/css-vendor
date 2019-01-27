@@ -11,9 +11,13 @@ const name = 'cssVendor'
 
 const external = id => !id.startsWith('.') && !id.startsWith('/')
 
-const babelOptions = {
-  exclude: /node_modules/
-}
+const getBabelOptions = ({useESModules}) => ({
+  exclude: /node_modules/,
+  runtimeHelpers: true,
+  plugins: [
+    ['@babel/transform-runtime', {useESModules}]
+  ]
+})
 
 export default [
   {
@@ -21,7 +25,7 @@ export default [
     output: {file: `dist/${pkg.name}.js`, format: 'umd', name},
     plugins: [
       nodeResolve(),
-      babel(babelOptions),
+      babel(getBabelOptions({useESModules: true})),
       replace({'process.env.NODE_ENV': JSON.stringify('development')}),
       sizeSnapshot()
     ]
@@ -32,7 +36,7 @@ export default [
     output: {file: `dist/${pkg.name}.min.js`, format: 'umd', name},
     plugins: [
       nodeResolve(),
-      babel(babelOptions),
+      babel(getBabelOptions({useESModules: true})),
       replace({'process.env.NODE_ENV': JSON.stringify('production')}),
       sizeSnapshot(),
       terser()
@@ -44,8 +48,7 @@ export default [
     output: {file: pkg.main, format: 'cjs'},
     external,
     plugins: [
-      nodeResolve(),
-      babel(babelOptions),
+      babel(getBabelOptions({useESModules: false})),
       sizeSnapshot()
     ]
   },
@@ -55,8 +58,7 @@ export default [
     output: {file: pkg.module, format: 'esm'},
     external,
     plugins: [
-      nodeResolve(),
-      babel(babelOptions),
+      babel(getBabelOptions({useESModules: true})),
       sizeSnapshot()
     ]
   },
