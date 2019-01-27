@@ -25,7 +25,8 @@
   "module": "./dist/css-vendor.esm.js",
   "files": [
     "dist",
-    "src"
+    "src",
+    "LICENSE"
   ],
   "scripts": {
     "all": "yarn lint && yarn test && yarn build",
