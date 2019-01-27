@@ -24,8 +24,7 @@
   "main": "./dist/css-vendor.cjs.js",
   "module": "./dist/css-vendor.esm.js",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "all": "yarn lint && yarn test && yarn build",
