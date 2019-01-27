@@ -22,10 +22,10 @@
   ],
   "engines": {},
   "scripts": {
-    "all": "npm run lint && npm run test && npm run build",
-    "build": "npm run clean && npm run build:lib && npm run build:dist",
+    "all": "yarn lint && yarn test && yarn build",
+    "build": "yarn clean && yarn build:lib && yarn build:dist",
     "build:lib": "babel src --out-dir lib",
-    "build:dist": "npm run build:dist:max && npm run build:dist:min",
+    "build:dist": "yarn build:dist:max && yarn build:dist:min",
     "build:dist:max": "cross-env webpack --mode=development src/index.js --output-filename=css-vendor.js",
     "build:dist:min": "cross-env webpack --mode=production src/index.js --output-filename=css-vendor.min.js",
     "clean": "rimraf {lib,dist,tmp}/*",
@@ -34,7 +34,7 @@
     "test": "cross-env NODE_ENV=test karma start --single-run ",
     "test:watch": "cross-env NODE_ENV=test karma start",
     "bench": "cross-env NODE_ENV=benchmark karma start --single-run",
-    "prepublishOnly": "npm run all"
+    "prepublishOnly": "yarn all"
   },
   "license": "MIT",
   "main": "./lib/index",

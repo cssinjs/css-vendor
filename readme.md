@@ -33,8 +33,8 @@ console.log(cssVendor.supportedValue('display', 'flex')) // e.g. -webkit-flex
 ## Run tests
 
 ```bash
-npm i
-npm test
+yarn
+yarn test
 ```
 
 ## License
