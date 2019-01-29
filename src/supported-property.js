@@ -1,5 +1,5 @@
 import isInBrowser from 'is-in-browser'
-import {propertyDetectors, noPrefill} from './plugins'
+import {propertyDetectors, noPrefill} from './plugins/index.js'
 
 let el
 const cache = {}
