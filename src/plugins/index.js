@@ -1,17 +1,17 @@
-import appearence from './appearence'
-import breakPropsOld from './break-props-old'
-import colorAdjust from './color-adjust'
-import flex2009 from './flex-2009'
-import flex2012 from './flex-2012'
-import inlineLogicalOld from './inline-logical-old'
-import mask from './mask'
-import prefixed from './prefixed'
-import scrollSnap from './scroll-snap'
-import overscrollBehavior from './overscroll-behavior'
-import transform from './transform'
-import transition from './transition'
-import unprefixed from './unprefixed'
-import writingMode from './writing-mode'
+import appearence from './appearence';
+import breakPropsOld from './break-props-old';
+import colorAdjust from './color-adjust';
+import flex2009 from './flex-2009';
+import flex2012 from './flex-2012';
+import inlineLogicalOld from './inline-logical-old';
+import mask from './mask';
+import prefixed from './prefixed';
+import scrollSnap from './scroll-snap';
+import overscrollBehavior from './overscroll-behavior';
+import transform from './transform';
+import transition from './transition';
+import unprefixed from './unprefixed';
+import writingMode from './writing-mode';
 
 // Please, keep order plugins:
 // plugins = [
@@ -43,15 +43,15 @@ const plugins = [
   overscrollBehavior,
   flex2012,
   flex2009,
-]
+];
 
 export const propertyDetectors = plugins
   .filter(p => p.supportedProperty)
-  .map(p => p.supportedProperty)
+  .map(p => p.supportedProperty);
 
 export const noPrefill = plugins
   .filter(p => p.noPrefill)
   .reduce((a, p) => {
-    a.push(...p.noPrefill)
-    return a
-  }, [])
+    a.push(...p.noPrefill);
+    return a;
+  }, []);

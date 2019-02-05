@@ -1,4 +1,4 @@
-const regExp = /[-\s]+(.)?/g
+const regExp = /[-\s]+(.)?/g;
 
 /**
  * Replaces the letter with the capital letter
@@ -9,7 +9,7 @@ const regExp = /[-\s]+(.)?/g
  * @api private
  */
 function toUpper(match, c) {
-  return c ? c.toUpperCase() : ''
+  return c ? c.toUpperCase() : '';
 }
 
 /**
@@ -20,5 +20,5 @@ function toUpper(match, c) {
  * @api private
  */
 export default function camelize(str) {
-  return str.replace(regExp, toUpper)
+  return str.replace(regExp, toUpper);
 }

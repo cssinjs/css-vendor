@@ -1,11 +1,11 @@
-import {getSupport, currentBrowser, getVersionIndex} from 'caniuse-support'
-import autoprefixer from 'autoprefixer'
-import data from 'autoprefixer/data/prefixes'
-import postcssJs from 'postcss-js'
+import { getSupport, currentBrowser, getVersionIndex } from 'caniuse-support';
+import autoprefixer from 'autoprefixer';
+import data from 'autoprefixer/data/prefixes';
+import postcssJs from 'postcss-js';
 
-const browserQuery = `${currentBrowser.id} ${getVersionIndex(currentBrowser)}`
-const ap = autoprefixer({browsers: browserQuery})
-const prefixer = postcssJs.sync([ap])
+const browserQuery = `${currentBrowser.id} ${getVersionIndex(currentBrowser)}`;
+const ap = autoprefixer({ browsers: browserQuery });
+const prefixer = postcssJs.sync([ap]);
 
 const skipProperties = [
   // Caniuse doesn't cover this property and spec might drop this: https://www.w3.org/TR/css-fonts-3/.
@@ -14,22 +14,22 @@ const skipProperties = [
   'grid-row-align',
   'grid-column-align',
   // Lack of caniuse data. See https://github.com/Fyrd/caniuse/issues/2116.
-  'font-variant-ligatures'
-]
+  'font-variant-ligatures',
+];
 
-const notDescribedCanIUseProps = ['css3-cursors-grab', 'css-text-spacing']
+const notDescribedCanIUseProps = ['css3-cursors-grab', 'css-text-spacing'];
 
 const gridProps = [
   'grid-template-columns', 'grid-template-rows',
   'grid-row-start', 'grid-column-start',
   'grid-row-end', 'grid-column-end',
   'grid-row', 'grid-column', 'grid-area',
-  'grid-template', 'grid-template-areas'
-]
-const flexOldUnsupported = ['flex-shrink', 'flex-basis', 'flex-wrap', 'align-self', 'align-content']
-const flexOldFFUnsupported = ['flex-wrap', 'flex-flow', 'align-content']
-const msSnapPointsUnsupported = ['scroll-snap-coordinate', 'scroll-snap-destination']
-const breakProps = ['break-before', 'break-inside', 'break-after']
+  'grid-template', 'grid-template-areas',
+];
+const flexOldUnsupported = ['flex-shrink', 'flex-basis', 'flex-wrap', 'align-self', 'align-content'];
+const flexOldFFUnsupported = ['flex-wrap', 'flex-flow', 'align-content'];
+const msSnapPointsUnsupported = ['scroll-snap-coordinate', 'scroll-snap-destination'];
+const breakProps = ['break-before', 'break-inside', 'break-after'];
 
 // In caniuse db, no supported value/prop means spec does not support it, but
 // no support in css-vendor implies no browser support at all for the
@@ -75,34 +75,36 @@ const isExcluded = o => o.level === 'none'
   // https://caniuse.com/#search=filter
   || o.property === 'filter'
   || o.property === 'place-self'
-  || breakProps.indexOf(o.property) > -1
+  || breakProps.indexOf(o.property) > -1;
 
 // Some properties need a certain value, so autoprefixer will prefix them.
-const propertyValue = p => (/^grid-(column|row)-end/.test(p) ? 'span 3' : '')
+const propertyValue = p => (/^grid-(column|row)-end/.test(p) ? 'span 3' : '');
 
 const dashify = str => str.replace(/([A-Z])/g, '-$1')
   .replace(/^ms-/, '-ms-')
-  .toLowerCase()
+  .toLowerCase();
 
 function generateFixture() {
-  const fixture = {}
+  const fixture = {};
   Object.keys(data)
     // Filters autoprefixer data to include only property prefix related entries.
     .filter(s => /^[^:@].*$/.test(s)
       && data[s].props === undefined
       && notDescribedCanIUseProps.indexOf(data[s].feature) < 0)
     // Add data from caniuse-db.
-    .map(s => ({property: s, feature: data[s].feature, ...getSupport(data[s].feature)}))
+    .map(s => ({ property: s, feature: data[s].feature, ...getSupport(data[s].feature) }))
     // Exclude unnecessary properties.
     .filter(o => !isExcluded(o))
     .forEach((o) => {
       // Current properties.
-      let properties = Object.keys(prefixer({[o.property]: propertyValue(o.property)})).map(dashify)
+      let properties = Object.keys(prefixer({
+        [o.property]: propertyValue(o.property),
+      })).map(dashify);
       // Remove unprefixed prop (last in array) when prefix is needed.
-      properties = properties.length > 1 ? properties.slice(0, properties.length - 1) : properties
-      fixture[o.property] = properties.length === 1 ? properties[0] : properties
-    })
-  return fixture
+      properties = properties.length > 1 ? properties.slice(0, properties.length - 1) : properties;
+      fixture[o.property] = properties.length === 1 ? properties[0] : properties;
+    });
+  return fixture;
 }
 
-export default generateFixture()
+export default generateFixture();

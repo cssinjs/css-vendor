@@ -1,10 +1,10 @@
 // Export javascript style and css style vendor prefixes.
 // Based on "transform" support test.
 
-import isInBrowser from 'is-in-browser'
+import isInBrowser from 'is-in-browser';
 
-let js = ''
-let css = ''
+let js = '';
+let css = '';
 
 // We should not do anything if required serverside.
 if (isInBrowser) {
@@ -14,24 +14,24 @@ if (isInBrowser) {
     Moz: '-moz-',
     ms: '-ms-',
     O: '-o-',
-    Webkit: '-webkit-'
-  }
+    Webkit: '-webkit-',
+  };
 
-  const {style} = document.createElement('p')
-  const testProp = 'Transform'
+  const { style } = document.createElement('p');
+  const testProp = 'Transform';
 
   for (const key in jsCssMap) {
     if ((key + testProp) in style) {
-      js = key
-      css = jsCssMap[key]
-      break
+      js = key;
+      css = jsCssMap[key];
+      break;
     }
   }
 
   // Correctly detect the Edge browser.
   if (js === 'Webkit' && 'msHyphens' in style) {
-    js = 'ms'
-    css = jsCssMap.ms
+    js = 'ms';
+    css = jsCssMap.ms;
   }
 }
 
@@ -41,4 +41,4 @@ if (isInBrowser) {
  * @type {{js: String, css: String}}
  * @api public
  */
-export default {js, css}
+export default { js, css };
