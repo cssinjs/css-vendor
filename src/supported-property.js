@@ -1,5 +1,5 @@
 import isInBrowser from 'is-in-browser'
-import {propertyDetectors, noPrefill} from './plugins/index.js'
+import {propertyDetectors, noPrefill} from './plugins/index'
 
 let el
 const cache = {}
@@ -60,8 +60,7 @@ export default function supportedProperty(prop, options = {}) {
   // Firefox can even throw an error for invalid properties, e.g., "0".
   try {
     el.style[prop] = ''
-  }
-  catch (err) {
+  } catch (err) {
     return false
   }
 

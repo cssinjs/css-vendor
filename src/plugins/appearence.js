@@ -4,7 +4,7 @@ import prefix from '../prefix'
 // https://caniuse.com/#search=appearance
 export default {
   noPrefill: ['appearance'],
-  supportedProperty: (prop) => {
+  supportedProperty: prop => {
     if (prop !== 'appearance') return false
     if (prefix.js === 'ms') return `-webkit-${prop}`
     return prefix.css + prop

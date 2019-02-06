@@ -4,7 +4,7 @@ import prefix from '../prefix'
 // https://caniuse.com/#search=writing-mode
 export default {
   noPrefill: ['writing-mode'],
-  supportedProperty: (prop) => {
+  supportedProperty: prop => {
     if (prop !== 'writing-mode') return false
     if (prefix.js === 'Webkit' || prefix.js === 'ms') {
       return prefix.css + prop

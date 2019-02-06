@@ -4,5 +4,5 @@ import camelize from '../utils/camelize'
 // Camelization is required because we can't test using.
 // CSS syntax for e.g. in FF.
 export default {
-  supportedProperty: (prop, style) => (camelize(prop) in style ? prop : false),
+  supportedProperty: (prop, style) => (camelize(prop) in style ? prop : false)
 }
