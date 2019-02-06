@@ -4,10 +4,10 @@ import prefix from '../prefix'
 // https://caniuse.com/#feat=text-decoration
 export default {
   noPrefill: ['text-decoration-skip-ink'],
-  supportedProperty: (prop) => {
+  supportedProperty: prop => {
     if (prop !== 'text-decoration-skip-ink') return false
-    if (prefix.js === 'Webkit') return `-webkit-${prop}`
-    if (prefix.js === 'Moz') return prop
+    if (prefix.browser === 'safari') return `${prefix.css}${prop}`
+    if (prefix.js === 'Webkit' || prefix.js === 'Moz') return prop
     return prefix.css + prop
   }
 }

@@ -82,7 +82,7 @@
     "rollup-plugin-replace": "^2.1.0",
     "rollup-plugin-size-snapshot": "^0.8.0",
     "rollup-plugin-terser": "^4.0.3",
-    "webpack": "^4.15.1",
+    "webpack": "^4.29.2",
     "webpack-cli": "^3.0.8"
   },
   "dependencies": {

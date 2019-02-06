@@ -5,6 +5,7 @@ import isInBrowser from 'is-in-browser'
 
 let js = ''
 let css = ''
+let browser = ''
 
 // We should not do anything if required serverside.
 if (isInBrowser) {
@@ -14,7 +15,8 @@ if (isInBrowser) {
     Moz: '-moz-',
     ms: '-ms-',
     O: '-o-',
-    Webkit: '-webkit-'
+    Webkit: '-webkit-',
+    safari: '-webkit-'
   }
 
   const {style} = document.createElement('p')
@@ -33,6 +35,12 @@ if (isInBrowser) {
     js = 'ms'
     css = jsCssMap.ms
   }
+
+  // Correctly detect the Safari browser.
+  if (js === 'Webkit' && Object.keys(style).includes('appleTrailingWord')) {
+    browser = 'safari'
+    css = jsCssMap.safari
+  }
 }
 
 /**
@@ -41,4 +49,4 @@ if (isInBrowser) {
  * @type {{js: String, css: String}}
  * @api public
  */
-export default {js, css}
+export default {js, css, browser}
