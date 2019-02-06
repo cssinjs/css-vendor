@@ -5,13 +5,15 @@ module.exports = {
     libraryTarget: 'umd'
   },
   module: {
-    rules: [{
-      loader: 'babel-loader',
-      test: /\.js$/,
-      exclude: /node_modules/
-    }]
+    rules: [
+      {
+        loader: 'babel-loader',
+        test: /\.js$/,
+        exclude: /node_modules/
+      }
+    ]
   },
   node: {
-    fs: 'empty',
+    fs: 'empty'
   }
 }

@@ -22,12 +22,12 @@
 
 - Added support for various properties for old browsers, undetectable with feature tests:
   - appearance
-  - break-*
+  - break-\*
   - clip-path
   - filter
   - flex
   - (border|margin|padding)-inline
-  - mask-*
+  - mask-\*
   - scroll-snap
   - transform
   - transition

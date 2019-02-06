@@ -1,6 +1,6 @@
-import prefix from '../prefix';
-import pascalize from '../utils/pascalize';
-import camelize from '../utils/camelize';
+import prefix from '../prefix'
+import pascalize from '../utils/pascalize'
+import camelize from '../utils/camelize'
 
 // Mask property support cannot detect directly in WebKit browsers,
 // but we can use a longhand property instead.
@@ -8,16 +8,16 @@ import camelize from '../utils/camelize';
 export default {
   noPrefill: ['mask'],
   supportedProperty: (prop, style) => {
-    if (!/^mask/.test(prop)) return false;
+    if (!/^mask/.test(prop)) return false
     if (prefix.js === 'Webkit') {
-      const longhand = 'mask-image';
+      const longhand = 'mask-image'
       if (camelize(longhand) in style) {
-        return prop;
+        return prop
       }
       if (prefix.js + pascalize(longhand) in style) {
-        return prefix.css + prop;
+        return prefix.css + prop
       }
     }
-    return prop;
-  },
-};
+    return prop
+  }
+}

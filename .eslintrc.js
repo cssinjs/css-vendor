@@ -1,11 +1,11 @@
 module.exports = {
   parser: 'babel-eslint',
-  extends: ['jss'],
+  extends: ['jss', 'prettier'],
   globals: {
     benchmark: true
   },
   env: {
     mocha: true,
     browser: true
-  },
+  }
 }

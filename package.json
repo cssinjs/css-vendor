@@ -32,6 +32,7 @@
     "clean": "rimraf {dist,tmp}/*",
     "lint": "eslint ./src ./tests --fix",
     "lint:staged": "lint-staged",
+    "format": "prettier \"*.{js,md}\" \"{tests,src,benchmark}/**/*.js\" --write",
     "test": "cross-env NODE_ENV=test karma start --single-run ",
     "test:watch": "cross-env NODE_ENV=test karma start",
     "bench": "cross-env NODE_ENV=benchmark karma start --single-run",
@@ -55,6 +56,7 @@
     "es5-shim": "^4.5.10",
     "eslint": "^5.13.0",
     "eslint-config-jss": "^5.0.1",
+    "eslint-config-prettier": "^4.0.0",
     "expect.js": "^0.3.1",
     "karma": "^3.1.4",
     "karma-benchmark": "^1.0.0",
@@ -72,6 +74,7 @@
     "mocha": "^5.2.0",
     "postcss-js": "^2.0.0",
     "pre-commit": "^1.1.3",
+    "prettier": "1.16.4",
     "rimraf": "^2.6.2",
     "rollup": "^1.1.2",
     "rollup-plugin-babel": "^4.3.2",
@@ -89,6 +92,7 @@
   "lint-staged": {
     "**/*.js": [
       "eslint --fix",
+      "prettier --write",
       "git add"
     ]
   },

@@ -1,4 +1,4 @@
-import camelize from './camelize';
+import camelize from './camelize'
 
 /**
  * Convert dash separated strings to pascal cased.
@@ -8,5 +8,5 @@ import camelize from './camelize';
  * @api private
  */
 export default function pascalize(str) {
-  return camelize(`-${str}`);
+  return camelize(`-${str}`)
 }

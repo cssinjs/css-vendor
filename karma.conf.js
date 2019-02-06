@@ -10,7 +10,7 @@ const travisBuildId = process.env.TRAVIS_BUILD_ID
 const travisJobNumber = process.env.TRAVIS_JOB_NUMBER
 const isBench = process.env.NODE_ENV === 'benchmark'
 
-module.exports = (config) => {
+module.exports = config => {
   config.set({
     customLaunchers: browsers,
     browsers: ['Chrome'],
@@ -18,17 +18,19 @@ module.exports = (config) => {
     files: [
       'node_modules/es5-shim/es5-shim.js',
       'node_modules/es5-shim/es5-sham.js',
-      'tests.webpack.js',
+      'tests.webpack.js'
     ],
     preprocessors: {
-      'tests.webpack.js': ['webpack', 'sourcemap'],
+      'tests.webpack.js': ['webpack', 'sourcemap']
     },
     webpack: Object.assign(webpackConfig, {
       devtool: 'inline-source-map',
       module: {
-        rules: [Object.assign(webpackConfig.module.rules[0], {
-          exclude: /node_modules(?!(\/|\\)camelcase-css)/
-        })]
+        rules: [
+          Object.assign(webpackConfig.module.rules[0], {
+            exclude: /node_modules(?!(\/|\\)camelcase-css)/
+          })
+        ]
       }
     }),
     webpackServer: {
