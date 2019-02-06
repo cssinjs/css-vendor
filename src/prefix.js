@@ -15,8 +15,7 @@ if (isInBrowser) {
     Moz: '-moz-',
     ms: '-ms-',
     O: '-o-',
-    Webkit: '-webkit-',
-    safari: '-webkit-'
+    Webkit: '-webkit-'
   }
 
   const {style} = document.createElement('p')
