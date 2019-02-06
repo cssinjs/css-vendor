@@ -6,6 +6,18 @@
     "browser": "iphone",
     "real_mobile": false
   },
+  "BS_Opera52": {
+    "base": "BrowserStack",
+    "os": "OS X",
+    "os_version": "High Sierra",
+    "browser": "opera"
+  },
+  "BS_Chrome": {
+    "base": "BrowserStack",
+    "os": "OS X",
+    "os_version": "High Sierra",
+    "browser": "chrome"
+  },
   "BS_Safari": {
     "base": "BrowserStack",
     "os": "OS X",
@@ -17,5 +29,29 @@
     "os": "OS X",
     "os_version": "High Sierra",
     "browser": "firefox"
+  },
+  "BS_InternetExplorer9": {
+    "base": "BrowserStack",
+    "os": "Windows",
+    "os_version": "7",
+    "browser": "ie"
+  },
+  "BS_InternetExplorer10": {
+    "base": "BrowserStack",
+    "os": "Windows",
+    "os_version": "8",
+    "browser": "ie"
+  },
+  "BS_InternetExplorer11": {
+    "base": "BrowserStack",
+    "os": "Windows",
+    "os_version": "8.1",
+    "browser": "ie"
+  },
+  "BS_Edge13": {
+    "base": "BrowserStack",
+    "os": "Windows",
+    "os_version": "10",
+    "browser": "edge"
   }
 }

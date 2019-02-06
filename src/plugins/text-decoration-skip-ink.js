@@ -7,7 +7,7 @@ export default {
   supportedProperty: (prop) => {
     if (prop !== 'text-decoration-skip-ink') return false
     if (prefix.js === 'Webkit') return `-webkit-${prop}`
-    if (prefix.js === 'Moz') return `-moz-${prop}`
+    if (prefix.js === 'Moz') return prop
     return prefix.css + prop
   }
 }
