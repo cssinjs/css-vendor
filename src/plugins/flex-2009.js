@@ -8,7 +8,7 @@ const propMap = {
   order: 'box-ordinal-group',
   'align-items': 'box-align',
   'flex-flow': ['box-orient', 'box-direction'],
-  'justify-content': 'box-pack',
+  'justify-content': 'box-pack'
 }
 
 const propKeys = Object.keys(propMap)

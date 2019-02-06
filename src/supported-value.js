@@ -61,8 +61,7 @@ export default function supportedValue(property, value) {
   try {
     // Test value as it is.
     el.style[property] = value
-  }
-  catch (err) {
+  } catch (err) {
     // Return false if value not supported.
     cache[cacheKey] = false
     return false
@@ -70,17 +69,13 @@ export default function supportedValue(property, value) {
 
   // If 'transition' or 'transition-property' property.
   if (transitionProperties[property]) {
-    value = value.replace(transPropsRegExp, prefixTransitionCallback)
-  }
-  else if (el.style[property] === '') {
+    el.style[property] = value.replace(transPropsRegExp, prefixTransitionCallback)
+  } else if (el.style[property] === '') {
     // Value with a vendor prefix.
-    value = prefix.css + value
+    el.style[property] = prefix.css + value
 
     // Hardcode test to convert "flex" to "-ms-flexbox" for IE10.
-    if (value === '-ms-flex') value = '-ms-flexbox'
-
-    // Test prefixed value.
-    el.style[property] = value
+    if (value === '-ms-flex') el.style[property] = '-ms-flexbox'
 
     // Return false if value not supported.
     if (el.style[property] === '') {

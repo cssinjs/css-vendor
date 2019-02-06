@@ -13,9 +13,9 @@ describe('css-vendor', () => {
 
     const opts = {multiple: true}
     for (const property in propertyPrefixFixture) {
-      it(`should prefix ${property} if needed [${currentBrowser.id} ${currentBrowser.version}]`, () => (
-        expect(supportedProperty(property, opts)).to.eql(propertyPrefixFixture[property])
-      ))
+      it(`should prefix ${property} if needed [${currentBrowser.id} ${
+        currentBrowser.version
+      }]`, () => expect(supportedProperty(property, opts)).to.eql(propertyPrefixFixture[property]))
     }
 
     it('should prefix writing-mode if needed', () => {

@@ -21,7 +21,7 @@ if (isInBrowser) {
   const testProp = 'Transform'
 
   for (const key in jsCssMap) {
-    if ((key + testProp) in style) {
+    if (key + testProp in style) {
       js = key
       css = jsCssMap[key]
       break

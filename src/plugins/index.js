@@ -42,7 +42,7 @@ const plugins = [
   scrollSnap,
   overscrollBehavior,
   flex2012,
-  flex2009,
+  flex2009
 ]
 
 export const propertyDetectors = plugins

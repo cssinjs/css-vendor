@@ -8,7 +8,7 @@ const propMap = {
   'justify-content': 'flex-pack',
   order: 'flex-order',
   'align-items': 'flex-align',
-  'align-content': 'flex-line-pack',
+  'align-content': 'flex-line-pack'
   // 'align-self' is handled by 'align-self' plugin.
 }
 

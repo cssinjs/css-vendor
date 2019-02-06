@@ -14,9 +14,7 @@ const external = id => !id.startsWith('.') && !id.startsWith('/')
 const getBabelOptions = ({useESModules}) => ({
   exclude: /node_modules/,
   runtimeHelpers: true,
-  plugins: [
-    ['@babel/transform-runtime', {useESModules}]
-  ]
+  plugins: [['@babel/transform-runtime', {useESModules}]]
 })
 
 export default [
@@ -47,19 +45,13 @@ export default [
     input,
     output: {file: pkg.main, format: 'cjs'},
     external,
-    plugins: [
-      babel(getBabelOptions({useESModules: false})),
-      sizeSnapshot()
-    ]
+    plugins: [babel(getBabelOptions({useESModules: false})), sizeSnapshot()]
   },
 
   {
     input,
     output: {file: pkg.module, format: 'esm'},
     external,
-    plugins: [
-      babel(getBabelOptions({useESModules: true})),
-      sizeSnapshot()
-    ]
-  },
+    plugins: [babel(getBabelOptions({useESModules: true})), sizeSnapshot()]
+  }
 ]
