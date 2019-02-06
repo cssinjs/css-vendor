@@ -38,7 +38,6 @@ if (isInBrowser) {
   // Correctly detect the Safari browser.
   if (js === 'Webkit' && Object.keys(style).includes('appleTrailingWord')) {
     browser = 'safari'
-    css = jsCssMap.safari
   }
 }
 
