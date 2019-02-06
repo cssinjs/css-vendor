@@ -32,7 +32,7 @@
     "clean": "rimraf {dist,tmp}/*",
     "lint": "eslint ./src ./tests --fix",
     "lint:staged": "lint-staged",
-    "format": "prettier \"*.{js,md}\" \"{tests,src,benchmark}/**/*.js\" --write",
+    "format": "prettier \"*.js\" \"{tests,src,benchmark}/**/*.js\" --write",
     "test": "cross-env NODE_ENV=test karma start --single-run ",
     "test:watch": "cross-env NODE_ENV=test karma start",
     "bench": "cross-env NODE_ENV=benchmark karma start --single-run",
