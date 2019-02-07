@@ -6,7 +6,7 @@ export default {
   noPrefill: ['text-decoration-skip-ink'],
   supportedProperty: prop => {
     if (prop !== 'text-decoration-skip-ink') return false
-    if (prefix.browser === 'safari') return `${prefix.css}${prop}`
+    if (prefix.vendor === 'apple') return `${prefix.css}${prop}`
     if (prefix.js === 'Webkit' || prefix.js === 'Moz') return prop
     return prefix.css + prop
   }
