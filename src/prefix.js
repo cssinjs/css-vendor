@@ -5,6 +5,7 @@ import isInBrowser from 'is-in-browser'
 
 let js = ''
 let css = ''
+let vendor = ''
 
 // We should not do anything if required serverside.
 if (isInBrowser) {
@@ -33,6 +34,11 @@ if (isInBrowser) {
     js = 'ms'
     css = jsCssMap.ms
   }
+
+  // Correctly detect the Safari browser.
+  if (js === 'Webkit' && '-apple-trailing-word' in style) {
+    vendor = 'apple'
+  }
 }
 
 /**
@@ -41,4 +47,4 @@ if (isInBrowser) {
  * @type {{js: String, css: String}}
  * @api public
  */
-export default {js, css}
+export default {js, css, vendor}

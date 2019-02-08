@@ -1,5 +1,6 @@
 import appearence from './appearence'
 import breakPropsOld from './break-props-old'
+import textDecorationSkipInk from './text-decoration-skip-ink'
 import colorAdjust from './color-adjust'
 import flex2009 from './flex-2009'
 import flex2012 from './flex-2012'
@@ -35,6 +36,7 @@ const plugins = [
   mask,
   writingMode,
   colorAdjust,
+  textDecorationSkipInk,
   breakPropsOld,
   inlineLogicalOld,
   unprefixed,
