@@ -1,3 +1,11 @@
+## 1.2.0 / 2019-02-10
+
+- Support for inline props syntax. e.g. border-inline-end, margin-inline-start
+- Support place-self
+- Support text-decoration-skip-ink
+- Bundle with rollup
+- Add prettier
+
 ## 1.1.0 / 2018-07-08
 
 - Added supportedKeyframes function, to prefix @keyframes at-rule
