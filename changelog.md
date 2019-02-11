@@ -1,3 +1,8 @@
+## 1.2.1 / 2019-02-11
+
+- Fix prefixing flex value for IE 10
+- Workaround esm with default export
+
 ## 1.2.0 / 2019-02-10
 
 - Support for inline props syntax. e.g. border-inline-end, margin-inline-start
