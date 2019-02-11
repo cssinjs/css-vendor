@@ -1,3 +1,7 @@
+## 2.0.0 / 2019-02-11
+
+- Remove default exports
+
 ## 1.2.1 / 2019-02-11
 
 - Fix prefixing flex value for IE 10
