@@ -40,6 +40,7 @@ if (isInBrowser) el = document.createElement('p')
 
 export default function supportedValue(property, value) {
   // For server-side rendering.
+  let prefixedValue = ''
   if (!el) return value
 
   // It is a string or a number as a string like '1'.
@@ -69,13 +70,16 @@ export default function supportedValue(property, value) {
 
   // If 'transition' or 'transition-property' property.
   if (transitionProperties[property]) {
-    el.style[property] = value.replace(transPropsRegExp, prefixTransitionCallback)
+    prefixedValue = value.replace(transPropsRegExp, prefixTransitionCallback)
   } else if (el.style[property] === '') {
     // Value with a vendor prefix.
-    el.style[property] = prefix.css + value
+    prefixedValue = prefix.css + value
 
     // Hardcode test to convert "flex" to "-ms-flexbox" for IE10.
-    if (value === '-ms-flex') el.style[property] = '-ms-flexbox'
+    if (prefixedValue === '-ms-flex') el.style[property] = '-ms-flexbox'
+
+    // Test prefixed value.
+    el.style[property] = prefixedValue
 
     // Return false if value not supported.
     if (el.style[property] === '') {
