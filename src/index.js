@@ -12,3 +12,4 @@ import supportedProperty from './supported-property'
 import supportedValue from './supported-value'
 
 export {prefix, supportedKeyframes, supportedProperty, supportedValue}
+export default {prefix, supportedKeyframes, supportedProperty, supportedValue}

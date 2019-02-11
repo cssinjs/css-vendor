@@ -20,7 +20,7 @@ const getBabelOptions = ({useESModules}) => ({
 export default [
   {
     input,
-    output: {file: `dist/${pkg.name}.js`, format: 'umd', name},
+    output: {file: `dist/${pkg.name}.js`, format: 'umd', name, exports: 'named'},
     plugins: [
       nodeResolve(),
       babel(getBabelOptions({useESModules: true})),
@@ -31,7 +31,7 @@ export default [
 
   {
     input,
-    output: {file: `dist/${pkg.name}.min.js`, format: 'umd', name},
+    output: {file: `dist/${pkg.name}.min.js`, format: 'umd', name, exports: 'named'},
     plugins: [
       nodeResolve(),
       babel(getBabelOptions({useESModules: true})),
@@ -43,7 +43,7 @@ export default [
 
   {
     input,
-    output: {file: pkg.main, format: 'cjs'},
+    output: {file: pkg.main, format: 'cjs', exports: 'named'},
     external,
     plugins: [babel(getBabelOptions({useESModules: false})), sizeSnapshot()]
   },
