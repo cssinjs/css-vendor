@@ -40,18 +40,18 @@ if (isInBrowser) el = document.createElement('p')
 
 export default function supportedValue(property, value) {
   // For server-side rendering.
-  let prefixedValue = ''
+  let prefixedValue = value
   if (!el) return value
 
   // It is a string or a number as a string like '1'.
   // We want only prefixable values here.
   // eslint-disable-next-line no-restricted-globals
-  if (typeof value !== 'string' || !isNaN(parseInt(value, 10))) {
-    return value
+  if (typeof prefixedValue !== 'string' || !isNaN(parseInt(prefixedValue, 10))) {
+    return prefixedValue
   }
 
   // Create cache key for current value.
-  const cacheKey = property + value
+  const cacheKey = property + prefixedValue
 
   // Remove cache for benchmark tests or return value from cache.
   if (process.env.NODE_ENV !== 'benchmark' && cache[cacheKey] != null) {
@@ -61,7 +61,7 @@ export default function supportedValue(property, value) {
   // IE can even throw an error in some cases, for e.g. style.content = 'bar'.
   try {
     // Test value as it is.
-    el.style[property] = value
+    el.style[property] = prefixedValue
   } catch (err) {
     // Return false if value not supported.
     cache[cacheKey] = false
@@ -70,10 +70,10 @@ export default function supportedValue(property, value) {
 
   // If 'transition' or 'transition-property' property.
   if (transitionProperties[property]) {
-    prefixedValue = value.replace(transPropsRegExp, prefixTransitionCallback)
+    prefixedValue = prefixedValue.replace(transPropsRegExp, prefixTransitionCallback)
   } else if (el.style[property] === '') {
     // Value with a vendor prefix.
-    prefixedValue = prefix.css + value
+    prefixedValue = prefix.css + prefixedValue
 
     // Hardcode test to convert "flex" to "-ms-flexbox" for IE10.
     if (prefixedValue === '-ms-flex') el.style[property] = '-ms-flexbox'
@@ -92,7 +92,7 @@ export default function supportedValue(property, value) {
   el.style[property] = ''
 
   // Write current value to cache.
-  cache[cacheKey] = value
+  cache[cacheKey] = prefixedValue
 
   return cache[cacheKey]
 }
