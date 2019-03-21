@@ -1241,9 +1241,10 @@ body-parser@^1.16.1:
     raw-body "2.3.3"
     type-is "~1.6.16"
 
-bowser@^1.9.4:
-  version "1.9.4"
-  resolved "https://registry.yarnpkg.com/bowser/-/bowser-1.9.4.tgz#890c58a2813a9d3243704334fa81b96a5c150c9a"
+bowser@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/bowser/-/bowser-2.1.2.tgz#35cba0487362ab6a8cea8fd094bf5670b408c8d3"
+  integrity sha512-K64ZigDayqlptyKVEiCDPPKQ2/SyPT/jsgJPwZOcpR3WA2bYojlHLeTHN+IRc/vbMz3F6CV62nnAo01+0zYrsQ==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -1477,16 +1478,22 @@ camelcase@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.0.0.tgz#03295527d58bd3cd4aa75363f35b2e8d97be2f42"
 
-caniuse-lite@^1.0.30000883, caniuse-lite@^1.0.30000929, caniuse-lite@^1.0.30000932:
+caniuse-lite@^1.0.30000929, caniuse-lite@^1.0.30000932:
   version "1.0.30000935"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000935.tgz#d1b59df00b46f4921bb84a8a34c1d172b346df59"
 
-caniuse-support@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/caniuse-support/-/caniuse-support-0.4.3.tgz#f5c704f5e4dc8d920cdbad9f925dff75ac7ba481"
+caniuse-lite@^1.0.30000951:
+  version "1.0.30000951"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000951.tgz#c7c2fd4d71080284c8677dd410368df8d83688fe"
+  integrity sha512-eRhP+nQ6YUkIcNQ6hnvdhMkdc7n3zadog0KXNRxAZTT2kHjUb1yGn71OrPhSn8MOvlX97g5CR97kGVj8fMsXWg==
+
+caniuse-support@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/caniuse-support/-/caniuse-support-1.0.0.tgz#9bca526c5b1e4fc249e00bc23bea86f7d8119383"
+  integrity sha512-0fVFfddEFWLV3F1WelPpOMEbhWOWlL8SF16ONjvilvh5INXKeBINS3HUmEbfPu/z/YIZ8TrFI2qxXl5TM5mthw==
   dependencies:
-    bowser "^1.9.4"
-    caniuse-lite "^1.0.30000883"
+    bowser "^2.1.2"
+    caniuse-lite "^1.0.30000951"
 
 chainsaw@~0.1.0:
   version "0.1.0"
