@@ -55,7 +55,10 @@ describe('css-vendor', () => {
     })
 
     it('should prefix if needed for sticky value', () => {
-      const {needPrefix: stickyNeedPrefix} = getSupport('css-sticky')
+      const {needPrefix: stickyNeedPrefix} = getSupport(
+        'css-sticky',
+        detectBrowser(window.navigator.userAgent)
+      )
       const value = stickyNeedPrefix ? `${prefix.css}sticky` : 'sticky'
       expect(supportedValue('position', 'sticky')).to.be(
         prefix.js === 'ms' && prefix.browser !== 'edge' ? false : value
