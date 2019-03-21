@@ -1487,10 +1487,10 @@ caniuse-lite@^1.0.30000951:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000951.tgz#c7c2fd4d71080284c8677dd410368df8d83688fe"
   integrity sha512-eRhP+nQ6YUkIcNQ6hnvdhMkdc7n3zadog0KXNRxAZTT2kHjUb1yGn71OrPhSn8MOvlX97g5CR97kGVj8fMsXWg==
 
-caniuse-support@^0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/caniuse-support/-/caniuse-support-0.4.4.tgz#319b4ca9b3203443f7ec125902b3c34082f77222"
-  integrity sha512-uujWxKA+uYm+bUn60oyhjrqyV/D5BiteWgH0b6rpH5F7g0ABc3lLXgFeOogPQLHQZMMAUDTAeRHBODkt7pNcYg==
+caniuse-support@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/caniuse-support/-/caniuse-support-1.0.1.tgz#6a16f871a69217e175eb9e7e676e4f3a4f45a600"
+  integrity sha512-VPgIMchklGSXif0woMeFQX+H45rJp12vLoCD+fHNBqvEr7QDVIQRvHsD4TYen0Ot1dAwW0c7pGuNEeKpVZwGkw==
   dependencies:
     bowser "^2.1.2"
     caniuse-lite "^1.0.30000951"

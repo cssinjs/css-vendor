@@ -1,7 +1,9 @@
-import {getSupport, currentBrowser, getVersionIndex} from 'caniuse-support'
+import {getSupport, detectBrowser, getVersionIndex} from 'caniuse-support'
 import autoprefixer from 'autoprefixer'
 import data from 'autoprefixer/data/prefixes'
 import postcssJs from 'postcss-js'
+
+const currentBrowser = detectBrowser(window.navigator.userAgent)
 
 const browserQuery = `${currentBrowser.id} ${getVersionIndex(currentBrowser)}`
 const ap = autoprefixer({browsers: browserQuery})
@@ -104,7 +106,11 @@ function generateFixture() {
         notDescribedCanIUseProps.indexOf(data[s].feature) < 0
     )
     // Add data from caniuse-db.
-    .map(s => ({property: s, feature: data[s].feature, ...getSupport(data[s].feature)}))
+    .map(s => ({
+      property: s,
+      feature: data[s].feature,
+      ...getSupport(data[s].feature, currentBrowser)
+    }))
     // Exclude unnecessary properties.
     .filter(o => !isExcluded(o))
     .forEach(o => {

@@ -1,5 +1,5 @@
 import expect from 'expect.js'
-import {getSupport} from 'caniuse-support'
+import {getSupport, detectBrowser} from 'caniuse-support'
 
 import propertyPrefixFixture from '../tests/fixtures'
 import prefix from './prefix'
@@ -16,7 +16,7 @@ describe('css-vendor', () => {
       expect(supportedValue('color', value)).to.be(value)
     })
 
-    const {level, needPrefix} = getSupport('flexbox')
+    const {level, needPrefix} = getSupport('flexbox', detectBrowser(window.navigator.userAgent))
     if (level === 'full') {
       it('should prefix if needed for flex value', () => {
         const value = needPrefix ? `${prefix.css}flex` : 'flex'

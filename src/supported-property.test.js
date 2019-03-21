@@ -1,9 +1,11 @@
 import expect from 'expect.js'
-import {currentBrowser} from 'caniuse-support'
+import {detectBrowser} from 'caniuse-support'
 
 import prefix from './prefix'
 import supportedProperty from './supported-property'
 import propertyPrefixFixture from '../tests/fixtures'
+
+const currentBrowser = detectBrowser(window.navigator.userAgent)
 
 describe('css-vendor', () => {
   describe('.supportedProperty()', () => {
