@@ -51,7 +51,7 @@
     "babel-plugin-transform-es2015-spread": "^6.22.0",
     "babel-plugin-transform-es3-member-expression-literals": "^6.8.0",
     "babel-plugin-transform-es3-property-literals": "^6.8.0",
-    "caniuse-support": "^0.4.3",
+    "caniuse-support": "^1.0.0",
     "cross-env": "^5.2.0",
     "es5-shim": "^4.5.10",
     "eslint": "^5.13.0",
