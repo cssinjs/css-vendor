@@ -16,10 +16,13 @@ describe('css-vendor', () => {
       expect(supportedValue('color', value)).to.be(value)
     })
 
-    const {level, needPrefix} = getSupport('flexbox', detectBrowser(window.navigator.userAgent))
-    if (level === 'full') {
+    const {level: flexboxLevel, needPrefix: flexboxNeedPrefix} = getSupport(
+      'flexbox',
+      detectBrowser(window.navigator.userAgent)
+    )
+    if (flexboxLevel === 'full') {
       it('should prefix if needed for flex value', () => {
-        const value = needPrefix ? `${prefix.css}flex` : 'flex'
+        const value = flexboxNeedPrefix ? `${prefix.css}flex` : 'flex'
         expect(supportedValue('display', 'flex')).to.be(value)
       })
     } else {
@@ -49,6 +52,14 @@ describe('css-vendor', () => {
     it('should not break a complex transition value', () => {
       const value = 'margin 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms'
       expect(supportedValue('transition', value)).to.be(value)
+    })
+
+    it('should prefix if needed for sticky value', () => {
+      const {needPrefix: stickyNeedPrefix} = getSupport('css-sticky')
+      const value = stickyNeedPrefix ? `${prefix.css}sticky` : 'sticky'
+      expect(supportedValue('position', 'sticky')).to.be(
+        prefix.js === 'ms' && prefix.browser !== 'edge' ? false : value
+      )
     })
   })
 })
