@@ -1,5 +1,5 @@
 import expect from 'expect.js'
-import {getSupport} from 'caniuse-support'
+import {getSupport, detectBrowser} from 'caniuse-support'
 
 import propertyPrefixFixture from '../tests/fixtures'
 import prefix from './prefix'
@@ -16,7 +16,10 @@ describe('css-vendor', () => {
       expect(supportedValue('color', value)).to.be(value)
     })
 
-    const {level: flexboxLevel, needPrefix: flexboxNeedPrefix} = getSupport('flexbox')
+    const {level: flexboxLevel, needPrefix: flexboxNeedPrefix} = getSupport(
+      'flexbox',
+      detectBrowser(window.navigator.userAgent)
+    )
     if (flexboxLevel === 'full') {
       it('should prefix if needed for flex value', () => {
         const value = flexboxNeedPrefix ? `${prefix.css}flex` : 'flex'
@@ -52,7 +55,10 @@ describe('css-vendor', () => {
     })
 
     it('should prefix if needed for sticky value', () => {
-      const {needPrefix: stickyNeedPrefix} = getSupport('css-sticky')
+      const {needPrefix: stickyNeedPrefix} = getSupport(
+        'css-sticky',
+        detectBrowser(window.navigator.userAgent)
+      )
       const value = stickyNeedPrefix ? `${prefix.css}sticky` : 'sticky'
       expect(supportedValue('position', 'sticky')).to.be(
         prefix.js === 'ms' && prefix.browser !== 'edge' ? false : value
