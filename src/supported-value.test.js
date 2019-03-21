@@ -54,7 +54,9 @@ describe('css-vendor', () => {
     it('should prefix if needed for sticky value', () => {
       const {needPrefix: stickyNeedPrefix} = getSupport('css-sticky')
       const value = stickyNeedPrefix ? `${prefix.css}sticky` : 'sticky'
-      expect(supportedValue('position', 'sticky')).to.be(prefix.js === 'ms' ? false : value)
+      expect(supportedValue('position', 'sticky')).to.be(
+        prefix.js === 'ms' || prefix.css === '-ms-' ? false : value
+      )
     })
   })
 })
