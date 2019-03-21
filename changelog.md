@@ -1,3 +1,8 @@
+## 2.0.1 / 2019-03-21
+
+- Fix prefixing values
+- Update dependencies
+
 ## 2.0.0 / 2019-02-11
 
 - Remove default exports
