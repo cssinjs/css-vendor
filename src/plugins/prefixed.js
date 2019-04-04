@@ -7,7 +7,7 @@ export default {
     const pascalized = pascalize(prop)
     if (prefix.js + pascalized in style) return prefix.css + prop
     // Try webkit fallback.
-    if (prefix.js !== 'Webkit' && `Webkit${pascalized}` in style) return prop
+    if (prefix.js !== 'Webkit' && `Webkit${pascalized}` in style) return `-webkit-${prop}`
     return false
   }
 }
