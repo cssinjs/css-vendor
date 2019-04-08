@@ -1,3 +1,7 @@
+## 2.0.2 / 2019-04-08
+
+- Fix prefix for backdrop-filter on Edge 17/18
+
 ## 2.0.1 / 2019-03-21
 
 - Fix prefixing values
