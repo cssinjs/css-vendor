@@ -7,6 +7,7 @@ let js = ''
 let css = ''
 let vendor = ''
 let browser = ''
+const isTouch = 'ontouchstart' in document.documentElement
 
 // We should not do anything if required serverside.
 if (isInBrowser) {
@@ -49,4 +50,4 @@ if (isInBrowser) {
  * @type {{js: String, css: String, vendor: String, browser: String}}
  * @api public
  */
-export default {js, css, vendor, browser}
+export default {js, css, vendor, browser, isTouch}
