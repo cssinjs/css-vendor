@@ -26,8 +26,8 @@
   },
   "BS_Firefox": {
     "base": "BrowserStack",
-    "os": "OS X",
-    "os_version": "Mojave",
+    "os": "Windows",
+    "os_version": "10",
     "browser": "firefox"
   },
   "BS_InternetExplorer9": {
