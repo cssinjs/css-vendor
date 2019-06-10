@@ -9,25 +9,25 @@
   "BS_Opera52": {
     "base": "BrowserStack",
     "os": "OS X",
-    "os_version": "High Sierra",
+    "os_version": "Mojave",
     "browser": "opera"
   },
   "BS_Chrome": {
     "base": "BrowserStack",
     "os": "OS X",
-    "os_version": "High Sierra",
+    "os_version": "Mojave",
     "browser": "chrome"
   },
   "BS_Safari": {
     "base": "BrowserStack",
     "os": "OS X",
-    "os_version": "High Sierra",
+    "os_version": "Mojave",
     "browser": "safari"
   },
   "BS_Firefox": {
     "base": "BrowserStack",
-    "os": "OS X",
-    "os_version": "High Sierra",
+    "os": "Windows",
+    "os_version": "10",
     "browser": "firefox"
   },
   "BS_InternetExplorer9": {
