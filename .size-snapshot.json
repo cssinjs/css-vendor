@@ -32,5 +32,24 @@
         "code": 4481
       }
     }
+  },
+  "dist/css-vendor.cjs.js": {
+    "bundled": 14591,
+    "minified": 6157,
+    "gzipped": 2100
+  },
+  "dist/css-vendor.esm.js": {
+    "bundled": 14272,
+    "minified": 5896,
+    "gzipped": 2011,
+    "treeshaked": {
+      "rollup": {
+        "code": 3287,
+        "import_statements": 89
+      },
+      "webpack": {
+        "code": 4481
+      }
+    }
   }
 }
