@@ -5,6 +5,7 @@ import pascalize from '../utils/pascalize'
 export default {
   supportedProperty: (prop, style) => {
     const pascalized = pascalize(prop)
+    if (prop.substring(0, 1) === '-') return prop
     if (prefix.js + pascalized in style) return prefix.css + prop
     // Try webkit fallback.
     if (prefix.js !== 'Webkit' && `Webkit${pascalized}` in style) return `-webkit-${prop}`
