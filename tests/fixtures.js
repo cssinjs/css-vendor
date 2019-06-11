@@ -6,7 +6,7 @@ import postcssJs from 'postcss-js'
 const currentBrowser = detectBrowser(window.navigator.userAgent)
 
 const browserQuery = `${currentBrowser.id} ${getVersionIndex(currentBrowser)}`
-const ap = autoprefixer({browsers: browserQuery})
+const ap = autoprefixer({overrideBrowserslist: browserQuery})
 const prefixer = postcssJs.sync([ap])
 
 const skipProperties = [
