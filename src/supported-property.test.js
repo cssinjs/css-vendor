@@ -13,7 +13,7 @@ describe('css-vendor', () => {
       expect(supportedProperty('display')).to.be('display')
     })
 
-    it('should not prefix', () => {
+    it('should not prefix custom CSS variables', () => {
       expect(supportedProperty('--padding-start')).to.be('--padding-start')
     })
 
