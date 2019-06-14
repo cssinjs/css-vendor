@@ -13,11 +13,18 @@ describe('css-vendor', () => {
       expect(supportedProperty('display')).to.be('display')
     })
 
+    it('should not prefix already prefixed value', () => {
+      expect(supportedProperty('-webkit-backdrop-filter')).to.be('-webkit-backdrop-filter')
+    })
+
+    it('should not prefix custom CSS variables', () => {
+      expect(supportedProperty('--padding-start')).to.be('--padding-start')
+    })
+
     const opts = {multiple: true}
     for (const property in propertyPrefixFixture) {
-      it(`should prefix ${property} if needed [${currentBrowser.id} ${
-        currentBrowser.version
-      }]`, () => expect(supportedProperty(property, opts)).to.eql(propertyPrefixFixture[property]))
+      it(`should prefix ${property} if needed [${currentBrowser.id} ${currentBrowser.version}]`, () =>
+        expect(supportedProperty(property, opts)).to.eql(propertyPrefixFixture[property]))
     }
 
     it('should prefix writing-mode if needed', () => {
