@@ -8,7 +8,6 @@ import mask from './mask'
 import overscrollBehavior from './overscroll-behavior'
 import prefixed from './prefixed'
 import scrollSnap from './scroll-snap'
-import textDecorationSkipInk from './text-decoration-skip-ink'
 import textOrientation from './text-orientation'
 import transform from './transform'
 import transition from './transition'
@@ -34,7 +33,6 @@ const plugins = [
   appearence,
   colorAdjust,
   mask,
-  textDecorationSkipInk,
   textOrientation,
   transform,
   transition,
