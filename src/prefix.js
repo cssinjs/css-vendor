@@ -7,7 +7,7 @@ let js = ''
 let css = ''
 let vendor = ''
 let browser = ''
-const isTouch = 'ontouchstart' in document.documentElement
+let isTouch = false
 
 // We should not do anything if required serverside.
 if (isInBrowser) {
@@ -42,6 +42,8 @@ if (isInBrowser) {
   if (js === 'Webkit' && '-apple-trailing-word' in style) {
     vendor = 'apple'
   }
+
+  isTouch = 'ontouchstart' in document.documentElement
 }
 
 /**
