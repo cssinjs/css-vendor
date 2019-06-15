@@ -1,3 +1,10 @@
+## 2.0.3 / 2019-06-15
+
+- Added support for text-orientation property
+- Removed support for text-decoration-skip-ink property
+- Exempt properties which starts from '-' (already prefixed properties) or '--' (custom CSS variables) from prefixing 
+- Update dependencies
+
 ## 2.0.2 / 2019-04-08
 
 - Fix prefix for backdrop-filter on Edge 17/18
