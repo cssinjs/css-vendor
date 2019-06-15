@@ -56,6 +56,7 @@ const isExcluded = o =>
   o.property === 'text-decoration' ||
   o.property === 'text-decoration-skip' ||
   o.property === 'text-decoration-style' ||
+  o.property === 'text-decoration-skip-ink' ||
   // https://caniuse.com/#search=css-crisp-edges
   o.property === 'image-rendering' ||
   // https://caniuse.com/#search=css-logical-props
