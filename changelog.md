@@ -1,3 +1,7 @@
+## 2.0.4 / 2019-06-15
+
+- Fixed server compatibility
+
 ## 2.0.3 / 2019-06-15
 
 - Added support for text-orientation property
