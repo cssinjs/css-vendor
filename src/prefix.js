@@ -7,7 +7,7 @@ let js = ''
 let css = ''
 let vendor = ''
 let browser = ''
-const isTouch = 'ontouchstart' in document.documentElement
+const isTouch = isInBrowser && 'ontouchstart' in document.documentElement
 
 // We should not do anything if required serverside.
 if (isInBrowser) {
