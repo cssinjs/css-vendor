@@ -1,3 +1,7 @@
+## 2.0.5 / 2019-06-20
+
+- Freed from prefixing values with custom CSS variables for transition/transition-property properties
+
 ## 2.0.4 / 2019-06-15
 
 - Fixed server compatibility
