@@ -49,6 +49,16 @@ describe('css-vendor', () => {
       )
     })
 
+    it('should return custom CSS variable as it is', () => {
+      expect(supportedValue('transition', 'var(--something)')).to.eql('var(--something)')
+    })
+
+    it('should return custom CSS variable as it is', () => {
+      expect(supportedValue('transition', 'width var(--width), height var(--height)')).to.eql(
+        'width var(--width), height var(--height)'
+      )
+    })
+
     it('should not break a complex transition value', () => {
       const value = 'margin 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms'
       expect(supportedValue('transition', value)).to.be(value)

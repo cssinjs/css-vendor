@@ -22,6 +22,7 @@ let el
  * @api private
  */
 function prefixTransitionCallback(match, p1, p2) {
+  if (p1 === 'var') return 'var'
   if (p1 === 'all') return 'all'
   if (p2 === 'all') return ', all'
   return p1 ? supportedProperty(p1) : `, ${supportedProperty(p2)}`
