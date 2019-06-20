@@ -49,11 +49,11 @@ describe('css-vendor', () => {
       )
     })
 
-    it('should return custom CSS variable as it is', () => {
+    it('should return custom CSS variable for transition property as it is', () => {
       expect(supportedValue('transition', 'var(--something)')).to.eql('var(--something)')
     })
 
-    it('should return custom CSS variable as it is', () => {
+    it('should return custom CSS variables for transition property as they are', () => {
       expect(supportedValue('transition', 'width var(--width), height var(--height)')).to.eql(
         'width var(--width), height var(--height)'
       )
