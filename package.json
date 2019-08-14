@@ -40,9 +40,9 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/plugin-transform-runtime": "^7.2.0",
-    "@babel/preset-env": "^7.2.3",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "autoprefixer": "^9.6.0",
     "babel-cli": "^6.5.1",
     "babel-eslint": "^10.0.2",
@@ -86,7 +86,7 @@
     "webpack-cli": "^3.3.3"
   },
   "dependencies": {
-    "@babel/runtime": "^7.3.1",
+    "@babel/runtime": "^7.5.5",
     "is-in-browser": "^1.0.2"
   },
   "lint-staged": {
