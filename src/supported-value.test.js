@@ -33,8 +33,8 @@ describe('css-vendor', () => {
       expect(supportedValue('display', 'xxx')).to.be(false)
     })
 
-    it('should return false when property is "content"', () => {
-      expect(supportedValue('content', 'bar')).to.be(false)
+    it('should return value when property is "content"', () => {
+      expect(supportedValue('content', 'bar')).to.be('bar')
     })
 
     it('should return known transform value prefixed', () => {
