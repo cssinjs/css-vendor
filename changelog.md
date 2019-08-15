@@ -1,3 +1,8 @@
+## 2.0.6 / 2019-08-15
+
+- Freed from prefixing values when content property used
+- Update dependencies
+
 ## 2.0.5 / 2019-06-20
 
 - Freed from prefixing values with custom CSS variables for transition/transition-property properties
