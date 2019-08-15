@@ -42,7 +42,7 @@ if (isInBrowser) el = document.createElement('p')
 export default function supportedValue(property, value) {
   // For server-side rendering.
   let prefixedValue = value
-  if (!el) return value
+  if (!el || property === 'content') return value
 
   // It is a string or a number as a string like '1'.
   // We want only prefixable values here.
