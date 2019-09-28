@@ -1,18 +1,19 @@
 import appearence from './appearence'
-import breakPropsOld from './break-props-old'
 import colorAdjust from './color-adjust'
-import flex2009 from './flex-2009'
-import flex2012 from './flex-2012'
-import inlineLogicalOld from './inline-logical-old'
 import mask from './mask'
-import overscrollBehavior from './overscroll-behavior'
-import prefixed from './prefixed'
-import scrollSnap from './scroll-snap'
 import textOrientation from './text-orientation'
 import transform from './transform'
 import transition from './transition'
-import unprefixed from './unprefixed'
 import writingMode from './writing-mode'
+import userSelect from './user-select'
+import breakPropsOld from './break-props-old'
+import inlineLogicalOld from './inline-logical-old'
+import unprefixed from './unprefixed'
+import prefixed from './prefixed'
+import scrollSnap from './scroll-snap'
+import overscrollBehavior from './overscroll-behavior'
+import flex2012 from './flex-2012'
+import flex2009 from './flex-2009'
 
 // Please, keep order plugins:
 // plugins = [
@@ -37,6 +38,7 @@ const plugins = [
   transform,
   transition,
   writingMode,
+  userSelect,
   breakPropsOld,
   inlineLogicalOld,
   unprefixed,
