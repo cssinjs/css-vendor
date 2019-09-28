@@ -54,7 +54,7 @@
     "caniuse-support": "^1.0.2",
     "cross-env": "^5.2.0",
     "es5-shim": "^4.5.10",
-    "eslint": "^6.1.0",
+    "eslint": "^6.4.0",
     "eslint-config-jss": "^5.0.1",
     "eslint-config-prettier": "^6.0.0",
     "expect.js": "^0.3.1",
