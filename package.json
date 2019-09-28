@@ -83,7 +83,7 @@
     "rollup-plugin-size-snapshot": "^0.10.0",
     "rollup-plugin-terser": "^5.1.2",
     "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.7"
+    "webpack-cli": "^3.3.9"
   },
   "dependencies": {
     "@babel/runtime": "^7.6.2",
