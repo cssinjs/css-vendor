@@ -6,7 +6,9 @@ export default {
   noPrefill: ['user-select'],
   supportedProperty: prop => {
     if (prop !== 'user-select') return false
-    if (prefix.js === 'Moz') return prefix.css + prop
+    if (prefix.js === 'Moz' || prefix.js === 'ms' || prefix.vendor === 'apple') {
+      return prefix.css + prop
+    }
     return prop
   }
 }
