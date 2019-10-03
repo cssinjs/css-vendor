@@ -1,13 +1,13 @@
 {
   "dist/css-vendor.js": {
-    "bundled": 16600,
-    "minified": 5365,
-    "gzipped": 2046
+    "bundled": 17055,
+    "minified": 5599,
+    "gzipped": 2131
   },
   "dist/css-vendor.min.js": {
-    "bundled": 16600,
-    "minified": 5365,
-    "gzipped": 2046
+    "bundled": 17055,
+    "minified": 5599,
+    "gzipped": 2131
   },
   "./lib/index": {
     "bundled": 14406,
@@ -34,21 +34,21 @@
     }
   },
   "dist/css-vendor.cjs.js": {
-    "bundled": 14691,
-    "minified": 6236,
-    "gzipped": 2137
+    "bundled": 15122,
+    "minified": 6466,
+    "gzipped": 2175
   },
   "dist/css-vendor.esm.js": {
-    "bundled": 14372,
-    "minified": 5975,
-    "gzipped": 2047,
+    "bundled": 14803,
+    "minified": 6205,
+    "gzipped": 2084,
     "treeshaked": {
       "rollup": {
-        "code": 3327,
+        "code": 3500,
         "import_statements": 89
       },
       "webpack": {
-        "code": 4527
+        "code": 4717
       }
     }
   }
