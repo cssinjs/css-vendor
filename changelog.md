@@ -1,3 +1,8 @@
+## 2.0.7 / 2019-10-04
+
+- Return parameters for transition/transition-property without prefix if they don't need to be prefixed
+- Update dependencies
+
 ## 2.0.6 / 2019-08-15
 
 - Freed from prefixing values when content property used
