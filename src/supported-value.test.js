@@ -49,6 +49,10 @@ describe('css-vendor', () => {
       )
     })
 
+    it('should return dashed property value as it is', () => {
+      expect(supportedValue('transition', 'ease-in-out 0.3s')).to.eql('ease-in-out 0.3s')
+    })
+
     it('should return custom CSS variable for transition property as it is', () => {
       expect(supportedValue('transition', 'var(--something)')).to.eql('var(--something)')
     })
