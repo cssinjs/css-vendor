@@ -39,7 +39,11 @@ if (isInBrowser) {
   }
 
   // Correctly detect the Safari browser.
-  if (js === 'Webkit' && '-apple-trailing-word' in style) {
+  if (
+    js === 'Webkit' &&
+    ('-apple-trailing-word' in style ||
+      (typeof CSS !== 'undefined' && CSS.supports('-webkit-backdrop-filter', 'blur(1px)')))
+  ) {
     vendor = 'apple'
   }
 }
