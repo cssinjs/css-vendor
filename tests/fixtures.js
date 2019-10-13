@@ -85,6 +85,10 @@ const isExcluded = o =>
   // https://caniuse.com/#search=filter
   o.property === 'filter' ||
   o.property === 'place-self' ||
+  // Skipping because we still prefixing user-select for Firefox,
+  // but Firefox >= 69 not require prefix for this property.
+  // https://caniuse.com/#search=user-select
+  (o.property === 'user-select' && currentBrowser.id === 'firefox') ||
   breakProps.indexOf(o.property) > -1
 
 // Some properties need a certain value, so autoprefixer will prefix them.
