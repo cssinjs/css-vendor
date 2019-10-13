@@ -29,7 +29,7 @@ describe('css-vendor', () => {
 
     it('should prefix writing-mode if needed', () => {
       let isPrefixed = false
-      if (prefix.js === 'Webkit' || prefix.js === 'ms') {
+      if (prefix.js === 'Webkit' || (prefix.js === 'ms' && prefix.browser !== 'edge')) {
         isPrefixed = true
       }
       expect(supportedProperty('writing-mode')).to.be(`${isPrefixed ? prefix.css : ''}writing-mode`)
