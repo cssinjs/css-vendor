@@ -6,7 +6,7 @@ export default {
   noPrefill: ['writing-mode'],
   supportedProperty: prop => {
     if (prop !== 'writing-mode') return false
-    if (prefix.js === 'Webkit' || prefix.js === 'ms') {
+    if (prefix.js === 'Webkit' || (prefix.js === 'ms' && prefix.browser !== 'edge')) {
       return prefix.css + prop
     }
     return prop
