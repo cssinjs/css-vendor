@@ -86,7 +86,7 @@
     "webpack-cli": "^3.3.9"
   },
   "dependencies": {
-    "@babel/runtime": "^7.6.2",
+    "@babel/runtime": "^7.8.3",
     "is-in-browser": "^1.0.2"
   },
   "lint-staged": {
