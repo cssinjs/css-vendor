@@ -52,7 +52,7 @@
     "babel-plugin-transform-es3-member-expression-literals": "^6.8.0",
     "babel-plugin-transform-es3-property-literals": "^6.8.0",
     "caniuse-support": "^1.0.3",
-    "cross-env": "^6.0.0",
+    "cross-env": "^7.0.0",
     "es5-shim": "^4.5.10",
     "eslint": "^6.4.0",
     "eslint-config-jss": "^5.0.1",
