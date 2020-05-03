@@ -14,6 +14,7 @@ import scrollSnap from './scroll-snap'
 import overscrollBehavior from './overscroll-behavior'
 import flex2012 from './flex-2012'
 import flex2009 from './flex-2009'
+import hyphens from './hyphens'
 
 // Please, keep order plugins:
 // plugins = [
@@ -39,6 +40,7 @@ const plugins = [
   transition,
   writingMode,
   userSelect,
+  hyphens,
   breakPropsOld,
   inlineLogicalOld,
   unprefixed,
@@ -50,11 +52,11 @@ const plugins = [
 ]
 
 export const propertyDetectors = plugins
-  .filter(p => p.supportedProperty)
-  .map(p => p.supportedProperty)
+  .filter((p) => p.supportedProperty)
+  .map((p) => p.supportedProperty)
 
 export const noPrefill = plugins
-  .filter(p => p.noPrefill)
+  .filter((p) => p.noPrefill)
   .reduce((a, p) => {
     a.push(...p.noPrefill)
     return a
