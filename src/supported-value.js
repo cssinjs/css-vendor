@@ -75,11 +75,27 @@ export default function supportedValue(property, value) {
   if (transitionProperties[property]) {
     prefixedValue = prefixedValue.replace(transPropsRegExp, prefixTransitionCallback)
   } else if (el.style[property] === '') {
+    const prePrefixedValue = prefixedValue
+
     // Value with a vendor prefix.
     prefixedValue = prefix.css + prefixedValue
 
     // Hardcode test to convert "flex" to "-ms-flexbox" for IE10.
     if (prefixedValue === '-ms-flex') el.style[property] = '-ms-flexbox'
+
+    // Change "strech" and "fill" values to "fill-available" and prefix it correctly
+    if (
+      prePrefixedValue === 'stretch' ||
+      prePrefixedValue === 'fill' ||
+      prePrefixedValue === 'fill-available'
+    ) {
+      prefixedValue = 'fill-available'
+      if (prefix.js === 'Moz') {
+        prefixedValue = '-moz-available'
+      } else if (prefix.js !== 'ms' || prefix.browser === 'edge') {
+        prefixedValue = '-webkit-fill-available'
+      }
+    }
 
     // Test prefixed value.
     el.style[property] = prefixedValue
