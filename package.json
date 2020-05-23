@@ -70,7 +70,7 @@
     "karma-safari-launcher": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
-    "lint-staged": "^10.2.1",
+    "lint-staged": "^10.2.6",
     "mocha": "^7.1.2",
     "postcss-js": "^2.0.3",
     "pre-commit": "^1.2.2",
