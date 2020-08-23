@@ -64,7 +64,7 @@ export default function supportedValue(property, value) {
   // IE can even throw an error in some cases, for e.g. style.content = 'bar'.
   try {
     // Test value as it is.
-    el.style[property] = prefixedValue
+    el.style.setProperty(property, ...prefixedValue.split(/!(?=important$)/))
   } catch (err) {
     // Return false if value not supported.
     cache[cacheKey] = false
