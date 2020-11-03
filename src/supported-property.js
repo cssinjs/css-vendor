@@ -4,7 +4,7 @@ import {propertyDetectors, noPrefill} from './plugins/index'
 let el
 const cache = {}
 
-if (isInBrowser) {
+if (isInBrowser && document.documentElement) {
   el = document.createElement('p')
 
   // We test every property on vendor prefix requirement.
