@@ -83,7 +83,7 @@ export default function supportedValue(property, value) {
     // Hardcode test to convert "flex" to "-ms-flexbox" for IE10.
     if (prefixedValue === '-ms-flex') el.style[property] = '-ms-flexbox'
 
-    // Change "strech" and "fill" values to "fill-available" and prefix it correctly
+    // Change "strech" and "fill" values to "fill-available" and prefix them correctly
     if (
       prePrefixedValue === 'stretch' ||
       prePrefixedValue === 'fill' ||
