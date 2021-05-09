@@ -78,5 +78,16 @@ describe('css-vendor', () => {
         prefix.js === 'ms' && prefix.browser !== 'edge' ? false : value
       )
     })
+
+    it('should support !important property', () => {
+      expect(supportedValue('border', 'solid 1px indigo !important')).to.be(
+        'solid 1px indigo !important'
+      )
+      expect(supportedValue('font-size', '12px!important')).to.be('12px!important')
+    })
+
+    it('should support content property with the value contains !important string', () => {
+      expect(supportedValue('content', '!important')).to.be('!important')
+    })
   })
 })
