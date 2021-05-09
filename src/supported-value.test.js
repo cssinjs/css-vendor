@@ -78,5 +78,37 @@ describe('css-vendor', () => {
         prefix.js === 'ms' && prefix.browser !== 'edge' ? false : value
       )
     })
+
+    it('should return known fill-available value prefixed', () => {
+      let value = 'fill-available'
+      if (prefix.js === 'Moz') {
+        value = '-moz-available'
+      } else if (prefix.js !== 'ms' || prefix.browser === 'edge') {
+        value = '-webkit-fill-available'
+      }
+      expect(supportedValue('width', 'fill-available')).to.eql(
+        prefix.js === 'ms' ? false : `${value}`
+      )
+    })
+
+    it('should return known stretch value prefixed', () => {
+      let value = 'fill-available'
+      if (prefix.js === 'Moz') {
+        value = '-moz-available'
+      } else if (prefix.js !== 'ms' || prefix.browser === 'edge') {
+        value = '-webkit-fill-available'
+      }
+      expect(supportedValue('width', 'stretch')).to.eql(prefix.js === 'ms' ? false : `${value}`)
+    })
+
+    it('should return known fill value prefixed', () => {
+      let value = 'fill-available'
+      if (prefix.js === 'Moz') {
+        value = '-moz-available'
+      } else if (prefix.js !== 'ms' || prefix.browser === 'edge') {
+        value = '-webkit-fill-available'
+      }
+      expect(supportedValue('width', 'fill')).to.eql(prefix.js === 'ms' ? false : `${value}`)
+    })
   })
 })
