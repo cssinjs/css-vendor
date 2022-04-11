@@ -57,6 +57,14 @@ describe('css-vendor', () => {
       expect(supportedValue('transition', 'var(--something)')).to.eql('var(--something)')
     })
 
+    it('should return custom CSS variable with fallback CSS variable for transition property as it is', () => {
+      expect(supportedValue('transition', 'var(--something, var(--another-thing))')).to.eql('var(--something, var(--another-thing))')
+    })
+
+    it('should return custom CSS variable with fallback CSS variable having another CSS variable as fallback for transition property as it is', () => {
+      expect(supportedValue('transition', 'var(--something, var(--another-thing, var(--another-another-thing)))')).to.eql('var(--something, var(--another-thing, var(--another-another-thing)))')
+    })
+
     it('should return custom CSS variables for transition property as they are', () => {
       expect(supportedValue('transition', 'width var(--width), height var(--height)')).to.eql(
         'width var(--width), height var(--height)'
