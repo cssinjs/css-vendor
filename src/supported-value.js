@@ -24,6 +24,7 @@ let el
 function prefixTransitionCallback(match, p1, p2) {
   if (p1 === 'var') return 'var'
   if (p1 === 'all') return 'all'
+  if (p2 === 'var') return ', var'
   if (p2 === 'all') return ', all'
   const prefixedValue = p1 ? supportedProperty(p1) : `, ${supportedProperty(p2)}`
   if (!prefixedValue) return p1 || p2
